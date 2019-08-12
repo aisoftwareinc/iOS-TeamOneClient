@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EULAController" customModule="Insur_O_Vision" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="Gpj-NI-511" id="4hr-yo-tOI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gpj-NI-511">
+                    <rect key="frame" x="0.0" y="44" width="414" height="349"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlP-Q5-zTc">
+                    <rect key="frame" x="55" y="832" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="fQY-ih-ejl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-gF-hza">
+                    <rect key="frame" x="310" y="832" width="49" height="30"/>
+                    <state key="normal" title="Accept"/>
+                    <connections>
+                        <action selector="didAccept:" destination="-1" eventType="touchUpInside" id="O8c-eY-YVz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GlP-Q5-zTc" firstAttribute="top" secondItem="Gpj-NI-511" secondAttribute="bottom" constant="439" id="2ir-ik-N4J"/>
+                <constraint firstItem="GlP-Q5-zTc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="55" id="RbP-OF-2Sm"/>
+                <constraint firstItem="Gpj-NI-511" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WMH-fg-RCk"/>
+                <constraint firstItem="Gpj-NI-511" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YBE-Jt-fjr"/>
+                <constraint firstItem="GlP-Q5-zTc" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bzI-oS-JYR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mc3-gF-hza" secondAttribute="trailing" constant="55" id="j6t-87-czL"/>
+                <constraint firstItem="mc3-gF-hza" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="lG4-p5-ngx"/>
+                <constraint firstItem="Gpj-NI-511" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nHH-2L-Fxp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

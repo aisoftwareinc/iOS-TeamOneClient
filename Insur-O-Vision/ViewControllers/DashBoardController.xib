@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashBoardController" customModule="Insur_O_Vision" customModuleProvider="target">
+            <connections>
+                <outlet property="claimNumberField" destination="To1-AT-OVL" id="fhX-sv-vvy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="To1-AT-OVL" customClass="PrimaryTextField" customModule="Insur_O_Vision" customModuleProvider="target">
+                    <rect key="frame" x="20" y="383" width="374" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="gih-J9-Iae"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADz-JC-9HC" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
+                    <rect key="frame" x="137" y="457" width="140" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="9sI-NV-poB"/>
+                        <constraint firstAttribute="height" constant="44" id="hWG-oE-bLj"/>
+                    </constraints>
+                    <state key="normal" title="Submit"/>
+                    <connections>
+                        <action selector="submitClaim:" destination="-1" eventType="touchUpInside" id="FGN-L1-2qW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="To1-AT-OVL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="EP3-CM-4xD"/>
+                <constraint firstItem="To1-AT-OVL" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ESc-Wx-aDW"/>
+                <constraint firstItem="ADz-JC-9HC" firstAttribute="top" secondItem="To1-AT-OVL" secondAttribute="bottom" constant="30" id="O3E-eI-QMj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="To1-AT-OVL" secondAttribute="trailing" constant="20" id="YQr-pm-8m3"/>
+                <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="339" id="Yin-ce-6Rf"/>
+                <constraint firstItem="ADz-JC-9HC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kC3-jN-hHb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
+        </view>
+    </objects>
+</document>

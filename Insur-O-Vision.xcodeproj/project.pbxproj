@@ -7,23 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
+		F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4632300D68A0097350C /* PrimaryButton.swift */; };
+		F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4652300D9E20097350C /* PrimaryTextField.swift */; };
+		F20FF469230109270097350C /* SockerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF468230109270097350C /* SockerHandler.swift */; };
+		F20FF46B23010B180097350C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF46A23010B180097350C /* ViewController.swift */; };
 		F215A34322E3737400704A47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215A34222E3737400704A47 /* AppDelegate.swift */; };
-		F215A34522E3737400704A47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215A34422E3737400704A47 /* ViewController.swift */; };
-		F215A34822E3737400704A47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F215A34622E3737400704A47 /* Main.storyboard */; };
 		F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F215A34922E3737400704A47 /* Insur_O_Vision.xcdatamodeld */; };
 		F215A34D22E3737700704A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F215A34C22E3737700704A47 /* Assets.xcassets */; };
 		F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F215A34E22E3737700704A47 /* LaunchScreen.storyboard */; };
+		F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242785922FE783C00F30250 /* AppCoordinator.swift */; };
+		F242786423006D2100F30250 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; };
+		F242786523006D2100F30250 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F242786A2300A1DC00F30250 /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24278682300A1DC00F30250 /* DashBoardController.swift */; };
+		F242786B2300A1DC00F30250 /* DashBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24278692300A1DC00F30250 /* DashBoardController.xib */; };
+		F242786D2300A27D00F30250 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242786C2300A27D00F30250 /* Configuration.swift */; };
+		F24278722300A49F00F30250 /* EULAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24278702300A49F00F30250 /* EULAController.swift */; };
+		F24278732300A49F00F30250 /* EULAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24278712300A49F00F30250 /* EULAController.xib */; };
+		F2A0244422E375AC001CACCF /* HaishinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A0244322E375AC001CACCF /* HaishinKit.framework */; };
+		F2A0244522E375AC001CACCF /* HaishinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2A0244322E375AC001CACCF /* HaishinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2A0244F22E376BA001CACCF /* Logboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A0244E22E376B9001CACCF /* Logboard.framework */; };
+		F2A0245022E376BA001CACCF /* Logboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2A0244E22E376B9001CACCF /* Logboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245122E3BED0001CACCF /* StreamHandler.swift */; };
+		F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245322E3BF50001CACCF /* VideoStreamController.swift */; };
+		F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0245422E3BF50001CACCF /* VideoStreamController.xib */; };
+		F2FB1BAF2301102900F3C03D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FB1BAE2301102900F3C03D /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F242786023006D0E00F30250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F242785B23006D0D00F30250 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 33CCF0921F5DDC030099B092;
+			remoteInfo = Starscream;
+		};
+		F242786223006D0E00F30250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F242785B23006D0D00F30250 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 335FA2021F5DF71D00F6D2EC;
+			remoteInfo = "Starscream Tests";
+		};
+		F242786623006D2100F30250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F242785B23006D0D00F30250 /* Starscream.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 33CCF0841F5DDC030099B092;
+			remoteInfo = Starscream;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F2A0244622E375AC001CACCF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F2A0245022E376BA001CACCF /* Logboard.framework in Embed Frameworks */,
+				F242786523006D2100F30250 /* Starscream.framework in Embed Frameworks */,
+				F2A0244522E375AC001CACCF /* HaishinKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		F20FF4652300D9E20097350C /* PrimaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextField.swift; sourceTree = "<group>"; };
+		F20FF468230109270097350C /* SockerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SockerHandler.swift; sourceTree = "<group>"; };
+		F20FF46A23010B180097350C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F215A33F22E3737400704A47 /* Insur-O-Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Insur-O-Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F215A34222E3737400704A47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F215A34422E3737400704A47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F215A34722E3737400704A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F215A34A22E3737400704A47 /* Insur_O_Vision.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Insur_O_Vision.xcdatamodel; sourceTree = "<group>"; };
 		F215A34C22E3737700704A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F215A34F22E3737700704A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F215A35122E3737700704A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F242785922FE783C00F30250 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F242785B23006D0D00F30250 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
+		F24278682300A1DC00F30250 /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
+		F24278692300A1DC00F30250 /* DashBoardController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardController.xib; sourceTree = "<group>"; };
+		F242786C2300A27D00F30250 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F24278702300A49F00F30250 /* EULAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAController.swift; sourceTree = "<group>"; };
+		F24278712300A49F00F30250 /* EULAController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAController.xib; sourceTree = "<group>"; };
+		F2A0244322E375AC001CACCF /* HaishinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HaishinKit.framework; path = Carthage/Build/iOS/HaishinKit.framework; sourceTree = "<group>"; };
+		F2A0244E22E376B9001CACCF /* Logboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Logboard.framework; path = Carthage/Build/iOS/Logboard.framework; sourceTree = "<group>"; };
+		F2A0245122E3BED0001CACCF /* StreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamHandler.swift; sourceTree = "<group>"; };
+		F2A0245322E3BF50001CACCF /* VideoStreamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamController.swift; sourceTree = "<group>"; };
+		F2A0245422E3BF50001CACCF /* VideoStreamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoStreamController.xib; sourceTree = "<group>"; };
+		F2FB1BAE2301102900F3C03D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +106,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2FB1BAF2301102900F3C03D /* WebKit.framework in Frameworks */,
+				F2A0244F22E376BA001CACCF /* Logboard.framework in Frameworks */,
+				F242786423006D2100F30250 /* Starscream.framework in Frameworks */,
+				F2A0244422E375AC001CACCF /* HaishinKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F20FF4592300D0F90097350C /* UISubclass */ = {
+			isa = PBXGroup;
+			children = (
+				F20FF4632300D68A0097350C /* PrimaryButton.swift */,
+				F20FF4652300D9E20097350C /* PrimaryTextField.swift */,
+			);
+			path = UISubclass;
+			sourceTree = "<group>";
+		};
+		F20FF45A2300D3550097350C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F20FF45B2300D3640097350C /* Colors.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F20FF4672301091A0097350C /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				F20FF468230109270097350C /* SockerHandler.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		F215A33622E3737400704A47 = {
 			isa = PBXGroup;
 			children = (
+				F242785B23006D0D00F30250 /* Starscream.xcodeproj */,
+				F2A0244E22E376B9001CACCF /* Logboard.framework */,
+				F2A0244322E375AC001CACCF /* HaishinKit.framework */,
 				F215A34122E3737400704A47 /* Insur-O-Vision */,
 				F215A34022E3737400704A47 /* Products */,
+				F2FB1BAC2301102900F3C03D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +164,51 @@
 		F215A34122E3737400704A47 /* Insur-O-Vision */ = {
 			isa = PBXGroup;
 			children = (
+				F20FF4672301091A0097350C /* Socket */,
+				F242786C2300A27D00F30250 /* Configuration.swift */,
+				F20FF45A2300D3550097350C /* UI */,
+				F20FF4592300D0F90097350C /* UISubclass */,
+				F242785922FE783C00F30250 /* AppCoordinator.swift */,
 				F215A34222E3737400704A47 /* AppDelegate.swift */,
-				F215A34422E3737400704A47 /* ViewController.swift */,
-				F215A34622E3737400704A47 /* Main.storyboard */,
+				F2A0245122E3BED0001CACCF /* StreamHandler.swift */,
+				F242786E2300A47700F30250 /* ViewControllers */,
 				F215A34C22E3737700704A47 /* Assets.xcassets */,
 				F215A34E22E3737700704A47 /* LaunchScreen.storyboard */,
 				F215A35122E3737700704A47 /* Info.plist */,
 				F215A34922E3737400704A47 /* Insur_O_Vision.xcdatamodeld */,
 			);
 			path = "Insur-O-Vision";
+			sourceTree = "<group>";
+		};
+		F242785C23006D0D00F30250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F242786123006D0E00F30250 /* Starscream.framework */,
+				F242786323006D0E00F30250 /* Starscream Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F242786E2300A47700F30250 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F20FF46A23010B180097350C /* ViewController.swift */,
+				F2A0245322E3BF50001CACCF /* VideoStreamController.swift */,
+				F2A0245422E3BF50001CACCF /* VideoStreamController.xib */,
+				F24278682300A1DC00F30250 /* DashBoardController.swift */,
+				F24278692300A1DC00F30250 /* DashBoardController.xib */,
+				F24278702300A49F00F30250 /* EULAController.swift */,
+				F24278712300A49F00F30250 /* EULAController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F2FB1BAC2301102900F3C03D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2FB1BAE2301102900F3C03D /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,12 +219,15 @@
 			buildConfigurationList = F215A35422E3737700704A47 /* Build configuration list for PBXNativeTarget "Insur-O-Vision" */;
 			buildPhases = (
 				F215A33B22E3737400704A47 /* Sources */,
+				F2A0244D22E37612001CACCF /* Carthage Copy */,
 				F215A33C22E3737400704A47 /* Frameworks */,
 				F215A33D22E3737400704A47 /* Resources */,
+				F2A0244622E375AC001CACCF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F242786723006D2100F30250 /* PBXTargetDependency */,
 			);
 			name = "Insur-O-Vision";
 			productName = "Insur-O-Vision";
@@ -113,6 +260,12 @@
 			mainGroup = F215A33622E3737400704A47;
 			productRefGroup = F215A34022E3737400704A47 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F242785C23006D0D00F30250 /* Products */;
+					ProjectRef = F242785B23006D0D00F30250 /* Starscream.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F215A33E22E3737400704A47 /* Insur-O-Vision */,
@@ -120,41 +273,91 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		F242786123006D0E00F30250 /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = F242786023006D0E00F30250 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F242786323006D0E00F30250 /* Starscream Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Starscream Tests.xctest";
+			remoteRef = F242786223006D0E00F30250 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		F215A33D22E3737400704A47 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F242786B2300A1DC00F30250 /* DashBoardController.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
+				F24278732300A49F00F30250 /* EULAController.xib in Resources */,
+				F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */,
 				F215A34D22E3737700704A47 /* Assets.xcassets in Resources */,
-				F215A34822E3737400704A47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F2A0244D22E37612001CACCF /* Carthage Copy */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Carthage Copy";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nif [ ! -f \"${FRAMEWORK_EXECUTABLE_PATH}\" ]; then\ncontinue\nfi\n\nif xcrun lipo -info \"${FRAMEWORK_EXECUTABLE_PATH}\" | grep --silent \"Non-fat\"; then\necho \"Framework non-fat, skipping: $FRAMEWORK_EXECUTABLE_NAME\"\ncontinue\nfi\n\necho \"Thinning framework $FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nxcrun lipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nxcrun lipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F215A33B22E3737400704A47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F215A34522E3737400704A47 /* ViewController.swift in Sources */,
+				F242786A2300A1DC00F30250 /* DashBoardController.swift in Sources */,
+				F20FF45C2300D3640097350C /* Colors.swift in Sources */,
+				F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */,
+				F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */,
+				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
+				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
+				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
+				F20FF46B23010B180097350C /* ViewController.swift in Sources */,
+				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
+				F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */,
+				F20FF469230109270097350C /* SockerHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		F215A34622E3737400704A47 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F215A34722E3737400704A47 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		F242786723006D2100F30250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			targetProxy = F242786623006D2100F30250 /* PBXContainerItemProxy */;
 		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
 		F215A34E22E3737700704A47 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -285,15 +488,21 @@
 		F215A35522E3737700704A47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3568HZCVV4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Insur-O-Vision/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "suncaster.io.Insur-O-Vision";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,15 +512,21 @@
 		F215A35622E3737700704A47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3568HZCVV4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Insur-O-Vision/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "suncaster.io.Insur-O-Vision";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

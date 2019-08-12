@@ -1,0 +1,10 @@
+{
+  "commitish" : "2.1.0",
+  "iOS" : [
+    {
+      "name" : "Logboard",
+      "hash" : "6e325fa0f384e755c1d53ab3132176b870fc180008e86675dedfec2cb3f08d07",
+      "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
+    }
+  ]
+}
