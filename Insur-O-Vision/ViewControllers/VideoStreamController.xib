@@ -37,10 +37,28 @@
                         <action selector="flashToggle:" destination="-1" eventType="touchUpInside" id="ihv-os-aWl"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFj-5W-LrN">
+                    <rect key="frame" x="179.5" y="44" width="55" height="30"/>
+                    <state key="normal" title="Capture"/>
+                    <connections>
+                        <action selector="captureImage:" destination="-1" eventType="touchUpInside" id="df0-g6-jSV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-gl-phC">
+                    <rect key="frame" x="23" y="44" width="40" height="30"/>
+                    <state key="normal" title="Zoom"/>
+                    <connections>
+                        <action selector="zoom:" destination="-1" eventType="touchUpInside" id="Qb4-hu-EJA"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="AFj-5W-LrN" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="467-jk-Sc5"/>
+                <constraint firstItem="XwU-gl-phC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="5EV-d2-GN6"/>
+                <constraint firstItem="XwU-gl-phC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="AOh-6Z-zq7"/>
                 <constraint firstItem="aUQ-6c-fmx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="PBo-Qw-Kia"/>
+                <constraint firstItem="AFj-5W-LrN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="muQ-29-oY9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aUQ-6c-fmx" secondAttribute="bottom" constant="18" id="sgT-Jv-Mxv"/>
                 <constraint firstItem="y8G-d4-E04" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="t9p-Yg-ogV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y8G-d4-E04" secondAttribute="trailing" constant="24" id="vVZ-hZ-New"/>

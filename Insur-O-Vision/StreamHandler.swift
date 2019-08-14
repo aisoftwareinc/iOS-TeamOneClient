@@ -10,6 +10,10 @@ import Foundation
 import HaishinKit
 import AVFoundation
 
+protocol StreamVideoDelegate: class {
+  func didGetLiveFeed(_ data: CMSampleBuffer)
+}
+
 class StreamHandler {
   private let sampleRate: Double = 44_100
   let rtmpConnection = RTMPConnection()
@@ -22,6 +26,8 @@ class StreamHandler {
     URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
   }()
   
+  weak var delegate: StreamVideoDelegate?
+  
   init(_ uri: String, id: String) {
     streamURI = uri
     streamID = id
@@ -31,7 +37,7 @@ class StreamHandler {
   private func setUp() {
     rtmpStream.syncOrientation = true
     rtmpStream.captureSettings = [
-      "sessionPreset": AVCaptureSession.Preset.hd1280x720.rawValue,
+      "sessionPreset": AVCaptureSession.Preset.hd1920x1080.rawValue,
       "continuousAutofocus": true,
       "continuousExposure": true,
       "preferredVideoStabilizationMode": AVCaptureVideoStabilizationMode.auto.rawValue
@@ -43,6 +49,7 @@ class StreamHandler {
     rtmpStream.audioSettings = [
       "sampleRate": sampleRate
     ]
+    rtmpStream.resume()
   }
   
   func startCamera() {
@@ -64,6 +71,14 @@ class StreamHandler {
   
   func startStream() {
     rtmpConnection.connect(streamURI)
-    rtmpStream.publish(streamID)
+    rtmpStream.publish(streamID, type: .live)
+  }
+  
+  func stopStream() {
+    rtmpStream.close()
+  }
+  
+  func zoom(_ float: CGFloat) {
+    rtmpStream.setZoomFactor(2.0, ramping: true, withRate: 3.0)
   }
 }

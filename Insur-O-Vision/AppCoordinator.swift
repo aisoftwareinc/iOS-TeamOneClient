@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class AppCoordinator {
-  
-  var streamHandler: StreamHandler!
+
   var baseController: UINavigationController!
   
   func start() -> UIViewController {
@@ -48,7 +47,7 @@ extension AppCoordinator: EULADelegate {
 // MARK: DashboardDelegate
 extension AppCoordinator: DashboardDelegate {
   func didEnterClaimsNumber(_ string: String) {
-    streamHandler = StreamHandler("rtmp://ec2-52-15-121-242.us-east-2.compute.amazonaws.com/LiveApp/", id: string)
+    let streamHandler = StreamHandler("rtmp://ec2-52-15-121-242.us-east-2.compute.amazonaws.com/LiveApp/", id: string)
     self.baseController.pushViewController(videoStreamController(streamHandler), animated: true)
   }
   

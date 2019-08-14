@@ -132,18 +132,6 @@ final class H264Encoder: NSObject {
     weak var delegate: VideoEncoderDelegate?
 
     private(set) var isRunning: Atomic<Bool> = .init(false)
-    private var supportedProperty: [AnyHashable: Any]? {
-        didSet {
-            guard logger.isEnabledFor(level: .info) else {
-                return
-            }
-            var keys: [String] = []
-            for (key, _) in supportedProperty ?? [:] {
-                keys.append(key.description)
-            }
-            logger.info(keys.joined(separator: ", "))
-        }
-    }
     private(set) var status: OSStatus = noErr
     private var attributes: [NSString: AnyObject] {
         var attributes: [NSString: AnyObject] = H264Encoder.defaultAttributes
@@ -224,7 +212,6 @@ final class H264Encoder: NSObject {
                 invalidateSession = false
                 status = VTSessionSetProperties(_session!, propertyDictionary: properties as CFDictionary)
                 status = VTCompressionSessionPrepareToEncodeFrames(_session!)
-                supportedProperty = _session?.copySupportedPropertyDictionary()
             }
             return _session
         }
@@ -302,9 +289,7 @@ extension H264Encoder: Running {
     // MARK: Running
     func startRunning() {
         lockQueue.async {
-            self.isRunning.mutate { value in
-                value = true
-            }
+            self.isRunning.mutate { $0 = true }
 #if os(iOS)
             NotificationCenter.default.addObserver(
                 self,
@@ -330,9 +315,8 @@ extension H264Encoder: Running {
 #if os(iOS)
             NotificationCenter.default.removeObserver(self)
 #endif
-            self.isRunning.mutate { value in
-                value = false
-            }
+            OSAtomicAnd32Barrier(0, &self.locked)
+            self.isRunning.mutate { $0 = false }
         }
     }
 }

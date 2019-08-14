@@ -1,9 +1,9 @@
 {
-  "commitish" : "0.11.4",
+  "commitish" : "0.11.6",
   "iOS" : [
     {
       "name" : "HaishinKit",
-      "hash" : "af613ac26136ec59eeac9dc4a22c5370afe8fbc94f93a8c0aa7188254aae4ae0",
+      "hash" : "8d75cc82ae812f2f644e7fb52658c4e5291ac620f2cca1133f9da9c5caa87d51",
       "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]

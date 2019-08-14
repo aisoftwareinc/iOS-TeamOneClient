@@ -513,7 +513,6 @@ SWIFT_CLASS("_TtC10HaishinKit14RTMPConnection")
 /// The statistics of outgoing bytes per second.
 @property (nonatomic, readonly) int32_t currentBytesOutPerSecond;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (void)onStatus:(NSNotification * _Nonnull)status;
 @end
 
 
@@ -558,8 +557,8 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 - (void)didPublishInsufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 - (void)didPublishSufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 @optional
-- (void)outputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
-- (void)outputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
+- (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
 @required
 - (void)clear;
 @end
@@ -1146,7 +1145,6 @@ SWIFT_CLASS("_TtC10HaishinKit14RTMPConnection")
 /// The statistics of outgoing bytes per second.
 @property (nonatomic, readonly) int32_t currentBytesOutPerSecond;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (void)onStatus:(NSNotification * _Nonnull)status;
 @end
 
 
@@ -1191,8 +1189,8 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 - (void)didPublishInsufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 - (void)didPublishSufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 @optional
-- (void)outputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
-- (void)outputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
+- (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
 @required
 - (void)clear;
 @end
@@ -1783,7 +1781,6 @@ SWIFT_CLASS("_TtC10HaishinKit14RTMPConnection")
 /// The statistics of outgoing bytes per second.
 @property (nonatomic, readonly) int32_t currentBytesOutPerSecond;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (void)onStatus:(NSNotification * _Nonnull)status;
 @end
 
 
@@ -1828,8 +1825,8 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 - (void)didPublishInsufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 - (void)didPublishSufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 @optional
-- (void)outputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
-- (void)outputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
+- (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
 @required
 - (void)clear;
 @end
@@ -2416,7 +2413,6 @@ SWIFT_CLASS("_TtC10HaishinKit14RTMPConnection")
 /// The statistics of outgoing bytes per second.
 @property (nonatomic, readonly) int32_t currentBytesOutPerSecond;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (void)onStatus:(NSNotification * _Nonnull)status;
 @end
 
 
@@ -2461,8 +2457,8 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 - (void)didPublishInsufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 - (void)didPublishSufficientBW:(RTMPStream * _Nonnull)stream withConnection:(RTMPConnection * _Nonnull)withConnection;
 @optional
-- (void)outputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
-- (void)outputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
+- (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
 @required
 - (void)clear;
 @end

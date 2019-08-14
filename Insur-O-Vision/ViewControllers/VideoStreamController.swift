@@ -10,7 +10,7 @@ import UIKit
 import HaishinKit
 import AVFoundation
 import Starscream
-
+import CoreImage
 
 
 class VideoStreamController: UIViewController {
@@ -47,7 +47,20 @@ class VideoStreamController: UIViewController {
     }
   }
   
+  @IBAction func captureImage(_ sender: UIButton) {
+    let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+    let _ = renderer.image { ctx in
+      let renderedView = self.view.subviews[0]
+      renderedView.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+    }
+  }
+  
   @IBAction func toggleStream(_ sender: UIButton) {
     streamHandler.startStream()
   }
+  
+  @IBAction func zoom(_ sender: Any) {
+    streamHandler.zoom(2.0)
+  }
+  
 }
