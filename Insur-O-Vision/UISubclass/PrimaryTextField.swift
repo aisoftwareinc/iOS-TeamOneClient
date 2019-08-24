@@ -17,6 +17,7 @@ class PrimaryTextField: UITextField {
     self.layer.borderColor = Colors.secondaryBackground.cgColor
     self.layer.borderWidth = 1.0
     self.backgroundColor = UIColor.clear
+    self.textColor = UIColor.white
   }
   
   required init?(coder aDecoder: NSCoder) {

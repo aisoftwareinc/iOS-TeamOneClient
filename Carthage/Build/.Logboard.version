@@ -3,7 +3,7 @@
   "iOS" : [
     {
       "name" : "Logboard",
-      "hash" : "0d8ab467d9c35544e6fc39b13d4ebada766051415679c32c400b228cee8e10f1",
+      "hash" : "20d5fc8d6530f63042bea35dcf1ad20ce83a63afe7a508beea18bb7031d7951b",
       "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]

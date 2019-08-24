@@ -559,6 +559,7 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 @optional
 - (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
 - (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputLiveData:(CMSampleBufferRef _Nullable)buffer;
 @required
 - (void)clear;
 @end
@@ -1191,6 +1192,7 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 @optional
 - (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
 - (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputLiveData:(CMSampleBufferRef _Nullable)buffer;
 @required
 - (void)clear;
 @end
@@ -1827,6 +1829,7 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 @optional
 - (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
 - (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputLiveData:(CMSampleBufferRef _Nullable)buffer;
 @required
 - (void)clear;
 @end
@@ -2459,6 +2462,7 @@ SWIFT_PROTOCOL("_TtP10HaishinKit18RTMPStreamDelegate_")
 @optional
 - (void)didOutputAudio:(AVAudioPCMBuffer * _Nonnull)buffer presentationTimeStamp:(CMTime)presentationTimeStamp;
 - (void)didOutputVideo:(CMSampleBufferRef _Nonnull)buffer;
+- (void)didOutputLiveData:(CMSampleBufferRef _Nullable)buffer;
 @required
 - (void)clear;
 @end

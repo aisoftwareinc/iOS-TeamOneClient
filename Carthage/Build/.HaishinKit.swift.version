@@ -3,7 +3,7 @@
   "iOS" : [
     {
       "name" : "HaishinKit",
-      "hash" : "8d75cc82ae812f2f644e7fb52658c4e5291ac620f2cca1133f9da9c5caa87d51",
+      "hash" : "a2a4fa4e365f3a5af3dbd076ab7f893ab9a90c85c3ff2a3da846fe6fd57d9d52",
       "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]
