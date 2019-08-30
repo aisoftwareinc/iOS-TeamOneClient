@@ -16,13 +16,6 @@ struct Networking {
     case noResults
   }
   
-  static func sendToken(_ token: String) {
-    let url = URL(string: "https://whiskeybotnet.herokuapp.com/save?token=\(token)&os=iOS")!
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    let session = URLSession.shared
-    session.dataTask(with: request).resume()
-  }
   
   static func send<T: Request, ResultType: Decodable>(request: T, completion: (((Result<ResultType, Error>) -> Void)?) = nil) {
     let session = URLSession.init(configuration: .default)

@@ -27,8 +27,9 @@ class AppCoordinator {
     return EULAController(delegate: self)
   }
   
-  private func videoStreamController(_ streamingHandler: StreamHandler) -> VideoStreamController {
-    return VideoStreamController(streamingHandler)
+  private func videoStreamController(_ streamID: String) -> VideoStreamController {
+    let streamHandler = StreamHandler("rtmp://ec2-52-86-161-206.compute-1.amazonaws.com/LiveApp/", id: streamID)
+    return VideoStreamController(streamHandler)
   }
 }
 
@@ -47,8 +48,7 @@ extension AppCoordinator: EULADelegate {
 // MARK: DashboardDelegate
 extension AppCoordinator: DashboardDelegate {
   func didEnterClaimsNumber(_ string: String) {
-    let streamHandler = StreamHandler("rtmp://ec2-52-15-121-242.us-east-2.compute.amazonaws.com/LiveApp/", id: string)
-    self.baseController.pushViewController(videoStreamController(streamHandler), animated: true)
+    self.baseController.pushViewController(videoStreamController(string), animated: true)
   }
   
   func noClaimNumberEntered() {

@@ -23,12 +23,13 @@
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="To1-AT-OVL" customClass="PrimaryTextField" customModule="Insur_O_Vision" customModuleProvider="target">
                     <rect key="frame" x="20" y="184" width="374" height="44"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="gih-J9-Iae"/>
                     </constraints>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADz-JC-9HC" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
                     <rect key="frame" x="137" y="258" width="140" height="44"/>
@@ -36,19 +37,28 @@
                         <constraint firstAttribute="width" constant="140" id="9sI-NV-poB"/>
                         <constraint firstAttribute="height" constant="44" id="hWG-oE-bLj"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Submit"/>
                     <connections>
                         <action selector="submitClaim:" destination="-1" eventType="touchUpInside" id="FGN-L1-2qW"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Claims ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqN-IT-2T3">
+                    <rect key="frame" x="20" y="155" width="77" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="To1-AT-OVL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="EP3-CM-4xD"/>
                 <constraint firstItem="To1-AT-OVL" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ESc-Wx-aDW"/>
+                <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="jqN-IT-2T3" secondAttribute="bottom" constant="8" id="G55-cT-heb"/>
                 <constraint firstItem="ADz-JC-9HC" firstAttribute="top" secondItem="To1-AT-OVL" secondAttribute="bottom" constant="30" id="O3E-eI-QMj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="To1-AT-OVL" secondAttribute="trailing" constant="20" id="YQr-pm-8m3"/>
                 <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="Yin-ce-6Rf"/>
+                <constraint firstItem="jqN-IT-2T3" firstAttribute="leading" secondItem="To1-AT-OVL" secondAttribute="leading" id="jCN-h8-0RD"/>
                 <constraint firstItem="ADz-JC-9HC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kC3-jN-hHb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

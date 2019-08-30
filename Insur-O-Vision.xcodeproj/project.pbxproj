@@ -20,6 +20,8 @@
 		F214759E23108594007E7D2F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214759D23108594007E7D2F /* LocationManager.swift */; };
 		F21475A623108B99007E7D2F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475A523108B99007E7D2F /* Global.swift */; };
 		F21475A923108E09007E7D2F /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475A823108E09007E7D2F /* Resolution.swift */; };
+		F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475C3231736E2007E7D2F /* SendImageRequest.swift */; };
+		F21475CF231983DF007E7D2F /* VideoStreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */; };
 		F215A34322E3737400704A47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215A34222E3737400704A47 /* AppDelegate.swift */; };
 		F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F215A34922E3737400704A47 /* Insur_O_Vision.xcdatamodeld */; };
 		F215A34D22E3737700704A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F215A34C22E3737700704A47 /* Assets.xcassets */; };
@@ -159,6 +161,8 @@
 		F214759D23108594007E7D2F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F21475A523108B99007E7D2F /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		F21475A823108E09007E7D2F /* Resolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
+		F21475C3231736E2007E7D2F /* SendImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageRequest.swift; sourceTree = "<group>"; };
+		F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamViewModel.swift; sourceTree = "<group>"; };
 		F215A33F22E3737400704A47 /* Insur-O-Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Insur-O-Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F215A34222E3737400704A47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F215A34A22E3737400704A47 /* Insur_O_Vision.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Insur_O_Vision.xcdatamodel; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 		F214758523108434007E7D2F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F21475CD231736E6007E7D2F /* SendImage */,
 				F214758623108434007E7D2F /* ScrapedRequest */,
 				F214758923108434007E7D2F /* Networking.swift */,
 				F214758A23108434007E7D2F /* RegisterPush */,
@@ -269,6 +274,14 @@
 				F2A0245122E3BED0001CACCF /* StreamHandler.swift */,
 			);
 			path = VideoStream;
+			sourceTree = "<group>";
+		};
+		F21475CD231736E6007E7D2F /* SendImage */ = {
+			isa = PBXGroup;
+			children = (
+				F21475C3231736E2007E7D2F /* SendImageRequest.swift */,
+			);
+			path = SendImage;
 			sourceTree = "<group>";
 		};
 		F215A33622E3737400704A47 = {
@@ -327,6 +340,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */,
 				F2A0245322E3BF50001CACCF /* VideoStreamController.swift */,
 				F2A0245422E3BF50001CACCF /* VideoStreamController.xib */,
 				F24278682300A1DC00F30250 /* DashBoardController.swift */,
@@ -541,6 +555,7 @@
 				F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */,
 				F214759823108434007E7D2F /* Networking.swift in Sources */,
 				F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */,
+				F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */,
 				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
 				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
 				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
@@ -555,6 +570,7 @@
 				F214759723108434007E7D2F /* ScrapeRequest.swift in Sources */,
 				F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */,
 				F214759A23108434007E7D2F /* RegisterPushResult.swift in Sources */,
+				F21475CF231983DF007E7D2F /* VideoStreamViewModel.swift in Sources */,
 				F2FB1BE52303B20F00F3C03D /* TestImageViewController.swift in Sources */,
 				F20FF469230109270097350C /* SockerHandler.swift in Sources */,
 				F21475A623108B99007E7D2F /* Global.swift in Sources */,

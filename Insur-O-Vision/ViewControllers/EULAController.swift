@@ -31,13 +31,14 @@ class EULAController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.title = "Terms and Conditions"
   }
-  @IBAction func cancel(_ sender: UIButton) {
+  @IBAction func cancel(_ sender: PrimaryButton) {
     delegate?.didCancel()
   }
 
   
-  @IBAction func didAccept(_ sender: UIButton) {
+  @IBAction func didAccept(_ sender: PrimaryButton) {
     delegate?.didAccept()
   }
 }

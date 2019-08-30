@@ -37,8 +37,17 @@ class VideoStreamController: UIViewController {
     NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
                                            object: nil,
                                            queue: .main,
-                                           using: toggleOritenation)
-    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+                                           using: { _ in
+                                            switch UIDevice.current.orientation {
+                                            case .landscapeLeft, .landscapeRight:
+                                              print("landscape")
+                                            case .portrait, .portraitUpsideDown:
+                                              print("Portrait")
+                                            default:
+                                              print("other")
+                                            }
+                                            
+    })
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
   }
@@ -48,23 +57,18 @@ class VideoStreamController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
     super.viewWillAppear(animated)
     streamHandler.startCamera()
     buildStreamView()
-    socket.receivedImage = receivedData
   }
   
-  @objc
-  private func toggleOritenation(_ notification: Notification) {
-    switch UIDevice.current.orientation {
-    case .landscapeLeft, .landscapeRight:
-      print("landscape")
-    case .portrait, .portraitUpsideDown:
-      print("Portrait")
-    default:
-      print("other")
-    }
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    streamHandler.disconnect()
+    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
   }
+  
   
   private func buildStreamView() {
     let hkStreamView = GLHKView(frame: .zero)
@@ -108,12 +112,7 @@ class VideoStreamController: UIViewController {
     }
     toggleZoom(zoomLevel)
   }
-  
-  func receivedData(_ data: Data) {
-    let image = UIImage.init(data: data)!
-    let imageController = TestImageViewController(image)
-    present(imageController, animated: true, completion: nil)
-  }
+
   
   func toggleZoom(_ level: CGFloat) {
     streamHandler.zoom(level)
@@ -152,11 +151,24 @@ class VideoStreamController: UIViewController {
       renderedView.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
     }
     let data = image.jpegData(compressionQuality: 0.25)!
-    socket.sendData(data)
+    //socket.sendData(data)
+    let base64Image = data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+    Networking.send(request: SendImageRequest("999999", base64Image: base64Image)) {  (result: Result<RegisterPushResult, Error>) in
+      
+    }
   }
   
   @IBAction func updateResolution(_ sender: Any) {
-    streamHandler.updateResolution(HighResolution())
+    let alertController = UIAlertController(title: "Stream Quality", message: "Change Resolution", preferredStyle: .actionSheet)
+    let highBitrate = UIAlertAction(title: "High", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(HighResolution()) })
+    let defaultBitrate = UIAlertAction(title: "Medium", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(DefaultResolution()) })
+    let lowBitrate = UIAlertAction(title: "Low", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(LowResolution()) })
+    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    alertController.addAction(highBitrate)
+    alertController.addAction(defaultBitrate)
+    alertController.addAction(lowBitrate)
+    alertController.addAction(cancel)
+    present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -164,7 +176,6 @@ extension VideoStreamController: RemoteCommandsDelegate {
   func didRecieveCommand(_ command: Socket.Command) {
     switch command {
     case .flash:
-      print("Toggle Flash")
       toggleFlash()
     case .screenShot:
       print("Toggle Screenshot")
@@ -181,12 +192,21 @@ extension VideoStreamController: RemoteCommandsDelegate {
   
   func didDisconnect() {
     print("Did disconnect")
-    UI { self.socketConnectionImage.tintColor = UIColor.red }
+    UI { [weak self] in self?.socketConnectionImage.tintColor = UIColor.red }
   }
   
   func didConnect() {
     print("Did Connect")
-    UI { self.socketConnectionImage.tintColor = UIColor.green }
+    UI { [weak self] in self?.socketConnectionImage.tintColor = UIColor.green }
   }
 }
 
+extension CharacterSet {
+  static let urlEncoded: CharacterSet = {
+    let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+    let subDelimitersToEncode = "!$&'()*+,;="
+    var allowed = CharacterSet.urlQueryAllowed
+    allowed.remove(charactersIn: generalDelimitersToEncode + subDelimitersToEncode)
+    return allowed
+  }()
+}

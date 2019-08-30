@@ -34,10 +34,23 @@ class DashBoardController: UIViewController {
     self.title = "Team One"
     setUpView()
     locationManager.start()
+    addKeyboardDismissTap()
+  }
+  
+  
+  @objc
+  func dismissKeyboard() {
+    UI { self.claimNumberField.resignFirstResponder() }
   }
   
   private func setUpView() {
     self.view.backgroundColor = Colors.background
+  }
+  
+  private func addKeyboardDismissTap() {
+    let gesture = UITapGestureRecognizer()
+    gesture.addTarget(self, action: #selector(dismissKeyboard))
+    view.addGestureRecognizer(gesture)
   }
   
   @IBAction func submitClaim(_ sender: UIButton) {
@@ -46,5 +59,6 @@ class DashBoardController: UIViewController {
       return
     }
     delegate?.didEnterClaimsNumber(claimID)
+    self.claimNumberField.resignFirstResponder()
   }
 }

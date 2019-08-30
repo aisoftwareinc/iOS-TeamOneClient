@@ -26,5 +26,9 @@ class PrimaryTextField: UITextField {
     self.layer.borderColor = Colors.secondaryBackground.cgColor
     self.backgroundColor = UIColor.clear
     self.layer.borderWidth = 1.0
+    self.textColor = UIColor.white
+    let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 20))
+    leftView = paddingView
+    leftViewMode = .always
   }
 }

@@ -43,11 +43,13 @@ class StreamHandler {
       "preferredVideoStabilizationMode": AVCaptureVideoStabilizationMode.auto.rawValue
     ]
     rtmpStream.videoSettings = [
-      "width": 720,
-      "height": 1280
+      "width": 1280,
+      "height": 720,
+      "bitrate": HighResolution().bitrate * 1024
     ]
     rtmpStream.audioSettings = [
-      "sampleRate": sampleRate
+      "muted": false, // mute audio
+      "bitrate": 32 * 1024
     ]
 
     rtmpStream.resume()
@@ -87,12 +89,13 @@ class StreamHandler {
     rtmpStream.togglePause()
   }
   
+  func disconnect() {
+    rtmpStream.close()
+    rtmpStream.dispose()
+  }
+  
   func updateResolution(_ resolution: Resolution) {
-//    rtmpStream.videoSettings = [
-//      "width": resolution.width,
-//      "height": resolution.height
-//    ]
-    
-    rtmpStream.videoSettings["bitrate"] = 100000
+    let bitate = resolution.bitrate * 1024
+    rtmpStream.videoSettings["bitrate"] =  bitate
   }
 }
