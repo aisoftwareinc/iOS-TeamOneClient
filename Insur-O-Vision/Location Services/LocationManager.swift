@@ -36,12 +36,16 @@ class LocationManager: NSObject {
     }
   }
   
-  func sendLocation() {
+  func sendLocation(_ streamID: String) {
     guard let currentLocation = self.currentLocation else {
       return
     }
     
     print("Sending Location: \(currentLocation)")
+    let locationRequest = PostUserLocation(currentLocation, streamID: streamID)
+    Networking.send(request: locationRequest) { (result: Result<RegisterPushResult, Error>) in
+      
+    }
     //        let locationRequest = Requests.reportLocationPostRequest(String(currentLocation.coordinate.latitude), String(currentLocation.coordinate.longitude))
     //        print("Sending location: \(String(currentLocation.coordinate.latitude), String(currentLocation.coordinate.longitude))")
     //        Networking.send(locationRequest, completion: { (result: Result<Success>) in
@@ -68,7 +72,6 @@ extension LocationManager: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     print("Received new location \(locations[0].coordinate)")
     self.currentLocation = locations[0]
-    self.sendLocation()
     self.stop()
   }
 }

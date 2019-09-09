@@ -11,11 +11,13 @@ import UIKit
 
 class AppCoordinator {
 
+  private let locationManager = LocationManager()
   var baseController: UINavigationController!
   
   func start() -> UIViewController {
     let initialController = Configuration.didSeeEULA ? dashboardController() : eulaController()
     baseController = UINavigationController(rootViewController: initialController)
+    locationManager.start()
     return baseController
   }
   
@@ -28,8 +30,8 @@ class AppCoordinator {
   }
   
   private func videoStreamController(_ streamID: String) -> VideoStreamController {
-    let streamHandler = StreamHandler("rtmp://ec2-52-86-161-206.compute-1.amazonaws.com/LiveApp/", id: streamID)
-    return VideoStreamController(streamHandler)
+    let streamHandler = StreamHandler(Configuration.streamURL, id: streamID)
+    return VideoStreamController(streamHandler, streamID)
   }
 }
 
@@ -49,6 +51,7 @@ extension AppCoordinator: EULADelegate {
 extension AppCoordinator: DashboardDelegate {
   func didEnterClaimsNumber(_ string: String) {
     self.baseController.pushViewController(videoStreamController(string), animated: true)
+    locationManager.sendLocation(string)
   }
   
   func noClaimNumberEntered() {

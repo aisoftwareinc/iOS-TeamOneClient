@@ -17,7 +17,6 @@ class DashBoardController: UIViewController {
   
   @IBOutlet weak var claimNumberField: PrimaryTextField!
   weak var delegate: DashboardDelegate?
-  private var locationManager: LocationManager = LocationManager()
   
   init(delegate: DashboardDelegate) {
     self.delegate = delegate
@@ -33,7 +32,6 @@ class DashBoardController: UIViewController {
     self.navigationItem.hidesBackButton = true
     self.title = "Team One"
     setUpView()
-    locationManager.start()
     addKeyboardDismissTap()
   }
   

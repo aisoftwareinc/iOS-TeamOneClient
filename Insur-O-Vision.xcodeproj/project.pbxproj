@@ -11,8 +11,6 @@
 		F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4632300D68A0097350C /* PrimaryButton.swift */; };
 		F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4652300D9E20097350C /* PrimaryTextField.swift */; };
 		F20FF469230109270097350C /* SockerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF468230109270097350C /* SockerHandler.swift */; };
-		F214759623108434007E7D2F /* ScrapeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758723108434007E7D2F /* ScrapeResult.swift */; };
-		F214759723108434007E7D2F /* ScrapeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758823108434007E7D2F /* ScrapeRequest.swift */; };
 		F214759823108434007E7D2F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758923108434007E7D2F /* Networking.swift */; };
 		F214759923108434007E7D2F /* RegisterPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758B23108434007E7D2F /* RegisterPush.swift */; };
 		F214759A23108434007E7D2F /* RegisterPushResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758C23108434007E7D2F /* RegisterPushResult.swift */; };
@@ -26,6 +24,8 @@
 		F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F215A34922E3737400704A47 /* Insur_O_Vision.xcdatamodeld */; };
 		F215A34D22E3737700704A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F215A34C22E3737700704A47 /* Assets.xcassets */; };
 		F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F215A34E22E3737700704A47 /* LaunchScreen.storyboard */; };
+		F23E448C232596BF003DEAA9 /* PostUserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E448B232596BF003DEAA9 /* PostUserLocation.swift */; };
+		F23E448E232602A5003DEAA9 /* EndStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E448D232602A5003DEAA9 /* EndStreamRequest.swift */; };
 		F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242785922FE783C00F30250 /* AppCoordinator.swift */; };
 		F242786423006D2100F30250 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; };
 		F242786523006D2100F30250 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -152,8 +152,6 @@
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F20FF4652300D9E20097350C /* PrimaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextField.swift; sourceTree = "<group>"; };
 		F20FF468230109270097350C /* SockerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SockerHandler.swift; sourceTree = "<group>"; };
-		F214758723108434007E7D2F /* ScrapeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapeResult.swift; sourceTree = "<group>"; };
-		F214758823108434007E7D2F /* ScrapeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapeRequest.swift; sourceTree = "<group>"; };
 		F214758923108434007E7D2F /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F214758B23108434007E7D2F /* RegisterPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPush.swift; sourceTree = "<group>"; };
 		F214758C23108434007E7D2F /* RegisterPushResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPushResult.swift; sourceTree = "<group>"; };
@@ -169,6 +167,8 @@
 		F215A34C22E3737700704A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F215A34F22E3737700704A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F215A35122E3737700704A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F23E448B232596BF003DEAA9 /* PostUserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUserLocation.swift; sourceTree = "<group>"; };
+		F23E448D232602A5003DEAA9 /* EndStreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndStreamRequest.swift; sourceTree = "<group>"; };
 		F242785922FE783C00F30250 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F242785B23006D0D00F30250 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
 		F24278682300A1DC00F30250 /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
@@ -234,21 +234,11 @@
 			isa = PBXGroup;
 			children = (
 				F21475CD231736E6007E7D2F /* SendImage */,
-				F214758623108434007E7D2F /* ScrapedRequest */,
 				F214758923108434007E7D2F /* Networking.swift */,
 				F214758A23108434007E7D2F /* RegisterPush */,
 				F214758D23108434007E7D2F /* Request.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		F214758623108434007E7D2F /* ScrapedRequest */ = {
-			isa = PBXGroup;
-			children = (
-				F214758723108434007E7D2F /* ScrapeResult.swift */,
-				F214758823108434007E7D2F /* ScrapeRequest.swift */,
-			);
-			path = ScrapedRequest;
 			sourceTree = "<group>";
 		};
 		F214758A23108434007E7D2F /* RegisterPush */ = {
@@ -280,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				F21475C3231736E2007E7D2F /* SendImageRequest.swift */,
+				F23E448B232596BF003DEAA9 /* PostUserLocation.swift */,
+				F23E448D232602A5003DEAA9 /* EndStreamRequest.swift */,
 			);
 			path = SendImage;
 			sourceTree = "<group>";
@@ -555,9 +547,11 @@
 				F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */,
 				F214759823108434007E7D2F /* Networking.swift in Sources */,
 				F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */,
+				F23E448E232602A5003DEAA9 /* EndStreamRequest.swift in Sources */,
 				F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */,
 				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
 				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
+				F23E448C232596BF003DEAA9 /* PostUserLocation.swift in Sources */,
 				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
 				F214759923108434007E7D2F /* RegisterPush.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
@@ -565,9 +559,7 @@
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
 				F214759E23108594007E7D2F /* LocationManager.swift in Sources */,
 				F214759B23108434007E7D2F /* Request.swift in Sources */,
-				F214759623108434007E7D2F /* ScrapeResult.swift in Sources */,
 				F21475A923108E09007E7D2F /* Resolution.swift in Sources */,
-				F214759723108434007E7D2F /* ScrapeRequest.swift in Sources */,
 				F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */,
 				F214759A23108434007E7D2F /* RegisterPushResult.swift in Sources */,
 				F21475CF231983DF007E7D2F /* VideoStreamViewModel.swift in Sources */,

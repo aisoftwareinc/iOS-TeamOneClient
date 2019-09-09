@@ -16,14 +16,16 @@ import Anchorage
 class VideoStreamController: UIViewController {
   let streamHandler: StreamHandler
   let socket: Socket
+  private let viewModel: ViewStreammViewModel
   @IBOutlet weak var flashButton: UIButton!
   @IBOutlet weak var cameraButton: UIButton!
   @IBOutlet weak var captureButton: PrimaryButton!
   @IBOutlet weak var socketConnectionImage: UIImageView!
   @IBOutlet weak var resolutionButton: UIButton!
   
-  init(_ streamHandler: StreamHandler) {
+  init(_ streamHandler: StreamHandler, _ streamID: String) {
     self.streamHandler = streamHandler
+    self.viewModel = ViewStreammViewModel(streamID)
     self.socket = Socket(URL(string: "wss://echo.websocket.org")!)
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
@@ -61,6 +63,7 @@ class VideoStreamController: UIViewController {
     super.viewWillAppear(animated)
     streamHandler.startCamera()
     buildStreamView()
+    viewModel.endStream()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -87,7 +90,7 @@ class VideoStreamController: UIViewController {
   
   
   @IBAction func flashToggle(_ sender: UIButton) {
-    toggleFlash()
+    viewModel.toggleFlash()
   }
   
   @IBAction func captureImage(_ sender: UIButton) {
@@ -130,19 +133,6 @@ class VideoStreamController: UIViewController {
     streamHandler.togglePause()
   }
   
-  func toggleFlash() {
-    if let currentDevice = AVCaptureDevice.default(for: AVMediaType.video), currentDevice.hasTorch {
-      do {
-        try currentDevice.lockForConfiguration()
-        let torchOn = !currentDevice.isTorchActive
-        try currentDevice.setTorchModeOn(level: 1.0)//Or whatever you want
-        currentDevice.torchMode = torchOn ? .on : .off
-        currentDevice.unlockForConfiguration()
-      } catch {
-        print("error")
-      }
-    }
-  }
   
   func captureScreen() {
     let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
@@ -176,7 +166,7 @@ extension VideoStreamController: RemoteCommandsDelegate {
   func didRecieveCommand(_ command: Socket.Command) {
     switch command {
     case .flash:
-      toggleFlash()
+      viewModel.toggleFlash()
     case .screenShot:
       print("Toggle Screenshot")
       captureScreen()

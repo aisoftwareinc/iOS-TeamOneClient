@@ -19,4 +19,8 @@ struct Configuration {
   static var didSeeEULA: Bool {
     return UserDefaults.standard.value(forKey: self.eula) as? Bool ?? false
   }
+  
+  static var streamURL: String {
+    return "rtmp://ec2-18-209-100-156.compute-1.amazonaws.com/LiveApp/"
+  }
 }
