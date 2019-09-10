@@ -26,6 +26,7 @@
 		F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F215A34E22E3737700704A47 /* LaunchScreen.storyboard */; };
 		F23E448C232596BF003DEAA9 /* PostUserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E448B232596BF003DEAA9 /* PostUserLocation.swift */; };
 		F23E448E232602A5003DEAA9 /* EndStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E448D232602A5003DEAA9 /* EndStreamRequest.swift */; };
+		F23E44962327440C003DEAA9 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E44952327440C003DEAA9 /* Logging.swift */; };
 		F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242785922FE783C00F30250 /* AppCoordinator.swift */; };
 		F242786423006D2100F30250 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; };
 		F242786523006D2100F30250 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F242786123006D0E00F30250 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -169,6 +170,7 @@
 		F215A35122E3737700704A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F23E448B232596BF003DEAA9 /* PostUserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUserLocation.swift; sourceTree = "<group>"; };
 		F23E448D232602A5003DEAA9 /* EndStreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndStreamRequest.swift; sourceTree = "<group>"; };
+		F23E44952327440C003DEAA9 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		F242785922FE783C00F30250 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F242785B23006D0D00F30250 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
 		F24278682300A1DC00F30250 /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				F21475A823108E09007E7D2F /* Resolution.swift */,
+				F23E44952327440C003DEAA9 /* Logging.swift */,
 				F2FB1BDF2303816D00F3C03D /* HaishinKit.framework */,
 				F2FB1BD423026EF900F3C03D /* Logboard.framework */,
 				F2B5F867230F8ED600121F8C /* Anchorage.xcodeproj */,
@@ -553,6 +556,7 @@
 				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
 				F23E448C232596BF003DEAA9 /* PostUserLocation.swift in Sources */,
 				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
+				F23E44962327440C003DEAA9 /* Logging.swift in Sources */,
 				F214759923108434007E7D2F /* RegisterPush.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,

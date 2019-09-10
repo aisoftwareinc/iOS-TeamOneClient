@@ -63,13 +63,13 @@ class VideoStreamController: UIViewController {
     super.viewWillAppear(animated)
     streamHandler.startCamera()
     buildStreamView()
-    viewModel.endStream()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     streamHandler.disconnect()
     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+    viewModel.endStream()
   }
   
   
@@ -98,7 +98,14 @@ class VideoStreamController: UIViewController {
   }
   
   @IBAction func toggleStream(_ sender: UIButton) {
-    startStream()
+    switch streamHandler.isStreaming() {
+    case true:
+      stopStream()
+      captureButton.setTitle("  Start  ", for: .normal)
+    case false:
+      startStream()
+      captureButton.setTitle("  Stop  ", for: .normal)
+    }
   }
   
   @IBAction func zoom(_ sender: UISegmentedControl) {

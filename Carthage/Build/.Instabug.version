@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "8.6.3",
+  "iOS" : [
+    {
+      "name" : "Instabug",
+      "hash" : "4b7b6a295556e70700cda40ce23bbb2f265c548fd08c7c724b6a2c81e8eae6f9"
+    }
+  ]
+}

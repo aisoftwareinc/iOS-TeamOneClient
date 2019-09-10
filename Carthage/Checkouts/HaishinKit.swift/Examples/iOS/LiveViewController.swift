@@ -130,10 +130,12 @@ final class LiveViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = false
             rtmpConnection.close()
             rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusHandler), observer: self)
+            rtmpConnection.removeEventListener(Event.IO_ERROR, selector: #selector(rtmpErrorHandler), observer: self)
             publish.setTitle("●", for: [])
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusHandler), observer: self)
+            rtmpConnection.addEventListener(Event.IO_ERROR, selector: #selector(rtmpErrorHandler), observer: self)
             rtmpConnection.connect(Preference.defaultInstance.uri!)
             publish.setTitle("■", for: [])
         }
@@ -160,6 +162,16 @@ final class LiveViewController: UIViewController {
             retryCount += 1
         default:
             break
+        }
+    }
+
+    @objc
+    private func rtmpErrorHandler(_ notification: Notification) {
+        let e = Event.from(notification)
+        print("rtmpErrorHandler: \(e.description)")
+
+        DispatchQueue.main.async {
+            self.rtmpConnection.connect(Preference.defaultInstance.uri!)
         }
     }
 

@@ -19,6 +19,7 @@ class StreamHandler {
   let rtmpConnection = RTMPConnection()
   lazy var rtmpStream = RTMPStream(connection: rtmpConnection)
   
+  private var isRunning: Bool = false
   private let streamURI: String
   private let streamID: String
   
@@ -75,10 +76,12 @@ class StreamHandler {
   func startStream() {
     rtmpConnection.connect(streamURI)
     rtmpStream.publish(streamID)
+    isRunning = true
   }
   
   func stopStream() {
     rtmpStream.close()
+    isRunning = false
   }
   
   func zoom(_ float: CGFloat) {
@@ -87,6 +90,7 @@ class StreamHandler {
   
   func togglePause() {
     rtmpStream.togglePause()
+    isRunning = !isRunning
   }
   
   func disconnect() {
@@ -97,5 +101,9 @@ class StreamHandler {
   func updateResolution(_ resolution: Resolution) {
     let bitate = resolution.bitrate * 1024
     rtmpStream.videoSettings["bitrate"] =  bitate
+  }
+  
+  func isStreaming() -> Bool {
+    return isRunning
   }
 }
