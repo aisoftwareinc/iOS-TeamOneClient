@@ -42,7 +42,7 @@ class LocationManager: NSObject {
     }
     
     print("Sending Location: \(currentLocation)")
-    let locationRequest = PostUserLocation(currentLocation, streamID: streamID)
+    let locationRequest = PostUserInformation(currentLocation, streamID: streamID, modelName: UIDevice.current.model, iOSVersion: UIDevice.current.systemVersion)
     Networking.send(request: locationRequest) { (result: Result<RegisterPushResult, Error>) in
       
     }

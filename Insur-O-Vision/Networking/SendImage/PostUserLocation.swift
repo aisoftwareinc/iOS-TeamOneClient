@@ -13,10 +13,15 @@ struct PostUserInformation: Request {
   
   let location: CLLocation
   let streamID: String
+  let modelName: String
+  let iOSVersion: String
   
-  init(_ location: CLLocation, streamID: String) {
+  
+  init(_ location: CLLocation, streamID: String, modelName: String, iOSVersion: String) {
     self.location = location
     self.streamID = streamID
+    self.modelName = modelName
+    self.iOSVersion = iOSVersion
   }
   
   var type: RequestType {
@@ -24,12 +29,12 @@ struct PostUserInformation: Request {
   }
   
   var url: String {
-    return "http://demo.teamonecms.com/ws/media.asmx/PostUserLocation"
+    return "http://demo.teamonecms.com/ws/media.asmx/PostUserInformation"
   }
   
   func build() -> URLRequest {
     var urlRequest = URLRequest(url: URL(string: url)!)
-    let data = "Latitude=\(location.coordinate.latitude)&Longitude=\(location.coordinate.longitude)&StreamID=\(streamID)"
+    let data = "Latitude=\(location.coordinate.latitude)&Longitude=\(location.coordinate.longitude)&StreamID=\(streamID)&ModelName=\(self.modelName)&ModelNumber=iPhone&SoftwareVersion=\(self.iOSVersion)&Carrier=NA"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     urlRequest.httpMethod = type.rawValue
     urlRequest.httpBody = dataString
