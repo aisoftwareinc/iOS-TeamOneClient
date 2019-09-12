@@ -16,13 +16,12 @@ struct Networking {
     case noResults
   }
   
-  
-  static func send<T: Request, ResultType: Decodable>(request: T, completion: (((Result<ResultType, Error>) -> Void)?) = nil) {
+  static func send<T: Request, ResultType: Decodable>(request: T, completion: @escaping ((Result<ResultType, Error>) -> Void)) {
     let session = URLSession.init(configuration: .default)
     let dataTask = session.dataTask(with: request.build()) { (data, response, error) in
       DLOG("Network Response: Request - \(T.self) - Response \((response as! HTTPURLResponse).statusCode)")
       if let error = error {
-        completion?(.failure(error))
+        completion(.failure(error))
         return
       }
       
@@ -30,12 +29,17 @@ struct Networking {
         do {
           DLOG("JSON Response: Request - \(T.self) - \(String(data: data, encoding: .utf8) ?? "Unable to build String from Data result.")")
           let result = try JSONDecoder().decode(ResultType.self, from: data)
-          completion?(.success(result))
+          completion(.success(result))
         } catch {
-          completion?(.failure(error))
+          completion(.failure(error))
         }
       }
     }
     dataTask.resume()
+  }
+  
+  static func send<T: Request>(_ request: T) {
+    let session = URLSession.init(configuration: .default)
+    session.dataTask(with: request.build())
   }
 }

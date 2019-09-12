@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-struct PostUserLocation: Request {
+struct PostUserInformation: Request {
   
   let location: CLLocation
   let streamID: String

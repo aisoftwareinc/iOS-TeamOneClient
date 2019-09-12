@@ -109,17 +109,7 @@ class VideoStreamController: UIViewController {
   }
   
   @IBAction func zoom(_ sender: UISegmentedControl) {
-    var zoomLevel: CGFloat
-    switch sender.selectedSegmentIndex {
-    case 0:
-      zoomLevel = 1.0
-    case 1:
-      zoomLevel = 1.5
-    case 2:
-      zoomLevel = 2.0
-    default:
-      zoomLevel = 1.0
-    }
+    let zoomLevel = viewModel.zoomLevel(sender.selectedSegmentIndex)
     toggleZoom(zoomLevel)
   }
 
@@ -148,11 +138,7 @@ class VideoStreamController: UIViewController {
       renderedView.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
     }
     let data = image.jpegData(compressionQuality: 0.25)!
-    //socket.sendData(data)
-    let base64Image = data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
-    Networking.send(request: SendImageRequest("999999", base64Image: base64Image)) {  (result: Result<RegisterPushResult, Error>) in
-      
-    }
+    viewModel.sendImage(data)
   }
   
   @IBAction func updateResolution(_ sender: Any) {
@@ -179,8 +165,10 @@ extension VideoStreamController: RemoteCommandsDelegate {
       captureScreen()
     case .stopVideo:
       print("Toggle Stop video")
+      stopStream()
     case .startVideo:
       print("Toggle Start")
+      startStream()
     case .zoom:
       print("Toggle Zoom")
       toggleZoom(2.0)
@@ -199,7 +187,7 @@ extension VideoStreamController: RemoteCommandsDelegate {
 }
 
 extension CharacterSet {
-  static let urlEncoded: CharacterSet = {
+  static let urlImageEncoded: CharacterSet = {
     let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
     let subDelimitersToEncode = "!$&'()*+,;="
     var allowed = CharacterSet.urlQueryAllowed
