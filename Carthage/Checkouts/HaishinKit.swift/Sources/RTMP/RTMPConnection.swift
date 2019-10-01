@@ -5,7 +5,6 @@ import Foundation
  flash.net.Responder for Swift
  */
 open class Responder: NSObject {
-
     public typealias Handler = (_ data: [Any?]) -> Void
 
     private var result: Handler
@@ -131,7 +130,7 @@ open class RTMPConnection: EventDispatcher {
         }
 
         let query = String(description[description.index(index, offsetBy: 1)...])
-        let challenge = String(format: "%08x", arc4random())
+        let challenge = String(format: "%08x", UInt32.random(in: 0...UInt32.max))
         let dictionary: [String: String] = URL(string: "http://localhost?" + query)!.dictionaryFromQuery()
 
         var response: String = MD5.base64("\(url.user!)\(dictionary["salt"]!)\(url.password!)")
@@ -188,11 +187,11 @@ open class RTMPConnection: EventDispatcher {
         return streams.count
     }
     /// The statistics of outgoing queue bytes per second.
-    @objc open dynamic private(set) var previousQueueBytesOut: [Int64] = []
+    @objc open private(set) dynamic var previousQueueBytesOut: [Int64] = []
     /// The statistics of incoming bytes per second.
-    @objc open dynamic private(set) var currentBytesInPerSecond: Int32 = 0
+    @objc open private(set) dynamic var currentBytesInPerSecond: Int32 = 0
     /// The statistics of outgoing bytes per second.
-    @objc open dynamic private(set) var currentBytesOutPerSecond: Int32 = 0
+    @objc open private(set) dynamic var currentBytesOutPerSecond: Int32 = 0
 
     var socket: RTMPSocketCompatible!
     var streams: [UInt32: RTMPStream] = [: ]

@@ -52,8 +52,38 @@ class StreamHandler {
       "muted": false, // mute audio
       "bitrate": 32 * 1024
     ]
-
-    rtmpStream.resume()
+    rtmpConnection.addEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusEvent), observer: self)
+    //rtmpStream.resume()
+  }
+  
+  @objc
+  func rtmpStatusEvent(_ status: Notification) {
+      let e = Event.from(status)
+      guard
+          let data: ASObject = e.data as? ASObject,
+          let code: String = data["code"] as? String else {
+          return
+      }
+      switch code {
+      case RTMPConnection.Code.connectSuccess.rawValue:
+        rtmpStream.publish(streamID)
+        isRunning = true
+        DLOG("Connection Success!")
+      case RTMPConnection.Code.connectClosed.rawValue:
+        DLOG("Connection Closed")
+      case RTMPConnection.Code.connectFailed.rawValue:
+        DLOG("Connection Failed")
+      case RTMPConnection.Code.connectIdleTimeOut.rawValue:
+        DLOG("Connection Timedout")
+      case RTMPStream.Code.unpublishSuccess.rawValue:
+                DLOG("Stream Unpublished")
+        rtmpConnection.close()
+        isRunning = false
+      case RTMPStream.Code.publishStart.rawValue:
+        DLOG("Stream Published")
+      default:
+          DLOG("Unhandled Code: \(code)")
+      }
   }
   
   func startCamera() {
@@ -75,13 +105,11 @@ class StreamHandler {
   
   func startStream() {
     rtmpConnection.connect(streamURI)
-    rtmpStream.publish(streamID)
     isRunning = true
   }
   
   func stopStream() {
     rtmpStream.close()
-    isRunning = false
   }
   
   func zoom(_ float: CGFloat) {
@@ -89,7 +117,7 @@ class StreamHandler {
   }
   
   func togglePause() {
-    rtmpStream.togglePause()
+   // rtmpStream.togglePause()
     isRunning = !isRunning
   }
   
@@ -106,4 +134,8 @@ class StreamHandler {
   func isStreaming() -> Bool {
     return isRunning
   }
+}
+
+extension StreamHandler {
+  
 }

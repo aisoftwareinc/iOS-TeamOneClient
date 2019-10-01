@@ -13,7 +13,6 @@ public protocol AVRecorderDelegate: class {
 
 // MARK: -
 open class AVRecorder: NSObject {
-
     public static let defaultOutputSettings: [AVMediaType: [String: Any]] = [
         .audio: [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -144,6 +143,25 @@ extension AVRecorder: Running {
 
 // MARK: -
 open class DefaultAVRecorderDelegate: NSObject {
+    public enum FileType {
+        case mp4
+        case mov
+
+        public var AVFileType: AVFileType {
+            switch self {
+            case .mp4: return .mp4
+            case .mov: return .mov
+            }
+        }
+
+        public var fileExtension: String {
+            switch self {
+            case .mp4: return ".mp4"
+            case .mov: return ".mov"
+            }
+        }
+    }
+
     public static let shared = DefaultAVRecorderDelegate()
 
     open var duration: Int64 = 0
@@ -151,6 +169,7 @@ open class DefaultAVRecorderDelegate: NSObject {
 
     private var rotateTime = CMTime.zero
     private var clockReference: AVMediaType = .video
+    public private(set) var fileType: FileType
 
     #if os(iOS)
     open lazy var moviesDirectory: URL = {
@@ -161,6 +180,11 @@ open class DefaultAVRecorderDelegate: NSObject {
         URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.moviesDirectory, .userDomainMask, true)[0])
     }()
     #endif
+
+    public init(fileType: FileType = .mp4)
+    {
+        self.fileType = fileType
+    }
 }
 
 @objc
@@ -266,9 +290,9 @@ extension DefaultAVRecorderDelegate: AVRecorderDelegate {
                 }
                 fileComponent = fileName + dateFormatter.string(from: Date())
             }
-            let url: URL = moviesDirectory.appendingPathComponent((fileComponent ?? UUID().uuidString) + ".mp4")
+            let url: URL = moviesDirectory.appendingPathComponent((fileComponent ?? UUID().uuidString) + fileType.fileExtension)
             logger.info("\(url)")
-            return try AVAssetWriter(outputURL: url, fileType: .mp4)
+            return try AVAssetWriter(outputURL: url, fileType: fileType.AVFileType)
         } catch {
             logger.warn("create an AVAssetWriter")
         }
