@@ -195,3 +195,23 @@ extension CharacterSet {
     return allowed
   }()
 }
+
+extension VideoStreamController: StreamVideoDelegate {
+  func streamFailedToConnect() {
+    let alertController = UIAlertController(title: "Error", message: "Could not connect to video streaming server.", preferredStyle: .alert)
+    let closeAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(closeAction)
+    self.present(alertController, animated: true, completion: nil)
+  }
+  
+  func streamDidConnect() {
+    DLOG("Successfully connected to video streaming server")
+  }
+  
+  func connectionClosed() {
+    DLOG("Connection closed from video streaming server")
+  }
+  
+
+}
+

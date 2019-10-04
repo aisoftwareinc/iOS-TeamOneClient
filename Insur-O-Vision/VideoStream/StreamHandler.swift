@@ -11,7 +11,9 @@ import HaishinKit
 import AVFoundation
 
 protocol StreamVideoDelegate: class {
-  func didGetLiveFeed(_ data: CMSampleBuffer)
+  func streamFailedToConnect()
+  func streamDidConnect()
+  func connectionClosed()
 }
 
 class StreamHandler {
@@ -53,7 +55,6 @@ class StreamHandler {
       "bitrate": 32 * 1024
     ]
     rtmpConnection.addEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusEvent), observer: self)
-    //rtmpStream.resume()
   }
   
   @objc
@@ -68,10 +69,13 @@ class StreamHandler {
       case RTMPConnection.Code.connectSuccess.rawValue:
         rtmpStream.publish(streamID)
         isRunning = true
+        self.delegate?.streamDidConnect()
         DLOG("Connection Success!")
       case RTMPConnection.Code.connectClosed.rawValue:
         DLOG("Connection Closed")
+        self.delegate?.connectionClosed()
       case RTMPConnection.Code.connectFailed.rawValue:
+        self.delegate?.streamFailedToConnect()
         DLOG("Connection Failed")
       case RTMPConnection.Code.connectIdleTimeOut.rawValue:
         DLOG("Connection Timedout")

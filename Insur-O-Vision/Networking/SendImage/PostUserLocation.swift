@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 struct PostUserInformation: Request {
   
@@ -15,13 +16,15 @@ struct PostUserInformation: Request {
   let streamID: String
   let modelName: String
   let iOSVersion: String
-  
+  let batteryLevel: String
   
   init(_ location: CLLocation, streamID: String, modelName: String, iOSVersion: String) {
     self.location = location
     self.streamID = streamID
     self.modelName = modelName
     self.iOSVersion = iOSVersion
+    UIDevice.current.isBatteryMonitoringEnabled = true
+    batteryLevel = String(UIDevice.current.batteryLevel)
   }
   
   var type: RequestType {
@@ -34,7 +37,7 @@ struct PostUserInformation: Request {
   
   func build() -> URLRequest {
     var urlRequest = URLRequest(url: URL(string: url)!)
-    let data = "Latitude=\(location.coordinate.latitude)&Longitude=\(location.coordinate.longitude)&StreamID=\(streamID)&ModelName=\(self.modelName)&ModelNumber=iPhone&SoftwareVersion=\(self.iOSVersion)&Carrier=NA"
+    let data = "Latitude=\(location.coordinate.latitude)&Longitude=\(location.coordinate.longitude)&StreamID=\(streamID)&ModelName=\(self.modelName)&ModelNumber=iPhone&SoftwareVersion=\(self.iOSVersion)&Carrier=NA&BatteryPercent=\(batteryLevel)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     urlRequest.httpMethod = type.rawValue
     urlRequest.httpBody = dataString
