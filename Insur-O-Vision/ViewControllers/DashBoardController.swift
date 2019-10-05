@@ -17,6 +17,7 @@ protocol DashboardDelegate: class {
 class DashBoardController: UIViewController {
   
   @IBOutlet weak var claimNumberField: PrimaryTextField!
+  
   weak var delegate: DashboardDelegate?
   
   init(delegate: DashboardDelegate) {

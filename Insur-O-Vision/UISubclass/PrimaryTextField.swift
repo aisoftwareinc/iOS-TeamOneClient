@@ -18,6 +18,7 @@ class PrimaryTextField: UITextField {
     self.layer.borderWidth = 1.0
     self.backgroundColor = UIColor.clear
     self.textColor = UIColor.white
+    self.tintColor = .white
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -28,7 +29,9 @@ class PrimaryTextField: UITextField {
     self.layer.borderWidth = 1.0
     self.textColor = UIColor.white
     let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 20))
+    self.tintColor = .white
     leftView = paddingView
     leftViewMode = .always
+    self.attributedPlaceholder = NSAttributedString(string: "Please Enter a Claim ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
   }
 }

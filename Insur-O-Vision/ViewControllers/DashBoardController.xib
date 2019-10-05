@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="To1-AT-OVL" customClass="PrimaryTextField" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="20" y="184" width="374" height="44"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Claims ID Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="To1-AT-OVL" customClass="PrimaryTextField" customModule="Insur_O_Vision" customModuleProvider="target">
+                    <rect key="frame" x="20" y="234" width="374" height="44"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="gih-J9-Iae"/>
@@ -30,9 +30,8 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADz-JC-9HC" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="137" y="258" width="140" height="44"/>
+                    <rect key="frame" x="20" y="308" width="374" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="140" id="9sI-NV-poB"/>
                         <constraint firstAttribute="height" constant="44" id="hWG-oE-bLj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -41,26 +40,33 @@
                         <action selector="submitClaim:" destination="-1" eventType="touchUpInside" id="FGN-L1-2qW"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Claims ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqN-IT-2T3">
-                    <rect key="frame" x="20" y="155" width="77" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="IsP-MI-fjg">
+                    <rect key="frame" x="20" y="81" width="374" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="374" id="LVZ-3p-Rrd"/>
+                        <constraint firstAttribute="height" constant="128" id="jfN-lc-cuy"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="To1-AT-OVL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="EP3-CM-4xD"/>
                 <constraint firstItem="To1-AT-OVL" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ESc-Wx-aDW"/>
-                <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="jqN-IT-2T3" secondAttribute="bottom" constant="8" id="G55-cT-heb"/>
+                <constraint firstItem="ADz-JC-9HC" firstAttribute="leading" secondItem="To1-AT-OVL" secondAttribute="leading" id="J7p-v6-c3c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IsP-MI-fjg" secondAttribute="trailing" constant="20" id="MO8-l0-dJM"/>
+                <constraint firstItem="IsP-MI-fjg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="37" id="Nk7-AZ-GXh"/>
                 <constraint firstItem="ADz-JC-9HC" firstAttribute="top" secondItem="To1-AT-OVL" secondAttribute="bottom" constant="30" id="O3E-eI-QMj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="To1-AT-OVL" secondAttribute="trailing" constant="20" id="YQr-pm-8m3"/>
-                <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="Yin-ce-6Rf"/>
-                <constraint firstItem="jqN-IT-2T3" firstAttribute="leading" secondItem="To1-AT-OVL" secondAttribute="leading" id="jCN-h8-0RD"/>
+                <constraint firstItem="To1-AT-OVL" firstAttribute="top" secondItem="IsP-MI-fjg" secondAttribute="bottom" constant="25" id="fUj-xH-pQa"/>
+                <constraint firstItem="IsP-MI-fjg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="iin-e6-7bs"/>
+                <constraint firstItem="ADz-JC-9HC" firstAttribute="trailing" secondItem="To1-AT-OVL" secondAttribute="trailing" id="jqn-hX-6pQ"/>
                 <constraint firstItem="ADz-JC-9HC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kC3-jN-hHb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </view>
     </objects>
+    <resources>
+        <image name="Logo" width="600" height="122.5"/>
+    </resources>
 </document>
