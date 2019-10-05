@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +47,7 @@
                     </connections>
                 </button>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KfJ-Et-nQl">
-                    <rect key="frame" x="113.5" y="59" width="187" height="29"/>
+                    <rect key="frame" x="113.5" y="59" width="187" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="187" id="foC-0h-dhk"/>
                     </constraints>
@@ -59,12 +57,13 @@
                         <segment title="2x"/>
                     </segments>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="selectedSegmentTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <connections>
                         <action selector="zoom:" destination="-1" eventType="valueChanged" id="La5-sc-v2m"/>
                     </connections>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFj-5W-LrN">
-                    <rect key="frame" x="378" y="840" width="16" height="22"/>
+                    <rect key="frame" x="334" y="802" width="60" height="60"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="Camera"/>
                     <connections>
@@ -78,9 +77,13 @@
                         <constraint firstAttribute="height" constant="30" id="pPh-dY-319"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ9-LM-HqO">
-                    <rect key="frame" x="20" y="832" width="72" height="30"/>
-                    <state key="normal" title="Resolution"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ9-LM-HqO">
+                    <rect key="frame" x="20" y="832" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="XCf-Fn-yhO"/>
+                        <constraint firstAttribute="height" constant="30" id="rtZ-hB-sdo"/>
+                    </constraints>
+                    <state key="normal" image="Settings"/>
                     <connections>
                         <action selector="updateResolution:" destination="-1" eventType="touchUpInside" id="rok-pv-Lb1"/>
                     </connections>
@@ -108,5 +111,6 @@
     <resources>
         <image name="Camera" width="30" height="30"/>
         <image name="Flash" width="1759" height="1792"/>
+        <image name="Settings" width="479" height="479"/>
     </resources>
 </document>

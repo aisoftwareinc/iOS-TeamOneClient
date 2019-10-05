@@ -21,7 +21,7 @@ struct Configuration {
   }
   
   static var streamURL: String {
-    return "https://www.teamonemediaserver.com/LiveApp/"
+    return "rtmp://www.teamonemediaserver.com/LiveApp/"
   }
   
   static var apiEndpoint: String {

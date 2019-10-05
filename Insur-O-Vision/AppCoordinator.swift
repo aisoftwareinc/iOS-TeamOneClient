@@ -49,12 +49,22 @@ extension AppCoordinator: EULADelegate {
 
 // MARK: DashboardDelegate
 extension AppCoordinator: DashboardDelegate {
+  func onlyNumbers() {
+    let alertController = UIAlertController.init(title: "Error", message: "Claim number can only be numbers.", preferredStyle: .alert)
+    let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    alertController.addAction(ok)
+    baseController.present(alertController, animated: true, completion: nil)
+  }
+  
   func didEnterClaimsNumber(_ string: String) {
     self.baseController.pushViewController(videoStreamController(string), animated: true)
     locationManager.sendLocation(string)
   }
   
   func noClaimNumberEntered() {
-    print("Handle No Claim Number")
+    let alertController = UIAlertController.init(title: "Error", message: "Please enter a claim number.", preferredStyle: .alert)
+    let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    alertController.addAction(ok)
+    baseController.present(alertController, animated: true, completion: nil)
   }
 }

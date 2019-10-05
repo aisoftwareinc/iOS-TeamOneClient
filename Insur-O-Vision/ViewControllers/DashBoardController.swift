@@ -11,6 +11,7 @@ import UIKit
 protocol DashboardDelegate: class {
   func didEnterClaimsNumber(_ string: String)
   func noClaimNumberEntered()
+  func onlyNumbers()
 }
 
 class DashBoardController: UIViewController {
@@ -52,8 +53,14 @@ class DashBoardController: UIViewController {
   }
   
   @IBAction func submitClaim(_ sender: UIButton) {
-    guard let claimID = claimNumberField.text else {
+    guard let claimID = claimNumberField.text, claimID != "" else {
       delegate?.noClaimNumberEntered()
+      return
+    }
+    let characterSet = CharacterSet.decimalDigits.inverted
+    
+    guard (claimID.rangeOfCharacter(from: characterSet) == nil) else {
+      delegate?.onlyNumbers()
       return
     }
     delegate?.didEnterClaimsNumber(claimID)

@@ -52,6 +52,7 @@ class VideoStreamController: UIViewController {
     })
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
+    self.resolutionButton.tintColor = UIColor.white
   }
   
   deinit {

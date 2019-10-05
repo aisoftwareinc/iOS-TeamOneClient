@@ -24,6 +24,7 @@ class StreamHandler {
   private var isRunning: Bool = false
   private let streamURI: String
   private let streamID: String
+  private var baseNumber: Int = 0
   
   open lazy var moviesDirectory: URL = {
     URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -67,7 +68,7 @@ class StreamHandler {
       }
       switch code {
       case RTMPConnection.Code.connectSuccess.rawValue:
-        rtmpStream.publish(streamID)
+        rtmpStream.publish(calculateAppendNumber())
         isRunning = true
         self.delegate?.streamDidConnect()
         DLOG("Connection Success!")
@@ -85,6 +86,9 @@ class StreamHandler {
         isRunning = false
       case RTMPStream.Code.publishStart.rawValue:
         DLOG("Stream Published")
+        baseNumber += 1
+      case RTMPStream.Code.failed.rawValue:
+        DLOG("Stream Failed!")
       default:
           DLOG("Unhandled Code: \(code)")
       }
@@ -133,13 +137,19 @@ class StreamHandler {
   func updateResolution(_ resolution: Resolution) {
     let bitate = resolution.bitrate * 1024
     rtmpStream.videoSettings["bitrate"] =  bitate
+    DLOG("Updating Resolution to: \(bitate)")
   }
   
   func isStreaming() -> Bool {
     return isRunning
   }
+  
+  
 }
 
 extension StreamHandler {
-  
+  private func calculateAppendNumber() -> String {
+    let updatedID = baseNumber == 0 ? streamID : streamID + "_\(baseNumber)"
+    return updatedID
+  }
 }
