@@ -12,7 +12,9 @@ import AVFoundation
 
 protocol StreamVideoDelegate: class {
   func streamFailedToConnect()
-  func streamDidConnect()
+  func streamStartedSuccessfully()
+  func streamEndedSuccessfully()
+  func invalidStreamIDProvided()
   func connectionClosed()
 }
 
@@ -70,7 +72,6 @@ class StreamHandler {
       case RTMPConnection.Code.connectSuccess.rawValue:
         rtmpStream.publish(calculateAppendNumber())
         isRunning = true
-        self.delegate?.streamDidConnect()
         DLOG("Connection Success!")
       case RTMPConnection.Code.connectClosed.rawValue:
         DLOG("Connection Closed")
@@ -81,23 +82,28 @@ class StreamHandler {
       case RTMPConnection.Code.connectIdleTimeOut.rawValue:
         DLOG("Connection Timedout")
       case RTMPStream.Code.unpublishSuccess.rawValue:
-                DLOG("Stream Unpublished")
+        DLOG("Stream Unpublished")
         rtmpConnection.close()
+        self.delegate?.streamEndedSuccessfully()
         isRunning = false
       case RTMPStream.Code.publishStart.rawValue:
         DLOG("Stream Published")
+        self.delegate?.streamStartedSuccessfully()
         baseNumber += 1
       case RTMPStream.Code.failed.rawValue:
         DLOG("Stream Failed!")
+      case RTMPStream.Code.publishBadName.rawValue:
+        DLOG("Incorrect Stream ID Provided")
+        self.delegate?.invalidStreamIDProvided()
       default:
-          DLOG("Unhandled Code: \(code)")
+        DLOG("Unhandled Code: \(code)")
       }
   }
   
   func startCamera() {
     let session = AVAudioSession.sharedInstance()
     do {
-      try session.setPreferredSampleRate(44_100)
+      try session.setPreferredSampleRate(sampleRate)
       try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
       try session.setMode(AVAudioSession.Mode.default)
       try session.setActive(true)
@@ -148,7 +154,7 @@ class StreamHandler {
 }
 
 extension StreamHandler {
-  private func calculateAppendNumber() -> String {
+  func calculateAppendNumber() -> String {
     let updatedID = baseNumber == 0 ? streamID : streamID + "_\(baseNumber)"
     return updatedID
   }

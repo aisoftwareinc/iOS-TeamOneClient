@@ -17,7 +17,7 @@ struct SendImageRequest: Request {
   }
   
   var url: String {
-    return "http://demo.teamonecms.com/ws/media.asmx/PostPhoto"
+    return Configuration.apiEndpoint + "ws/media.asmx/PostPhoto"
   }
   
   func build() -> URLRequest {

@@ -29,6 +29,7 @@ class VideoStreamController: UIViewController {
     self.socket = Socket(URL(string: "wss://echo.websocket.org")!)
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
+    self.streamHandler.delegate = self
   }
   
   override var shouldAutorotate: Bool {
@@ -102,10 +103,8 @@ class VideoStreamController: UIViewController {
     switch streamHandler.isStreaming() {
     case true:
       stopStream()
-      captureButton.setTitle("  Start  ", for: .normal)
     case false:
       startStream()
-      captureButton.setTitle("  Stop  ", for: .normal)
     }
   }
   
@@ -198,19 +197,32 @@ extension CharacterSet {
 }
 
 extension VideoStreamController: StreamVideoDelegate {
+  
   func streamFailedToConnect() {
     let alertController = UIAlertController(title: "Error", message: "Could not connect to video streaming server.", preferredStyle: .alert)
     let closeAction = UIAlertAction(title: "OK", style: .default, handler: nil)
     alertController.addAction(closeAction)
-    self.present(alertController, animated: true, completion: nil)
+    UI { self.present(alertController, animated: true, completion: nil) }
   }
   
-  func streamDidConnect() {
+  func streamStartedSuccessfully() {
     DLOG("Successfully connected to video streaming server")
+    UI { self.captureButton.setTitle("  Stop  ", for: .normal) }
+  }
+  
+  func streamEndedSuccessfully() {
+    UI { self.captureButton.setTitle("  Start  ", for: .normal) }
   }
   
   func connectionClosed() {
     DLOG("Connection closed from video streaming server")
+  }
+  
+  func invalidStreamIDProvided() {
+    let alertController = UIAlertController(title: "Error", message: "Invalid Claim ID Provided", preferredStyle: .alert)
+    let closeAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(closeAction)
+    UI { self.present(alertController, animated: true, completion: nil) }
   }
   
 

@@ -16,14 +16,17 @@ struct Networking {
     case noResults
   }
   
-  static func send<T: Request, ResultType: Decodable>(request: T, completion: @escaping ((Result<ResultType, Error>) -> Void)) {
+  static func send<T: Request, ResultType: Decodable>(_ request: T, _ completion: @escaping ((Result<ResultType, Error>) -> Void)) {
     let session = URLSession.init(configuration: .default)
     let dataTask = session.dataTask(with: request.build()) { (data, response, error) in
-      DLOG("Network Response: Request - \(T.self) - Response \((response as! HTTPURLResponse).statusCode)")
+      
       if let error = error {
+        DLOG("Network Response: Request - \(T.self) - Error: \(error.localizedDescription)")
         completion(.failure(error))
         return
       }
+      
+      DLOG("Network Response: Request - \(T.self) - Response \((response as? HTTPURLResponse)?.statusCode ?? -1)")
       
       if let data = data {
         do {
@@ -36,10 +39,5 @@ struct Networking {
       }
     }
     dataTask.resume()
-  }
-  
-  static func send<T: Request>(_ request: T) {
-    let session = URLSession.init(configuration: .default)
-    session.dataTask(with: request.build())
   }
 }

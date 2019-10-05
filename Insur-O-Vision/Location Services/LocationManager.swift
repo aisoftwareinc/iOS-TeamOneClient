@@ -43,7 +43,7 @@ class LocationManager: NSObject {
     
     print("Sending Location: \(currentLocation)")
     let locationRequest = PostUserInformation(currentLocation, streamID: streamID, modelName: UIDevice.current.model, iOSVersion: UIDevice.current.systemVersion)
-    Networking.send(request: locationRequest) { (result: Result<RegisterPushResult, Error>) in
+    Networking.send(locationRequest) { (result: Result<NoResponse, Error>) in
       
     }
     //        let locationRequest = Requests.reportLocationPostRequest(String(currentLocation.coordinate.latitude), String(currentLocation.coordinate.longitude))

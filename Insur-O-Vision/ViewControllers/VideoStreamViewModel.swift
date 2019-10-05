@@ -31,12 +31,17 @@ class ViewStreammViewModel {
   }
   
   func endStream() {
-    Networking.send(EndStreamRequest(streamID))
+   // Networking.send(EndStreamRequest(streamID))
+    Networking.send(EndStreamRequest(streamID)) { (result: Result<NoResponse, Error>) in
+      
+    }
   }
   
   func sendImage(_ data: Data) {
     let base64Image = data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlImageEncoded)!
-    Networking.send(SendImageRequest(streamID, base64Image: base64Image))
+    Networking.send(SendImageRequest(streamID, base64Image: base64Image)) { (result: Result<NoResponse, Error>) in
+      
+    }
   }
   
   func zoomLevel(_ selectMode: Int) -> CGFloat {

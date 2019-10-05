@@ -32,7 +32,7 @@ struct PostUserInformation: Request {
   }
   
   var url: String {
-    return "http://demo.teamonecms.com/ws/media.asmx/PostUserInformation"
+    return Configuration.apiEndpoint + "ws/media.asmx/PostUserInformation"
   }
   
   func build() -> URLRequest {
@@ -45,6 +45,4 @@ struct PostUserInformation: Request {
     urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
     return urlRequest
   }
-  
-  
 }

@@ -40,6 +40,8 @@
 		F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0245422E3BF50001CACCF /* VideoStreamController.xib */; };
 		F2B5F880230F8EE100121F8C /* Anchorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B5F875230F8ED700121F8C /* Anchorage.framework */; };
 		F2B5F881230F8EE100121F8C /* Anchorage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2B5F875230F8ED700121F8C /* Anchorage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2E6F9662348FF71004B8A9E /* Insur_O_VisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E6F9652348FF71004B8A9E /* Insur_O_VisionTests.swift */; };
+		F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E6F97B23493656004B8A9E /* NoResponse.swift */; };
 		F2FB1BAF2301102900F3C03D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FB1BAE2301102900F3C03D /* WebKit.framework */; };
 		F2FB1BD623026EF900F3C03D /* Logboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FB1BD423026EF900F3C03D /* Logboard.framework */; };
 		F2FB1BD923026F0200F3C03D /* Logboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FB1BD423026EF900F3C03D /* Logboard.framework */; };
@@ -129,6 +131,13 @@
 			remoteGlobalIDString = 3C2050AA1D3B20FD00995DF3;
 			remoteInfo = "Anchorage-iOS";
 		};
+		F2E6F9682348FF71004B8A9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F215A33722E3737400704A47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F215A33E22E3737400704A47;
+			remoteInfo = "Insur-O-Vision";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -182,6 +191,10 @@
 		F2A0245322E3BF50001CACCF /* VideoStreamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamController.swift; sourceTree = "<group>"; };
 		F2A0245422E3BF50001CACCF /* VideoStreamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoStreamController.xib; sourceTree = "<group>"; };
 		F2B5F867230F8ED600121F8C /* Anchorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Anchorage.xcodeproj; path = Anchorage/Anchorage.xcodeproj; sourceTree = "<group>"; };
+		F2E6F9632348FF71004B8A9E /* Insur-O-VisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Insur-O-VisionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2E6F9652348FF71004B8A9E /* Insur_O_VisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insur_O_VisionTests.swift; sourceTree = "<group>"; };
+		F2E6F9672348FF71004B8A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2E6F97B23493656004B8A9E /* NoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResponse.swift; sourceTree = "<group>"; };
 		F2FB1BAE2301102900F3C03D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F2FB1BD423026EF900F3C03D /* Logboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Logboard.framework; path = Carthage/Build/iOS/Logboard.framework; sourceTree = "<group>"; };
 		F2FB1BDF2303816D00F3C03D /* HaishinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HaishinKit.framework; path = Carthage/Build/iOS/HaishinKit.framework; sourceTree = "<group>"; };
@@ -201,6 +214,13 @@
 				F2FB1BD923026F0200F3C03D /* Logboard.framework in Frameworks */,
 				F2FB1BAF2301102900F3C03D /* WebKit.framework in Frameworks */,
 				F242786423006D2100F30250 /* Starscream.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2E6F9602348FF71004B8A9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +259,7 @@
 				F214758923108434007E7D2F /* Networking.swift */,
 				F214758A23108434007E7D2F /* RegisterPush */,
 				F214758D23108434007E7D2F /* Request.swift */,
+				F2E6F97B23493656004B8A9E /* NoResponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -288,6 +309,7 @@
 				F2B5F867230F8ED600121F8C /* Anchorage.xcodeproj */,
 				F242785B23006D0D00F30250 /* Starscream.xcodeproj */,
 				F215A34122E3737400704A47 /* Insur-O-Vision */,
+				F2E6F9642348FF71004B8A9E /* Insur-O-VisionTests */,
 				F215A34022E3737400704A47 /* Products */,
 				F2FB1BAC2301102900F3C03D /* Frameworks */,
 			);
@@ -297,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				F215A33F22E3737400704A47 /* Insur-O-Vision.app */,
+				F2E6F9632348FF71004B8A9E /* Insur-O-VisionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,6 +385,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F2E6F9642348FF71004B8A9E /* Insur-O-VisionTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2E6F9652348FF71004B8A9E /* Insur_O_VisionTests.swift */,
+				F2E6F9672348FF71004B8A9E /* Info.plist */,
+			);
+			path = "Insur-O-VisionTests";
+			sourceTree = "<group>";
+		};
 		F2FB1BAC2301102900F3C03D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,18 +426,40 @@
 			productReference = F215A33F22E3737400704A47 /* Insur-O-Vision.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F2E6F9622348FF71004B8A9E /* Insur-O-VisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2E6F9742348FF71004B8A9E /* Build configuration list for PBXNativeTarget "Insur-O-VisionTests" */;
+			buildPhases = (
+				F2E6F95F2348FF71004B8A9E /* Sources */,
+				F2E6F9602348FF71004B8A9E /* Frameworks */,
+				F2E6F9612348FF71004B8A9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2E6F9692348FF71004B8A9E /* PBXTargetDependency */,
+			);
+			name = "Insur-O-VisionTests";
+			productName = "Insur-O-VisionTests";
+			productReference = F2E6F9632348FF71004B8A9E /* Insur-O-VisionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F215A33722E3737400704A47 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Peter Gosling";
 				TargetAttributes = {
 					F215A33E22E3737400704A47 = {
 						CreatedOnToolsVersion = 10.2;
+					};
+					F2E6F9622348FF71004B8A9E = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = F215A33E22E3737400704A47;
 					};
 				};
 			};
@@ -433,6 +487,7 @@
 			projectRoot = "";
 			targets = (
 				F215A33E22E3737400704A47 /* Insur-O-Vision */,
+				F2E6F9622348FF71004B8A9E /* Insur-O-VisionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -517,6 +572,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2E6F9612348FF71004B8A9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -558,6 +620,7 @@
 				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
 				F23E44962327440C003DEAA9 /* Logging.swift in Sources */,
 				F214759923108434007E7D2F /* RegisterPush.swift in Sources */,
+				F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
@@ -573,6 +636,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2E6F95F2348FF71004B8A9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E6F9662348FF71004B8A9E /* Insur_O_VisionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -585,6 +656,11 @@
 			isa = PBXTargetDependency;
 			name = "Anchorage-iOS";
 			targetProxy = F2B5F882230F8EE100121F8C /* PBXContainerItemProxy */;
+		};
+		F2E6F9692348FF71004B8A9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F215A33E22E3737400704A47 /* Insur-O-Vision */;
+			targetProxy = F2E6F9682348FF71004B8A9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -764,6 +840,48 @@
 			};
 			name = Release;
 		};
+		F2E6F96A2348FF71004B8A9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3568HZCVV4;
+				INFOPLIST_FILE = "Insur-O-VisionTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "teamone.Insur-O-VisionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Insur-O-Vision.app/Insur-O-Vision";
+			};
+			name = Debug;
+		};
+		F2E6F96B2348FF71004B8A9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3568HZCVV4;
+				INFOPLIST_FILE = "Insur-O-VisionTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "teamone.Insur-O-VisionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Insur-O-Vision.app/Insur-O-Vision";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -781,6 +899,15 @@
 			buildConfigurations = (
 				F215A35522E3737700704A47 /* Debug */,
 				F215A35622E3737700704A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2E6F9742348FF71004B8A9E /* Build configuration list for PBXNativeTarget "Insur-O-VisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2E6F96A2348FF71004B8A9E /* Debug */,
+				F2E6F96B2348FF71004B8A9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

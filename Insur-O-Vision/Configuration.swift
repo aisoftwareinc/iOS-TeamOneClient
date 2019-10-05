@@ -25,6 +25,6 @@ struct Configuration {
   }
   
   static var apiEndpoint: String {
-    return "https://www.teamonemediaserver.com/"
+    return "http://demo.teamonecms.com/"
   }
 }
