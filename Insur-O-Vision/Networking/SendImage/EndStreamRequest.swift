@@ -34,5 +34,35 @@ struct EndStreamRequest: Request {
     urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
     return urlRequest
   }
+}
+
+
+struct PostStreamRequest: Request {
   
+  let streamID: String
+  let antMediaID: String
+  
+  init(_ streamID: String, _ antMediaID: String) {
+    self.streamID = streamID
+    self.antMediaID = antMediaID
+  }
+  
+  var type: RequestType {
+    return .post
+  }
+  
+  var url: String {
+    return "http://demo.teamonecms.com/ws/media.asmx/PostVideoStream"
+  }
+  
+  func build() -> URLRequest {
+    var urlRequest = URLRequest(url: URL(string: url)!)
+    let data = "StreamID=\(streamID)&AntMediaStreamID=\(antMediaID)"
+    let dataString = data.data(using: .utf8, allowLossyConversion: false)
+    urlRequest.httpMethod = type.rawValue
+    urlRequest.httpBody = dataString
+    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
+    return urlRequest
+  }
 }

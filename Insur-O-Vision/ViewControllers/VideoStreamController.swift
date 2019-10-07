@@ -102,6 +102,7 @@ class VideoStreamController: UIViewController {
   @IBAction func toggleStream(_ sender: UIButton) {
     switch streamHandler.isStreaming() {
     case true:
+      viewModel.postStreamID(antMediaID: streamHandler.calculateAppendNumber())
       stopStream()
     case false:
       startStream()

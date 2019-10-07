@@ -85,11 +85,11 @@ class StreamHandler {
         DLOG("Stream Unpublished")
         rtmpConnection.close()
         self.delegate?.streamEndedSuccessfully()
+        baseNumber += 1
         isRunning = false
       case RTMPStream.Code.publishStart.rawValue:
         DLOG("Stream Published")
         self.delegate?.streamStartedSuccessfully()
-        baseNumber += 1
       case RTMPStream.Code.failed.rawValue:
         DLOG("Stream Failed!")
       case RTMPStream.Code.publishBadName.rawValue:

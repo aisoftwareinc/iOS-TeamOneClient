@@ -31,8 +31,13 @@ class ViewStreammViewModel {
   }
   
   func endStream() {
-   // Networking.send(EndStreamRequest(streamID))
     Networking.send(EndStreamRequest(streamID)) { (result: Result<NoResponse, Error>) in
+      
+    }
+  }
+  
+  func postStreamID(antMediaID: String) {
+    Networking.send(PostStreamRequest(streamID, antMediaID)) { (result: Result<NoResponse, Error>) in
       
     }
   }
