@@ -11,7 +11,7 @@ import XCTest
 
 class Insur_O_VisionTests: XCTestCase {
 
-  let streamHandler = StreamHandler("rtmp://www.teamone.com", id: "1234567890")
+  let streamHandler = VideoStreamHandler("rtmp://www.teamone.com", id: "1234567890")
   
   func testNumberAppending() {
     let result = streamHandler.calculateAppendNumber()

@@ -18,7 +18,7 @@ protocol StreamVideoDelegate: class {
   func connectionClosed()
 }
 
-class StreamHandler {
+class VideoStreamHandler {
   private let sampleRate: Double = 44_100
   let rtmpConnection = RTMPConnection()
   lazy var rtmpStream = RTMPStream(connection: rtmpConnection)
@@ -46,7 +46,7 @@ class StreamHandler {
       "sessionPreset": AVCaptureSession.Preset.hd1920x1080.rawValue,
       "continuousAutofocus": true,
       "continuousExposure": true,
-      "preferredVideoStabilizationMode": AVCaptureVideoStabilizationMode.auto.rawValue
+      "preferredVideoStabilizationMode": AVCaptureVideoStabilizationMode.standard.rawValue
     ]
     rtmpStream.videoSettings = [
       "width": 1280,
@@ -153,7 +153,7 @@ class StreamHandler {
   
 }
 
-extension StreamHandler {
+extension VideoStreamHandler {
   func calculateAppendNumber() -> String {
     let updatedID = baseNumber == 0 ? streamID : streamID + "_\(baseNumber)"
     return updatedID

@@ -30,7 +30,7 @@ class AppCoordinator {
   }
   
   private func videoStreamController(_ streamID: String) -> VideoStreamController {
-    let streamHandler = StreamHandler(Configuration.streamURL, id: streamID)
+    let streamHandler = VideoStreamHandler(Configuration.streamURL, id: streamID)
     return VideoStreamController(streamHandler, streamID)
   }
 }

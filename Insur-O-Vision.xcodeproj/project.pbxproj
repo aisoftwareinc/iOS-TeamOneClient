@@ -35,7 +35,7 @@
 		F242786D2300A27D00F30250 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242786C2300A27D00F30250 /* Configuration.swift */; };
 		F24278722300A49F00F30250 /* EULAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24278702300A49F00F30250 /* EULAController.swift */; };
 		F24278732300A49F00F30250 /* EULAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24278712300A49F00F30250 /* EULAController.xib */; };
-		F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245122E3BED0001CACCF /* StreamHandler.swift */; };
+		F2A0245222E3BED0001CACCF /* VideoStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */; };
 		F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245322E3BF50001CACCF /* VideoStreamController.swift */; };
 		F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0245422E3BF50001CACCF /* VideoStreamController.xib */; };
 		F2B5F880230F8EE100121F8C /* Anchorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B5F875230F8ED700121F8C /* Anchorage.framework */; };
@@ -187,7 +187,7 @@
 		F242786C2300A27D00F30250 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F24278702300A49F00F30250 /* EULAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAController.swift; sourceTree = "<group>"; };
 		F24278712300A49F00F30250 /* EULAController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAController.xib; sourceTree = "<group>"; };
-		F2A0245122E3BED0001CACCF /* StreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamHandler.swift; sourceTree = "<group>"; };
+		F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamHandler.swift; sourceTree = "<group>"; };
 		F2A0245322E3BF50001CACCF /* VideoStreamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamController.swift; sourceTree = "<group>"; };
 		F2A0245422E3BF50001CACCF /* VideoStreamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoStreamController.xib; sourceTree = "<group>"; };
 		F2B5F867230F8ED600121F8C /* Anchorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Anchorage.xcodeproj; path = Anchorage/Anchorage.xcodeproj; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 		F21475A723108DF5007E7D2F /* VideoStream */ = {
 			isa = PBXGroup;
 			children = (
-				F2A0245122E3BED0001CACCF /* StreamHandler.swift */,
+				F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */,
 			);
 			path = VideoStream;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
 				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
 				F23E448C232596BF003DEAA9 /* PostUserLocation.swift in Sources */,
-				F2A0245222E3BED0001CACCF /* StreamHandler.swift in Sources */,
+				F2A0245222E3BED0001CACCF /* VideoStreamHandler.swift in Sources */,
 				F23E44962327440C003DEAA9 /* Logging.swift in Sources */,
 				F214759923108434007E7D2F /* RegisterPush.swift in Sources */,
 				F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */,

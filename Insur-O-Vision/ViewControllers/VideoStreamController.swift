@@ -14,7 +14,7 @@ import CoreImage
 import Anchorage
 
 class VideoStreamController: UIViewController {
-  let streamHandler: StreamHandler
+  let streamHandler: VideoStreamHandler
   let socket: Socket
   private let viewModel: ViewStreammViewModel
   @IBOutlet weak var flashButton: UIButton!
@@ -23,7 +23,7 @@ class VideoStreamController: UIViewController {
   @IBOutlet weak var socketConnectionImage: UIImageView!
   @IBOutlet weak var resolutionButton: UIButton!
   
-  init(_ streamHandler: StreamHandler, _ streamID: String) {
+  init(_ streamHandler: VideoStreamHandler, _ streamID: String) {
     self.streamHandler = streamHandler
     self.viewModel = ViewStreammViewModel(streamID)
     self.socket = Socket(URL(string: "wss://echo.websocket.org")!)
@@ -58,6 +58,7 @@ class VideoStreamController: UIViewController {
   
   deinit {
     NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    DLOG("Video Stream Controller Deinit")
   }
   
   override func viewWillAppear(_ animated: Bool) {
