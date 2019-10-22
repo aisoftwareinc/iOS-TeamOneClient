@@ -18,11 +18,15 @@ protocol RemoteCommandsDelegate: class {
 class Socket {
   
   enum Command: String {
-    case zoom = "zoom"
-    case flash = "flash"
-    case screenShot = "screenshot"
-    case stopVideo = "stop"
-    case startVideo = "start"
+    case zoomIn = "zoomin"
+    case zoomOut = "zoomout"
+    case endVideo = "endvideo"
+    case flashOn = "flashlighton"
+    case flashOff = "flashlightoff"
+    case screenShot = "photo"
+    case resolution480 = "resolution480"
+    case resolution720 = "resolution720"
+    case resolution1080 = "resolution1080"
   }
   
   weak var delegate: RemoteCommandsDelegate?
@@ -61,18 +65,26 @@ extension Socket: WebSocketDelegate {
     if let command = Command(rawValue: text) {
       
       delegate?.didRecieveCommand(command)
-      
+
       switch command {
-      case .flash:
-        print("Toggle Flash")
-      case .screenShot:
-        print("Toggle Screenshot")
-      case .stopVideo:
-        print("Toggle Stop video")
-      case .startVideo:
-        print("Toggle Start")
-      case .zoom:
-        print("Toggle Zoom")
+        case .zoomIn:
+        DLOG("Toogle Zoom In")
+        case .zoomOut:
+        DLOG("Toggle Zoom out")
+        case .endVideo:
+        DLOG("Toggle End Video")
+        case .flashOn:
+        DLOG("Toggle Flash On")
+        case .flashOff:
+        DLOG("Toggle Flash off")
+        case .screenShot:
+        DLOG("Take Photo")
+        case .resolution480:
+        DLOG("resolution480")
+        case .resolution720:
+        DLOG("resolution720")
+        case .resolution1080:
+        DLOG("resolution1080")
       }
     }
   }

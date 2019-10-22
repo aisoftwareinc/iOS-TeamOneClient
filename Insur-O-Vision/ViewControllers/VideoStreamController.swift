@@ -16,7 +16,7 @@ import Anchorage
 class VideoStreamController: UIViewController {
   let streamHandler: VideoStreamHandler
   let socket: Socket
-  private let viewModel: ViewStreammViewModel
+  private let viewModel: ViewStreamViewModel
   @IBOutlet weak var flashButton: UIButton!
   @IBOutlet weak var cameraButton: UIButton!
   @IBOutlet weak var captureButton: PrimaryButton!
@@ -25,8 +25,8 @@ class VideoStreamController: UIViewController {
   
   init(_ streamHandler: VideoStreamHandler, _ streamID: String) {
     self.streamHandler = streamHandler
-    self.viewModel = ViewStreammViewModel(streamID)
-    self.socket = Socket(URL(string: "wss://echo.websocket.org")!)
+    self.viewModel = ViewStreamViewModel(streamID)
+    self.socket = Socket(URL(string: "wss://demo.teamonecms.com/ws/media.ashx?streamID=\(streamID)")!)
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
     self.streamHandler.delegate = self
@@ -93,7 +93,10 @@ class VideoStreamController: UIViewController {
   
   
   @IBAction func flashToggle(_ sender: UIButton) {
-    viewModel.toggleFlash()
+    if let torchEnabled = viewModel.captureDevice?.torchMode {
+      let result = torchEnabled == .off ? true : false
+      viewModel.toggleFlash(result)
+    }
   }
   
   @IBAction func captureImage(_ sender: UIButton) {
@@ -159,21 +162,28 @@ class VideoStreamController: UIViewController {
 
 extension VideoStreamController: RemoteCommandsDelegate {
   func didRecieveCommand(_ command: Socket.Command) {
+    DLOG("Command Received from Video Stream Controller: \(command)")
     switch command {
-    case .flash:
-      viewModel.toggleFlash()
+    case .zoomIn:
+      let level = viewModel.zoomLevel(2)
+      toggleZoom(level)
+    case .zoomOut:
+      let level = viewModel.zoomLevel(0)
+      toggleZoom(level)
+    case .endVideo:
+      viewModel.endStream()
+    case .flashOn:
+      viewModel.toggleFlash(true)
+    case .flashOff:
+      viewModel.toggleFlash(false)
     case .screenShot:
-      print("Toggle Screenshot")
       captureScreen()
-    case .stopVideo:
-      print("Toggle Stop video")
-      stopStream()
-    case .startVideo:
-      print("Toggle Start")
-      startStream()
-    case .zoom:
-      print("Toggle Zoom")
-      toggleZoom(2.0)
+    case .resolution480:
+      streamHandler.updateResolution(LowResolution())
+    case .resolution720:
+      streamHandler.updateResolution(DefaultResolution())
+    case .resolution1080:
+      streamHandler.updateResolution(HighResolution())
     }
   }
   

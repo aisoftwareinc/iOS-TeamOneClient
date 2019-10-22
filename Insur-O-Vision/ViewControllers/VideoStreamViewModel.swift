@@ -9,18 +9,24 @@
 import Foundation
 import AVFoundation
 
-class ViewStreammViewModel {
+class ViewStreamViewModel {
   let streamID: String
+  
+  lazy var captureDevice: AVCaptureDevice? = {
+    return AVCaptureDevice.default(for: AVMediaType.video)
+  }()
   
   init(_ streamID: String) {
     self.streamID = streamID
   }
   
-  func toggleFlash() {
-    if let currentDevice = AVCaptureDevice.default(for: AVMediaType.video), currentDevice.hasTorch {
+  func toggleFlash(_ torchOn: Bool) {
+    guard let currentDevice = captureDevice else {
+      return
+    }
+    if currentDevice.hasTorch {
       do {
         try currentDevice.lockForConfiguration()
-        let torchOn = !currentDevice.isTorchActive
         try currentDevice.setTorchModeOn(level: 1.0)//Or whatever you want
         currentDevice.torchMode = torchOn ? .on : .off
         currentDevice.unlockForConfiguration()

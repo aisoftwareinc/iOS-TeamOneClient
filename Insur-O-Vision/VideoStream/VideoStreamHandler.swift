@@ -70,7 +70,7 @@ class VideoStreamHandler {
       }
       switch code {
       case RTMPConnection.Code.connectSuccess.rawValue:
-        rtmpStream.publish(calculateAppendNumber())
+        rtmpStream.publish("8d10a605")
         isRunning = true
         DLOG("Connection Success!")
       case RTMPConnection.Code.connectClosed.rawValue:
