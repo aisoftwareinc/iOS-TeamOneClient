@@ -27,8 +27,8 @@ class ViewStreamViewModel {
     if currentDevice.hasTorch {
       do {
         try currentDevice.lockForConfiguration()
-        try currentDevice.setTorchModeOn(level: 1.0)//Or whatever you want
         currentDevice.torchMode = torchOn ? .on : .off
+        //try currentDevice.setTorchModeOn(level: 1.0)//Or whatever you want
         currentDevice.unlockForConfiguration()
       } catch {
         print("error")
