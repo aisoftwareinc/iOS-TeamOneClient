@@ -70,10 +70,10 @@ struct RTMPSharedObjectEvent {
     }
 }
 
-extension RTMPSharedObjectEvent: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension RTMPSharedObjectEvent: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -114,10 +114,6 @@ open class RTMPSharedObject: EventDispatcher {
         }
     }
 
-    override open var description: String {
-        return data.description
-    }
-
     private var rtmpConnection: RTMPConnection?
 
     init(name: String, path: String, persistence: Bool) {
@@ -142,7 +138,7 @@ open class RTMPSharedObject: EventDispatcher {
             close()
         }
         self.rtmpConnection = rtmpConnection
-        rtmpConnection.addEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusHandler), observer: self)
+        rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
         if rtmpConnection.connected {
             timestamp = rtmpConnection.socket.timestamp
             rtmpConnection.socket.doOutput(chunk: createChunk([RTMPSharedObjectEvent(type: .use)]), locked: nil)
@@ -156,7 +152,7 @@ open class RTMPSharedObject: EventDispatcher {
 
     open func close() {
         data.removeAll(keepingCapacity: false)
-        rtmpConnection?.removeEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusHandler), observer: self)
+        rtmpConnection?.removeEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
         rtmpConnection?.socket.doOutput(chunk: createChunk([RTMPSharedObjectEvent(type: .release)]), locked: nil)
         rtmpConnection = nil
     }
@@ -193,7 +189,7 @@ open class RTMPSharedObject: EventDispatcher {
             }
             changeList.append(change)
         }
-        dispatch(Event.SYNC, bubbles: false, data: changeList)
+        dispatch(.sync, bubbles: false, data: changeList)
     }
 
     func createChunk(_ events: [RTMPSharedObjectEvent]) -> RTMPChunk {
@@ -211,14 +207,14 @@ open class RTMPSharedObject: EventDispatcher {
                 objectEncoding: objectEncoding,
                 sharedObjectName: name,
                 currentVersion: succeeded ? 0 : currentVersion,
-                flags: Data([persistence ? 0x01 : 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]),
+                flags: Data([0x00, 0x00, 0x00, persistence ? 0x02 : 0x00, 0x00, 0x00, 0x00, 0x00]),
                 events: events
             )
         )
     }
 
     @objc
-    func rtmpStatusHandler(_ notification: Notification) {
+    private func rtmpStatusHandler(_ notification: Notification) {
         let e = Event.from(notification)
         if let data: ASObject = e.data as? ASObject, let code: String = data["code"] as? String {
             switch code {
@@ -229,5 +225,12 @@ open class RTMPSharedObject: EventDispatcher {
                 break
             }
         }
+    }
+}
+
+extension RTMPSharedObject: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    public var debugDescription: String {
+        return data.debugDescription
     }
 }

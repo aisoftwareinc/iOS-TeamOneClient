@@ -41,23 +41,22 @@ class VideoStreamHandler {
   }
   
   private func setUp() {
-    rtmpStream.syncOrientation = true
     rtmpStream.captureSettings = [
-      "sessionPreset": AVCaptureSession.Preset.hd1920x1080.rawValue,
-      "continuousAutofocus": true,
-      "continuousExposure": true,
-      "preferredVideoStabilizationMode": AVCaptureVideoStabilizationMode.standard.rawValue
+      .sessionPreset: AVCaptureSession.Preset.hd1920x1080.rawValue,
+      .continuousAutofocus: true,
+      .continuousExposure: true,
+      .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.standard.rawValue
     ]
     rtmpStream.videoSettings = [
-      "width": 1280,
-      "height": 720,
-      "bitrate": HighResolution().bitrate * 1024
+      .width: 1280,
+      .height: 720,
+      .bitrate: HighResolution().bitrate * 1024
     ]
     rtmpStream.audioSettings = [
-      "muted": false, // mute audio
-      "bitrate": 32 * 1024
+      .muted: false, // mute audio
+      .bitrate: 32 * 1024
     ]
-    rtmpConnection.addEventListener(Event.RTMP_STATUS, selector: #selector(rtmpStatusEvent), observer: self)
+    rtmpConnection.addEventListener(Event.Name.rtmpStatus, selector: #selector(rtmpStatusEvent), observer: self)
   }
   
   @objc
@@ -70,7 +69,7 @@ class VideoStreamHandler {
       }
       switch code {
       case RTMPConnection.Code.connectSuccess.rawValue:
-        rtmpStream.publish("8d10a605")
+        rtmpStream.publish(calculateAppendNumber())
         isRunning = true
         DLOG("Connection Success!")
       case RTMPConnection.Code.connectClosed.rawValue:
@@ -113,6 +112,9 @@ class VideoStreamHandler {
       rtmpStream.attachCamera(DeviceUtil.device(withPosition: .back)) { error in
         // print(error)
       }
+      if let orientation = DeviceUtil.videoOrientation(by: UIApplication.shared.statusBarOrientation) {
+          rtmpStream.orientation = orientation
+      }
     } catch {
     }
   }
@@ -131,7 +133,6 @@ class VideoStreamHandler {
   }
   
   func togglePause() {
-   // rtmpStream.togglePause()
     isRunning = !isRunning
   }
   
@@ -142,7 +143,7 @@ class VideoStreamHandler {
   
   func updateResolution(_ resolution: Resolution) {
     let bitate = resolution.bitrate * 1024
-    rtmpStream.videoSettings["bitrate"] =  bitate
+    rtmpStream.videoSettings[.bitrate] =  bitate
     DLOG("Updating Resolution to: \(bitate)")
   }
   

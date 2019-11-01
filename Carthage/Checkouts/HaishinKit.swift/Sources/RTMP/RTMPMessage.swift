@@ -68,10 +68,10 @@ class RTMPMessage {
     }
 }
 
-extension RTMPMessage: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension RTMPMessage: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -337,7 +337,7 @@ final class RTMPCommandMessage: RTMPMessage {
             case "close":
                 connection.close(isDisconnected: true)
             default:
-                connection.dispatch(Event.RTMP_STATUS, bubbles: false, data: arguments.first)
+                connection.dispatch(.rtmpStatus, bubbles: false, data: arguments.first)
             }
             return
         }
@@ -511,7 +511,7 @@ final class RTMPSharedObjectMessage: RTMPMessage {
     }
 
     override func execute(_ connection: RTMPConnection, type: RTMPChunkType) {
-        let persistence: Bool = flags[0] == 0x01
+        let persistence: Bool = (flags[3] & 2) != 0
         RTMPSharedObject.getRemote(withName: sharedObjectName, remotePath: connection.uri!.absoluteWithoutQueryString, persistence: persistence).on(message: self)
     }
 }

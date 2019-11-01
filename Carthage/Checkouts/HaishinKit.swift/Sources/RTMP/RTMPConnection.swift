@@ -4,7 +4,7 @@ import Foundation
 /**
  flash.net.Responder for Swift
  */
-open class Responder: NSObject {
+open class Responder {
     public typealias Handler = (_ data: [Any?]) -> Void
 
     private var result: Handler
@@ -245,18 +245,13 @@ open class RTMPConnection: EventDispatcher {
 
     override public init() {
         super.init()
-        addEventListener(Event.RTMP_STATUS, selector: #selector(on(status:)))
+        addEventListener(.rtmpStatus, selector: #selector(on(status:)))
     }
 
     deinit {
         timer = nil
         streams.removeAll()
-        removeEventListener(Event.RTMP_STATUS, selector: #selector(on(status:)))
-    }
-
-    @available(*, unavailable)
-    open func connect(_ command: String) {
-        connect(command, arguments: nil)
+        removeEventListener(.rtmpStatus, selector: #selector(on(status:)))
     }
 
     open func call(_ commandName: String, responder: Responder?, arguments: Any?...) {

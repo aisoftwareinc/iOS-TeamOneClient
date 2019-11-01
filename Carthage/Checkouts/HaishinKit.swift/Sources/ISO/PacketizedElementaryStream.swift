@@ -95,7 +95,7 @@ extension PESOptionalHeader: DataConvertible {
         set {
             let buffer = ByteArray(data: newValue)
             do {
-                var bytes: Data = try buffer.readBytes(PESOptionalHeader.fixedSectionSize)
+                let bytes: Data = try buffer.readBytes(PESOptionalHeader.fixedSectionSize)
                 markerBits = (bytes[0] & 0b11000000) >> 6
                 scramblingControl = bytes[0] & 0b00110000 >> 4
                 priority = (bytes[0] & 0b00001000) == 0b00001000
@@ -118,10 +118,10 @@ extension PESOptionalHeader: DataConvertible {
     }
 }
 
-extension PESOptionalHeader: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension PESOptionalHeader: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -300,9 +300,9 @@ struct PacketizedElementaryStream: PESPacketHeader {
     }
 }
 
-extension PacketizedElementaryStream: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension PacketizedElementaryStream: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }

@@ -318,9 +318,9 @@ open class ByteArray: ByteArrayConvertible {
     }
 }
 
-extension ByteArray: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    public var description: String {
-        return Mirror(reflecting: self).description
+extension ByteArray: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    public var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }

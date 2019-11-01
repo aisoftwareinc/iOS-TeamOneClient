@@ -89,7 +89,7 @@ extension TSPacket: DataConvertible {
         set {
             let buffer = ByteArray(data: newValue)
             do {
-                var data: Data = try buffer.readBytes(4)
+                let data: Data = try buffer.readBytes(4)
                 syncByte = data[0]
                 transportErrorIndicator = (data[1] & 0x80) == 0x80
                 payloadUnitStartIndicator = (data[1] & 0x40) == 0x40
@@ -179,10 +179,10 @@ struct TSProgramClockReference {
     }
 }
 
-extension TSPacket: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension TSPacket: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -305,10 +305,10 @@ extension TSAdaptationField: DataConvertible {
     }
 }
 
-extension TSAdaptationField: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension TSAdaptationField: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -381,9 +381,9 @@ extension TSAdaptationExtensionField: DataConvertible {
     }
 }
 
-extension TSAdaptationExtensionField: CustomStringConvertible {
-    // MARK: CustomStringConvertible
-    var description: String {
-        return Mirror(reflecting: self).description
+extension TSAdaptationExtensionField: CustomDebugStringConvertible {
+    // MARK: CustomDebugStringConvertible
+    var debugDescription: String {
+        return Mirror(reflecting: self).debugDescription
     }
 }

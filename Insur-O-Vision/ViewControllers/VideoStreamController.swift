@@ -43,9 +43,11 @@ class VideoStreamController: UIViewController {
                                            using: { _ in
                                             switch UIDevice.current.orientation {
                                             case .landscapeLeft, .landscapeRight:
-                                              print("landscape")
+                                              self.captureButton.isEnabled = true
+                                              self.captureButton.imageView?.tintColor = .white
                                             case .portrait, .portraitUpsideDown:
-                                              print("Portrait")
+                                              self.captureButton.isEnabled = false
+                                              self.captureButton.imageView?.tintColor = .red
                                             default:
                                               print("other")
                                             }
