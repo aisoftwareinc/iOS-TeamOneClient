@@ -15,7 +15,7 @@ class AppCoordinator {
   var baseController: UINavigationController!
   
   func start() -> UIViewController {
-    let initialController = Configuration.didSeeEULA ? dashboardController() : eulaController()
+    let initialController = Configuration.didSeeEULA ? appModeSelectionController() : eulaController()
     baseController = UINavigationController(rootViewController: initialController)
     locationManager.start()
     return baseController
@@ -33,13 +33,19 @@ class AppCoordinator {
     let streamHandler = VideoStreamHandler(Configuration.streamURL, id: streamID)
     return VideoStreamController(streamHandler, streamID)
   }
+  
+  private func appModeSelectionController() -> ModeSelectionController {
+    let modeSelectionController = ModeSelectionController()
+    modeSelectionController.delegate = self
+    return modeSelectionController
+  }
 }
 
 // MARK: EULADelegate
 extension AppCoordinator: EULADelegate {
   func didAccept() {
     Configuration.save(true)
-    self.baseController.pushViewController(dashboardController(), animated: true)
+    self.baseController.pushViewController(appModeSelectionController(), animated: true)
   }
   
   func didCancel() {
@@ -67,4 +73,17 @@ extension AppCoordinator: DashboardDelegate {
     alertController.addAction(ok)
     baseController.present(alertController, animated: true, completion: nil)
   }
+}
+
+// MARK: ModeSelectionDelegate
+
+extension AppCoordinator: ModeSelectionDelegate {
+  func didSelectAdjuster() {
+    DLOG("Push to List")
+  }
+  
+  func didSelectInsured() {
+    self.baseController.pushViewController(dashboardController(), animated: true)
+  }
+
 }

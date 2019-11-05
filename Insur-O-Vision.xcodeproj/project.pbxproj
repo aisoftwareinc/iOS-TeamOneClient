@@ -35,6 +35,8 @@
 		F242786D2300A27D00F30250 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242786C2300A27D00F30250 /* Configuration.swift */; };
 		F24278722300A49F00F30250 /* EULAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24278702300A49F00F30250 /* EULAController.swift */; };
 		F24278732300A49F00F30250 /* EULAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24278712300A49F00F30250 /* EULAController.xib */; };
+		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
+		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
 		F2A0245222E3BED0001CACCF /* VideoStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */; };
 		F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245322E3BF50001CACCF /* VideoStreamController.swift */; };
 		F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0245422E3BF50001CACCF /* VideoStreamController.xib */; };
@@ -187,6 +189,8 @@
 		F242786C2300A27D00F30250 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F24278702300A49F00F30250 /* EULAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAController.swift; sourceTree = "<group>"; };
 		F24278712300A49F00F30250 /* EULAController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAController.xib; sourceTree = "<group>"; };
+		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
+		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
 		F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamHandler.swift; sourceTree = "<group>"; };
 		F2A0245322E3BF50001CACCF /* VideoStreamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamController.swift; sourceTree = "<group>"; };
 		F2A0245422E3BF50001CACCF /* VideoStreamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoStreamController.xib; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F29B40EF23711B1900374839 /* ModeSelection */,
 				F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */,
 				F2A0245322E3BF50001CACCF /* VideoStreamController.swift */,
 				F2A0245422E3BF50001CACCF /* VideoStreamController.xib */,
@@ -369,6 +374,15 @@
 				F2FB1BE42303B20F00F3C03D /* TestImageViewController.xib */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F29B40EF23711B1900374839 /* ModeSelection */ = {
+			isa = PBXGroup;
+			children = (
+				F29B40F823711B7E00374839 /* ModeSelectionController.swift */,
+				F29B40F923711B7E00374839 /* ModeSelectionController.xib */,
+			);
+			path = ModeSelection;
 			sourceTree = "<group>";
 		};
 		F2B5F868230F8ED600121F8C /* Products */ = {
@@ -565,6 +579,7 @@
 			files = (
 				F242786B2300A1DC00F30250 /* DashBoardController.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
+				F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */,
 				F24278732300A49F00F30250 /* EULAController.xib in Resources */,
 				F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */,
 				F2FB1BE62303B20F00F3C03D /* TestImageViewController.xib in Resources */,
@@ -622,6 +637,7 @@
 				F214759923108434007E7D2F /* RegisterPush.swift in Sources */,
 				F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
+				F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
 				F214759E23108594007E7D2F /* LocationManager.swift in Sources */,

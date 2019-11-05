@@ -31,8 +31,6 @@ class DashBoardController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationItem.hidesBackButton = true
-    self.title = "Team One"
     setUpView()
     addKeyboardDismissTap()
   }
@@ -44,6 +42,7 @@ class DashBoardController: UIViewController {
   }
   
   private func setUpView() {
+    self.title = "Team One"
     self.view.backgroundColor = Colors.background
   }
   

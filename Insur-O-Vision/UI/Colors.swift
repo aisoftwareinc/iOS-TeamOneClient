@@ -16,6 +16,7 @@ struct Colors {
   static let primary = UIColor(hex: "1537a5")
   static let secondary = UIColor(hex: "3e78b2")
   static let text = UIColor(hex: "07070a")
+  static let white = UIColor.white
 }
 
 extension UIColor {
