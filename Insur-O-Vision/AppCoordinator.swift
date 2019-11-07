@@ -35,9 +35,11 @@ class AppCoordinator {
   }
   
   private func appModeSelectionController() -> ModeSelectionController {
-    let modeSelectionController = ModeSelectionController()
-    modeSelectionController.delegate = self
-    return modeSelectionController
+    return ModeSelectionController(self)
+  }
+  
+  private func loginViewController() -> LoginViewController {
+    return LoginViewController(self)
   }
 }
 
@@ -79,11 +81,38 @@ extension AppCoordinator: DashboardDelegate {
 
 extension AppCoordinator: ModeSelectionDelegate {
   func didSelectAdjuster() {
-    DLOG("Push to List")
+    self.baseController?.present(loginViewController(), animated: true, completion: nil)
   }
   
   func didSelectInsured() {
     self.baseController.pushViewController(dashboardController(), animated: true)
   }
+}
 
+extension AppCoordinator: LoginViewDelegate {
+  func signin(user: String, password: String) {
+    DLOG("Username: \(user), Password: \(password)")
+    Networking.send(AuthenticateUser(username: user, password: password)) { (result: Result<AuthenticateResult, Error>) in
+      switch result {
+      case .success(let result):
+        DLOG(result.result.rawValue)
+        switch result.result {
+        case .success:
+          UI {
+            self.baseController?.presentedViewController?.dismiss(animated: true, completion: {
+              self.baseController.pushViewController(ClaimsListController(result.userid), animated: true)
+            })
+          }
+        case .failure:
+          DLOG("Failed to Authenticate")
+        }
+      case .failure(let error):
+        DLOG("Error Communicating with Server: \(error)")
+      }
+    }
+  }
+  
+  func validationError() {
+    DLOG("Validation Error!")
+  }
 }

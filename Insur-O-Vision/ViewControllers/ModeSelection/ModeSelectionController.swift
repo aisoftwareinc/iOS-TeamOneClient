@@ -14,7 +14,8 @@ class ModeSelectionController: UIViewController {
   
   weak var delegate: ModeSelectionDelegate?
   
-  init() {
+  init(_ delegate: ModeSelectionDelegate) {
+    self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
   

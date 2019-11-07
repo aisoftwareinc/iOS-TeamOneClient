@@ -41,3 +41,8 @@ struct Networking {
     dataTask.resume()
   }
 }
+
+enum SuccessResult: String, Decodable {
+  case success = "Success"
+  case failure = "Failure"
+}
