@@ -45,6 +45,11 @@ class ClaimsListController: UIViewController {
       UI { self.tableView.reloadData() }
     case .fetchFailed(let error):
       DLOG("Error \(error)")
+    case .deleteSuccess(let index):
+      let indexPath = IndexPath(row: index, section: 0)
+      UI { self.tableView.deleteRows(at: [indexPath], with: .automatic) }
+    case .deleteFailed(_):
+      DLOG("Error Removing Claim")
     }
   }
 }
@@ -67,5 +72,14 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
     delegate?.didSelectClaim(claim.streamid)
   }
   
-  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let claim = claimsViewModel.claims[indexPath.row]
+    let action = UIContextualAction(style: .destructive, title: "Mark as Complete") { (action, view, completion) in
+      DLOG("\(claim.insuredname)")
+      self.claimsViewModel.delete(claim.claimid)
+      completion(true)
+    }
+    let config = UISwipeActionsConfiguration(actions: [action])
+    return config
+  }
 }

@@ -37,29 +37,28 @@ class VideoStreamController: UIViewController {
   }
   
   override func viewDidLoad() {
-    NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
-                                           object: nil,
-                                           queue: .main,
-                                           using: { [unowned self] _ in
-                                            switch UIDevice.current.orientation {
-                                            case .landscapeLeft, .landscapeRight:
-                                              self.captureButton.isEnabled = true
-                                              self.captureButton.imageView?.tintColor = .white
-                                            case .portrait, .portraitUpsideDown:
-                                              self.captureButton.isEnabled = false
-                                              self.captureButton.imageView?.tintColor = .red
-                                            default:
-                                              print("other")
-                                            }
-                                            
-    })
+//    NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
+//                                           object: nil,
+//                                           queue: .main,
+//                                           using: { [unowned self] _ in
+//                                            switch UIDevice.current.orientation {
+//                                            case .landscapeLeft, .landscapeRight:
+//                                              self.captureButton.isEnabled = true
+//                                              self.captureButton.imageView?.tintColor = .white
+//                                            case .portrait, .portraitUpsideDown:
+//                                              self.captureButton.isEnabled = false
+//                                              self.captureButton.imageView?.tintColor = .red
+//                                            default:
+//                                              print("other")
+//                                            }
+//   })
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
     self.resolutionButton.tintColor = UIColor.white
   }
   
   deinit {
-    NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+//    NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     DLOG("Video Stream Controller Deinit")
   }
   

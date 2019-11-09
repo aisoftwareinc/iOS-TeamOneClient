@@ -342,8 +342,8 @@
 				F2032DC1237381820089097E /* Authentication */,
 				F21475CD231736E6007E7D2F /* SendImage */,
 				F214758923108434007E7D2F /* Networking.swift */,
-				F214758A23108434007E7D2F /* RegisterPush */,
 				F214758D23108434007E7D2F /* Request.swift */,
+				F214758A23108434007E7D2F /* RegisterPush */,
 				F2E6F97B23493656004B8A9E /* NoResponse.swift */,
 			);
 			path = Networking;

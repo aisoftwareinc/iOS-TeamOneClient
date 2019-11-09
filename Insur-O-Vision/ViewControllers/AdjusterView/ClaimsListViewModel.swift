@@ -11,8 +11,11 @@ import Foundation
 class ClaimsListViewModel {
   
   enum State {
+    typealias Index = Int
     case fetchedClaims
     case fetchFailed(Error)
+    case deleteSuccess(Index)
+    case deleteFailed(Error)
   }
   
   let userID: String
@@ -35,9 +38,26 @@ class ClaimsListViewModel {
     }
   }
   
-  func delete(_ claim: String) {
-    
+  func delete(_ claimID: String) {
+    Networking.send(RemoveClaimRequest(claimID: claimID)) { (result: Result<SuccessFailureResult, Error>) in
+      switch result {
+      case .success(let state):
+        switch state.result {
+        case .success:
+          if let index = self.claims.firstIndex(where: { (claim) -> Bool in
+            return claim.claimid == claimID
+          }) {
+            self.claims.remove(at: index)
+            self.callBack(.deleteSuccess(index))
+            return
+          }
+          self.callBack(.deleteFailed(NSError()))
+        case .failure:
+          self.callBack(.deleteFailed(NSError()))
+        }
+      case .failure(let error):
+        self.callBack(.deleteFailed(error))
+      }
+    }
   }
-  
-  
 }
