@@ -9,31 +9,36 @@
 import Foundation
 
 struct EndStreamRequest: Request {
-  
   let streamID: String
   
   init(_ streamID: String) {
     self.streamID = streamID
   }
   
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
+  }
+  
+  var type: ContentType {
+    let data = "StreamID=\(streamID)"
+    let dataString = data.data(using: .utf8, allowLossyConversion: false)
+    return .urlencoded(dataString!)
   }
   
   var url: String {
     return "http://demo.teamonecms.com/ws/media.asmx/EndVideoSession"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
-    let data = "StreamID=\(streamID)"
-    let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
-  }
+//  func build() -> URLRequest {
+//    var urlRequest = URLRequest(url: URL(string: url)!)
+//    let data = "StreamID=\(streamID)"
+//    let dataString = data.data(using: .utf8, allowLossyConversion: false)
+//    urlRequest.httpMethod = methodType.rawValue
+//    urlRequest.httpBody = dataString
+//    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
+//    return urlRequest
+//  }
 }
 
 
@@ -47,7 +52,7 @@ struct PostStreamRequest: Request {
     self.antMediaID = antMediaID
   }
   
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
   }
   
@@ -55,14 +60,9 @@ struct PostStreamRequest: Request {
     return "http://demo.teamonecms.com/ws/media.asmx/PostVideoStream"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
+  var type: ContentType {
     let data = "StreamID=\(streamID)&AntMediaStreamID=\(antMediaID)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
+    return .urlencoded(dataString!)
   }
 }

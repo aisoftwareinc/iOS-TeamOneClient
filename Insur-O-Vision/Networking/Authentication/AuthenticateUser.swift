@@ -13,7 +13,7 @@ struct AuthenticateUser: Request {
   let username: String
   let password: String
   
-  var type: RequestType {
+  var methodType: RequestType {
     .post
   }
   
@@ -21,14 +21,9 @@ struct AuthenticateUser: Request {
     return Configuration.apiEndpoint + "ws/media.asmx/AuthenticateUser"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
+  var type: ContentType {
     let data = "Username=\(username)&Password=\(password)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
+    return .urlencoded(dataString!)
   }
 }

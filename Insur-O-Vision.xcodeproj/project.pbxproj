@@ -16,6 +16,8 @@
 		F2032DCC2373C7350089097E /* ListClaimsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DCB2373C7350089097E /* ListClaimsResult.swift */; };
 		F2032DCE2373C90A0089097E /* ClaimsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */; };
 		F2032DD1237612320089097E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DD0237612320089097E /* Defaults.swift */; };
+		F2032DDB23766A5C0089097E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DD923766A5C0089097E /* SearchController.swift */; };
+		F2032DDC23766A5C0089097E /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2032DDA23766A5C0089097E /* SearchController.xib */; };
 		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
 		F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4632300D68A0097350C /* PrimaryButton.swift */; };
 		F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4652300D9E20097350C /* PrimaryTextField.swift */; };
@@ -44,6 +46,7 @@
 		F242786D2300A27D00F30250 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F242786C2300A27D00F30250 /* Configuration.swift */; };
 		F24278722300A49F00F30250 /* EULAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24278702300A49F00F30250 /* EULAController.swift */; };
 		F24278732300A49F00F30250 /* EULAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24278712300A49F00F30250 /* EULAController.xib */; };
+		F249A04E2377498C006C5BC8 /* RemoveClaimRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */; };
 		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
 		F29B410023726AE200374839 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40FE23726AE200374839 /* LoginViewController.swift */; };
@@ -182,6 +185,8 @@
 		F2032DCB2373C7350089097E /* ListClaimsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClaimsResult.swift; sourceTree = "<group>"; };
 		F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimsListViewModel.swift; sourceTree = "<group>"; };
 		F2032DD0237612320089097E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		F2032DD923766A5C0089097E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		F2032DDA23766A5C0089097E /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F20FF4652300D9E20097350C /* PrimaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextField.swift; sourceTree = "<group>"; };
@@ -211,6 +216,7 @@
 		F242786C2300A27D00F30250 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F24278702300A49F00F30250 /* EULAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAController.swift; sourceTree = "<group>"; };
 		F24278712300A49F00F30250 /* EULAController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAController.xib; sourceTree = "<group>"; };
+		F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveClaimRequest.swift; sourceTree = "<group>"; };
 		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
 		F29B40FE23726AE200374839 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 			children = (
 				F2032DC92373C61C0089097E /* ListClaimsRequest.swift */,
 				F2032DCB2373C7350089097E /* ListClaimsResult.swift */,
+				F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */,
 			);
 			path = ClaimsList;
 			sourceTree = "<group>";
@@ -290,6 +297,15 @@
 				F2032DD0237612320089097E /* Defaults.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F2032DD823766A3F0089097E /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				F2032DD923766A5C0089097E /* SearchController.swift */,
+				F2032DDA23766A5C0089097E /* SearchController.xib */,
+			);
+			path = SearchController;
 			sourceTree = "<group>";
 		};
 		F20FF4592300D0F90097350C /* UISubclass */ = {
@@ -320,6 +336,7 @@
 		F214758523108434007E7D2F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F249A04423774921006C5BC8 /* RemoveClaim */,
 				F2032DC82373C6010089097E /* ClaimsList */,
 				F2032DC4237383B00089097E /* SuccessFailureResult.swift */,
 				F2032DC1237381820089097E /* Authentication */,
@@ -427,6 +444,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2032DD823766A3F0089097E /* SearchController */,
 				F29B410A23726AE900374839 /* AdjusterView */,
 				F29B40EF23711B1900374839 /* ModeSelection */,
 				F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */,
@@ -440,6 +458,13 @@
 				F2FB1BE42303B20F00F3C03D /* TestImageViewController.xib */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F249A04423774921006C5BC8 /* RemoveClaim */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RemoveClaim;
 			sourceTree = "<group>";
 		};
 		F29B40EF23711B1900374839 /* ModeSelection */ = {
@@ -658,6 +683,7 @@
 			files = (
 				F29B410123726AE200374839 /* LoginViewController.xib in Resources */,
 				F242786B2300A1DC00F30250 /* DashBoardController.xib in Resources */,
+				F2032DDC23766A5C0089097E /* SearchController.xib in Resources */,
 				F2032DC023737F930089097E /* ClaimsCell.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
 				F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */,
@@ -704,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F249A04E2377498C006C5BC8 /* RemoveClaimRequest.swift in Sources */,
 				F29B410023726AE200374839 /* LoginViewController.swift in Sources */,
 				F242786A2300A1DC00F30250 /* DashBoardController.swift in Sources */,
 				F20FF45C2300D3640097350C /* Colors.swift in Sources */,
@@ -725,6 +752,7 @@
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
 				F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */,
 				F2032DD1237612320089097E /* Defaults.swift in Sources */,
+				F2032DDB23766A5C0089097E /* SearchController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,

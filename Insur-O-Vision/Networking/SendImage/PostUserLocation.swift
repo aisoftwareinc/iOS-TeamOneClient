@@ -11,7 +11,6 @@ import CoreLocation
 import UIKit
 
 struct PostUserInformation: Request {
-  
   let location: CLLocation
   let streamID: String
   let modelName: String
@@ -27,7 +26,7 @@ struct PostUserInformation: Request {
     batteryLevel = String(UIDevice.current.batteryLevel)
   }
   
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
   }
   
@@ -35,14 +34,9 @@ struct PostUserInformation: Request {
     return Configuration.apiEndpoint + "ws/media.asmx/PostUserInformation"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
+  var type: ContentType {
     let data = "Latitude=\(location.coordinate.latitude)&Longitude=\(location.coordinate.longitude)&StreamID=\(streamID)&ModelName=\(self.modelName)&ModelNumber=iPhone&SoftwareVersion=\(self.iOSVersion)&Carrier=NA&BatteryPercent=\(batteryLevel)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
+    return .urlencoded(dataString!)
   }
 }

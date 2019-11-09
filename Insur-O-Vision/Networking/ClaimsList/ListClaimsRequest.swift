@@ -12,7 +12,7 @@ struct ListClaimsRequest: Request {
   
   let userID: String
   
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
   }
   
@@ -20,14 +20,9 @@ struct ListClaimsRequest: Request {
     return Configuration.apiEndpoint + "ws/media.asmx/ListClaims"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
+  var type: ContentType {
     let data = "UserID=\(userID)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
+    return .urlencoded(dataString!)
   }
 }

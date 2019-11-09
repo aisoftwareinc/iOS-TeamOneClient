@@ -12,7 +12,7 @@ struct SendImageRequest: Request {
   private let streamID: String
   private let base64Image: String
   
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
   }
   
@@ -20,15 +20,10 @@ struct SendImageRequest: Request {
     return Configuration.apiEndpoint + "ws/media.asmx/PostPhoto"
   }
   
-  func build() -> URLRequest {
-    var urlRequest = URLRequest(url: URL(string: url)!)
+  var type: ContentType {
     let data = "Photo=\(base64Image)&StreamID=\(streamID)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
-    urlRequest.httpMethod = type.rawValue
-    urlRequest.httpBody = dataString
-    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-    return urlRequest
+    return .urlencoded(dataString!)
   }
   
   init(_ stream: String, base64Image: String) {

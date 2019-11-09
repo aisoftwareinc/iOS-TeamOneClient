@@ -9,8 +9,12 @@
 import Foundation
 
 struct RegisterPush: Request {
+  var type: ContentType {
+    return .json(Data())
+  }
+  
   private let token: String
-  var type: RequestType {
+  var methodType: RequestType {
     return .post
   }
   
@@ -24,7 +28,7 @@ struct RegisterPush: Request {
   
   func build() -> URLRequest {
     var request = URLRequest.init(url: URL(string: url)!)
-    request.httpMethod = type.rawValue
+    request.httpMethod = methodType.rawValue
     return request
   }
   
