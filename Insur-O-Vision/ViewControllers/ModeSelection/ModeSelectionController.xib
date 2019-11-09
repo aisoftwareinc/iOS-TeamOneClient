@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="adjusterAction" destination="tQB-s6-KMq" id="0nq-sj-hwB"/>
                 <outlet property="insuredAction" destination="Hbt-Yf-o6q" id="39R-RD-pjw"/>
-                <outlet property="modeTitle" destination="Cc6-dk-df7" id="OVA-ZY-L2K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,9 +21,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-s6-KMq" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="157" y="235" width="100" height="50"/>
+                    <rect key="frame" x="20" y="240" width="374" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="1VT-Jr-UY3"/>
                         <constraint firstAttribute="height" constant="50" id="cng-yu-bmA"/>
                     </constraints>
                     <state key="normal" title="Adjuster"/>
@@ -33,9 +31,8 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-Yf-o6q" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="157" y="335" width="100" height="50"/>
+                    <rect key="frame" x="20" y="340" width="374" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="SFt-ZG-HqD"/>
                         <constraint firstAttribute="height" constant="50" id="eQs-ph-jxA"/>
                     </constraints>
                     <state key="normal" title="Insured"/>
@@ -43,24 +40,33 @@
                         <action selector="insuredTap:" destination="-1" eventType="touchUpInside" id="Qs9-HK-HID"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In as?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-dk-df7">
-                    <rect key="frame" x="165.5" y="164" width="83" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NHh-ye-oHd">
+                    <rect key="frame" x="20" y="81" width="374" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="8ZF-pD-UOD"/>
+                        <constraint firstAttribute="width" constant="374" id="V6j-lh-LSi"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hbt-Yf-o6q" secondAttribute="trailing" constant="20" id="0h4-V1-qE0"/>
+                <constraint firstItem="Hbt-Yf-o6q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="29d-vY-VPS"/>
                 <constraint firstItem="Hbt-Yf-o6q" firstAttribute="top" secondItem="tQB-s6-KMq" secondAttribute="bottom" constant="50" id="Fbf-eo-nxF"/>
-                <constraint firstItem="tQB-s6-KMq" firstAttribute="top" secondItem="Cc6-dk-df7" secondAttribute="bottom" constant="50" id="NIW-tc-I7E"/>
-                <constraint firstItem="Cc6-dk-df7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="dFw-Vc-BjR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NHh-ye-oHd" secondAttribute="trailing" constant="20" id="Flc-NY-zlQ"/>
+                <constraint firstItem="tQB-s6-KMq" firstAttribute="top" secondItem="NHh-ye-oHd" secondAttribute="bottom" constant="31" id="bFD-bJ-yur"/>
+                <constraint firstItem="NHh-ye-oHd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="37" id="bhp-ay-09I"/>
                 <constraint firstItem="Hbt-Yf-o6q" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="fYf-7k-lnb"/>
+                <constraint firstItem="NHh-ye-oHd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="jhP-bW-d9r"/>
                 <constraint firstItem="tQB-s6-KMq" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="keO-Up-voP"/>
-                <constraint firstItem="Cc6-dk-df7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="wtb-H1-rdE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tQB-s6-KMq" secondAttribute="trailing" constant="20" id="lP8-iB-yO0"/>
+                <constraint firstItem="tQB-s6-KMq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="xbN-Fm-F9y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="132" y="150"/>
         </view>
     </objects>
+    <resources>
+        <image name="Logo" width="500" height="104.5"/>
+    </resources>
 </document>

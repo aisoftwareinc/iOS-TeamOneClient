@@ -15,6 +15,7 @@
 		F2032DCA2373C61C0089097E /* ListClaimsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DC92373C61C0089097E /* ListClaimsRequest.swift */; };
 		F2032DCC2373C7350089097E /* ListClaimsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DCB2373C7350089097E /* ListClaimsResult.swift */; };
 		F2032DCE2373C90A0089097E /* ClaimsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */; };
+		F2032DD1237612320089097E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DD0237612320089097E /* Defaults.swift */; };
 		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
 		F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4632300D68A0097350C /* PrimaryButton.swift */; };
 		F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF4652300D9E20097350C /* PrimaryTextField.swift */; };
@@ -180,6 +181,7 @@
 		F2032DC92373C61C0089097E /* ListClaimsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClaimsRequest.swift; sourceTree = "<group>"; };
 		F2032DCB2373C7350089097E /* ListClaimsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClaimsResult.swift; sourceTree = "<group>"; };
 		F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimsListViewModel.swift; sourceTree = "<group>"; };
+		F2032DD0237612320089097E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F20FF4652300D9E20097350C /* PrimaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextField.swift; sourceTree = "<group>"; };
@@ -280,6 +282,14 @@
 				F2032DCB2373C7350089097E /* ListClaimsResult.swift */,
 			);
 			path = ClaimsList;
+			sourceTree = "<group>";
+		};
+		F2032DCF2376121F0089097E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F2032DD0237612320089097E /* Defaults.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F20FF4592300D0F90097350C /* UISubclass */ = {
@@ -385,21 +395,22 @@
 		F215A34122E3737400704A47 /* Insur-O-Vision */ = {
 			isa = PBXGroup;
 			children = (
+				F242785922FE783C00F30250 /* AppCoordinator.swift */,
+				F215A34222E3737400704A47 /* AppDelegate.swift */,
+				F21475A523108B99007E7D2F /* Global.swift */,
+				F242786C2300A27D00F30250 /* Configuration.swift */,
+				F2032DCF2376121F0089097E /* Utilities */,
 				F21475A723108DF5007E7D2F /* VideoStream */,
 				F214759C23108553007E7D2F /* Location Services */,
 				F214758523108434007E7D2F /* Networking */,
 				F20FF4672301091A0097350C /* Socket */,
-				F242786C2300A27D00F30250 /* Configuration.swift */,
 				F20FF45A2300D3550097350C /* UI */,
 				F20FF4592300D0F90097350C /* UISubclass */,
-				F242785922FE783C00F30250 /* AppCoordinator.swift */,
-				F215A34222E3737400704A47 /* AppDelegate.swift */,
 				F242786E2300A47700F30250 /* ViewControllers */,
 				F215A34C22E3737700704A47 /* Assets.xcassets */,
 				F215A34E22E3737700704A47 /* LaunchScreen.storyboard */,
 				F215A35122E3737700704A47 /* Info.plist */,
 				F215A34922E3737400704A47 /* Insur_O_Vision.xcdatamodeld */,
-				F21475A523108B99007E7D2F /* Global.swift */,
 			);
 			path = "Insur-O-Vision";
 			sourceTree = "<group>";
@@ -713,6 +724,7 @@
 				F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
 				F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */,
+				F2032DD1237612320089097E /* Defaults.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,

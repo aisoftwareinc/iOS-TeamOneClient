@@ -8,26 +8,35 @@
 
 import Foundation
 
-struct ClaimsListViewModel {
+class ClaimsListViewModel {
   
-  enum ViewModelState {
-    case fetchedClaims([Claim])
+  enum State {
+    case fetchedClaims
+    case fetchFailed(Error)
   }
   
   let userID: String
-  
-  var callBack: (ViewModelState) -> ()?
+  var callBack: (State) -> ()?
+  init(userID: String, callBack: @escaping (State) -> ()) {
+    self.userID = userID
+    self.callBack = callBack
+  }
+  var claims = [Claim]()
   
   func fetchClaims() {
     Networking.send(ListClaimsRequest(userID: userID)) { (result: Result<ListClaimsResult, Error>) in
       switch result {
       case .success(let claims):
-        DLOG("\(claims)")
-        self.callBack(.fetchedClaims(claims.claims))
+        self.claims = claims.claims
+        self.callBack(.fetchedClaims)
       case .failure(let error):
-        DLOG("Failed \(error)")
+        self.callBack(.fetchFailed(error))
       }
     }
+  }
+  
+  func delete(_ claim: String) {
+    
   }
   
   

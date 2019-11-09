@@ -10,7 +10,6 @@ class ModeSelectionController: UIViewController {
   
   @IBOutlet weak var adjusterAction: PrimaryButton!
   @IBOutlet weak var insuredAction: PrimaryButton!
-  @IBOutlet weak var modeTitle: UILabel!
   
   weak var delegate: ModeSelectionDelegate?
   
@@ -31,7 +30,6 @@ class ModeSelectionController: UIViewController {
   private func setUpView() {
     self.navigationItem.hidesBackButton = true
     self.view.backgroundColor = Colors.background
-    self.modeTitle.textColor = Colors.white
     self.title = "Team One"
   }
   @IBAction func adjusterTap(_ sender: PrimaryButton) {

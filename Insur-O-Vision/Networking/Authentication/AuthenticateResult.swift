@@ -14,3 +14,4 @@ struct AuthenticateResult: Decodable {
   let firstname: String
   let lastname: String
 }
+

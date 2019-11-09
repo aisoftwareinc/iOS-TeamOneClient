@@ -40,7 +40,7 @@ class VideoStreamController: UIViewController {
     NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
                                            object: nil,
                                            queue: .main,
-                                           using: { _ in
+                                           using: { [unowned self] _ in
                                             switch UIDevice.current.orientation {
                                             case .landscapeLeft, .landscapeRight:
                                               self.captureButton.isEnabled = true

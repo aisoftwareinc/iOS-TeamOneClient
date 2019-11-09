@@ -41,6 +41,10 @@ class AppCoordinator {
   private func loginViewController() -> LoginViewController {
     return LoginViewController(self)
   }
+  
+  private func claimsController(_ id: String) -> ClaimsListController {
+    return ClaimsListController(id, self)
+  }
 }
 
 // MARK: EULADelegate
@@ -81,6 +85,10 @@ extension AppCoordinator: DashboardDelegate {
 
 extension AppCoordinator: ModeSelectionDelegate {
   func didSelectAdjuster() {
+    if let id = Defaults.value(for: Defaults.UserID) {
+      self.baseController.pushViewController(claimsController(id), animated: true)
+      return
+    }
     self.baseController?.present(loginViewController(), animated: true, completion: nil)
   }
   
@@ -96,11 +104,12 @@ extension AppCoordinator: LoginViewDelegate {
       switch result {
       case .success(let result):
         DLOG(result.result.rawValue)
+        Defaults.save(result.userid, key: Defaults.UserID)
         switch result.result {
         case .success:
           UI {
             self.baseController?.presentedViewController?.dismiss(animated: true, completion: {
-              self.baseController.pushViewController(ClaimsListController(result.userid), animated: true)
+              self.baseController.pushViewController(self.claimsController(result.userid), animated: true)
             })
           }
         case .failure:
@@ -115,4 +124,14 @@ extension AppCoordinator: LoginViewDelegate {
   func validationError() {
     DLOG("Validation Error!")
   }
+}
+
+
+extension AppCoordinator: ClaimsListDelegate {
+  func didSelectClaim(_ streamID: String) {
+    DLOG("Received StreamID: \(streamID)")
+    self.baseController.pushViewController(videoStreamController(streamID), animated: true)
+  }
+  
+  
 }
