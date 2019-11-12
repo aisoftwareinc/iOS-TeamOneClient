@@ -206,7 +206,7 @@
 		F21475A823108E09007E7D2F /* Resolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		F21475C3231736E2007E7D2F /* SendImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageRequest.swift; sourceTree = "<group>"; };
 		F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamViewModel.swift; sourceTree = "<group>"; };
-		F215A33F22E3737400704A47 /* Insur-O-Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Insur-O-Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F215A33F22E3737400704A47 /* HubOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F215A34222E3737400704A47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F215A34A22E3737400704A47 /* Insur_O_Vision.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Insur_O_Vision.xcdatamodel; sourceTree = "<group>"; };
 		F215A34C22E3737700704A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 		F215A34022E3737400704A47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F215A33F22E3737400704A47 /* Insur-O-Vision.app */,
+				F215A33F22E3737400704A47 /* HubOne.app */,
 				F2E6F9632348FF71004B8A9E /* Insur-O-VisionTests.xctest */,
 			);
 			name = Products;
@@ -575,7 +575,7 @@
 			);
 			name = "Insur-O-Vision";
 			productName = "Insur-O-Vision";
-			productReference = F215A33F22E3737400704A47 /* Insur-O-Vision.app */;
+			productReference = F215A33F22E3737400704A47 /* HubOne.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F2E6F9622348FF71004B8A9E /* Insur-O-VisionTests */ = {
@@ -974,7 +974,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				DEVELOPMENT_TEAM = 357Z72DF52;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -986,7 +986,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HubOne;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -998,7 +998,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				DEVELOPMENT_TEAM = 357Z72DF52;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1010,7 +1010,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HubOne;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1021,7 +1021,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				DEVELOPMENT_TEAM = G55P49D2Y7;
 				INFOPLIST_FILE = "Insur-O-VisionTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1042,7 +1042,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				DEVELOPMENT_TEAM = G55P49D2Y7;
 				INFOPLIST_FILE = "Insur-O-VisionTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
