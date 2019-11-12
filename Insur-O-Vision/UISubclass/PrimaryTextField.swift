@@ -32,6 +32,5 @@ class PrimaryTextField: UITextField {
     self.tintColor = .white
     leftView = paddingView
     leftViewMode = .always
-    self.attributedPlaceholder = NSAttributedString(string: "Please Enter a Claim ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
   }
 }

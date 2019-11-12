@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 class AppCoordinator {
+  
+  enum ErrorState: String {
+    case loginFail = "Login Error: Please try login and password again."
+    case genericError = "An error occured. Try Again."
+    case serverError = "An error occured communicating with server."
+    case emailValidationError = "Only valid email addresses can be used."
+    case errorRemovingClaim = "An error occured removing claim. Try again."
+    case emptyPassword = "Please enter valid password."
+  }
 
   private let locationManager = LocationManager()
   var baseController: UINavigationController!
@@ -17,6 +26,7 @@ class AppCoordinator {
   func start() -> UIViewController {
     let initialController = Configuration.didSeeEULA ? appModeSelectionController() : eulaController()
     baseController = UINavigationController(rootViewController: initialController)
+    baseController.navigationBar.isTranslucent = true
     locationManager.start()
     return baseController
   }
@@ -30,8 +40,7 @@ class AppCoordinator {
   }
   
   private func videoStreamController(_ streamID: String) -> VideoStreamController {
-    let streamHandler = VideoStreamHandler(Configuration.streamURL, id: streamID)
-    return VideoStreamController(streamHandler, streamID)
+    return VideoStreamController(VideoStreamHandler(Configuration.streamURL, id: streamID), streamID)
   }
   
   private func appModeSelectionController() -> ModeSelectionController {
@@ -42,8 +51,22 @@ class AppCoordinator {
     return LoginViewController(self)
   }
   
-  private func claimsController(_ id: String) -> ClaimsListController {
-    return ClaimsListController(id, self)
+  private func claimsController(_ id: String, name: String) -> ClaimsListController {
+    return ClaimsListController(id, self, name)
+  }
+  
+  private func searchController(_ userID: String) -> SearchController {
+    return SearchController(userID)
+  }
+}
+
+extension AppCoordinator {
+  func displayError(_ state: ErrorState) {
+    let alertController = UIAlertController(title: "Error", message: state.rawValue, preferredStyle: .alert)
+    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    alertController.addAction(action)
+    let controllerToAlert = self.baseController.presentedViewController ?? self.baseController
+    UI { controllerToAlert!.present(alertController, animated: true, completion: nil) }
   }
 }
 
@@ -85,8 +108,8 @@ extension AppCoordinator: DashboardDelegate {
 
 extension AppCoordinator: ModeSelectionDelegate {
   func didSelectAdjuster() {
-    if let id = Defaults.value(for: Defaults.UserID) {
-      self.baseController.pushViewController(claimsController(id), animated: true)
+    if let id = Defaults.value(for: Defaults.UserID), let name = Defaults.value(for: Defaults.UserName) {
+      self.baseController.pushViewController(claimsController(id, name: name), animated: true)
       return
     }
     self.baseController?.present(loginViewController(), animated: true, completion: nil)
@@ -97,7 +120,9 @@ extension AppCoordinator: ModeSelectionDelegate {
   }
 }
 
+// MARK: LoginViewDelegate
 extension AppCoordinator: LoginViewDelegate {
+  
   func signin(user: String, password: String) {
     DLOG("Username: \(user), Password: \(password)")
     Networking.send(AuthenticateUser(username: user, password: password)) { (result: Result<AuthenticateResult, Error>) in
@@ -105,33 +130,49 @@ extension AppCoordinator: LoginViewDelegate {
       case .success(let result):
         DLOG(result.result.rawValue)
         Defaults.save(result.userid, key: Defaults.UserID)
+        Defaults.save("\(result.firstname) \(result.lastname)", key: Defaults.UserName)
         switch result.result {
         case .success:
           UI {
             self.baseController?.presentedViewController?.dismiss(animated: true, completion: {
-              self.baseController.pushViewController(self.claimsController(result.userid), animated: true)
+              self.baseController.pushViewController(self.claimsController(result.userid, name: "\(result.firstname) \(result.lastname)"), animated: true)
             })
           }
         case .failure:
           DLOG("Failed to Authenticate")
+          self.displayError(.serverError)
         }
       case .failure(let error):
         DLOG("Error Communicating with Server: \(error)")
+        self.displayError(.loginFail)
       }
     }
   }
   
-  func validationError() {
-    DLOG("Validation Error!")
+  func emailValidationError() {
+    displayError(.emailValidationError)
   }
+  
+  func passwordEmpty() {
+    displayError(.emptyPassword)
+  }
+  
 }
 
-
+// MARK: ClaimsListDelegate
 extension AppCoordinator: ClaimsListDelegate {
+  func pushToSelect() {
+    if let userID = Defaults.value(for: Defaults.UserID) {
+      self.baseController.pushViewController(searchController(userID), animated: true)
+    }
+  }
+  
   func didSelectClaim(_ streamID: String) {
     DLOG("Received StreamID: \(streamID)")
     self.baseController.pushViewController(videoStreamController(streamID), animated: true)
   }
   
-  
+  func errorRemovingClaim() {
+    self.displayError(.errorRemovingClaim)
+  }
 }

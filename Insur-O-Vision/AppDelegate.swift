@@ -22,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = appCoordinator.start()
     window?.makeKeyAndVisible()
+    
+    
+    UINavigationBar.appearance().tintColor = .white
+    UINavigationBar.appearance().barTintColor = .black
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     return true
   }
   

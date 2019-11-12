@@ -10,7 +10,8 @@ import UIKit
 
 protocol LoginViewDelegate: class {
   func signin(user: String, password: String)
-  func validationError()
+  func emailValidationError()
+  func passwordEmpty()
 }
 
 class LoginViewController: UIViewController {
@@ -36,6 +37,8 @@ class LoginViewController: UIViewController {
     self.modalPresentationStyle = .formSheet
     self.signinLabel.textColor = Colors.white
     self.view.backgroundColor = Colors.background
+    usernameField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+    passworldField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
   }
   
   private func setUpView() {
@@ -44,13 +47,13 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func signinAction(_ sender: PrimaryButton) {
-    guard let user = self.usernameField.text else {
-      self.delegate?.validationError()
+    guard let user = self.usernameField.text, user.isValidEmail() else {
+      self.delegate?.emailValidationError()
       return
     }
     
-    guard let password = self.passworldField.text else {
-      self.delegate?.validationError()
+    guard let password = self.passworldField.text, !password.isEmpty else {
+      self.delegate?.passwordEmpty()
       return
     }
     

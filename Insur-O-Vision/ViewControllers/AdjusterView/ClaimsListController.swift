@@ -10,6 +10,8 @@ import UIKit
 
 protocol ClaimsListDelegate: class {
   func didSelectClaim(_ streamID: String)
+  func pushToSelect()
+  func errorRemovingClaim()
 }
 
 class ClaimsListController: UIViewController {
@@ -18,10 +20,25 @@ class ClaimsListController: UIViewController {
   var claimsViewModel: ClaimsListViewModel!
   weak var delegate: ClaimsListDelegate?
   
-  init(_ userID: String, _ delegate: ClaimsListDelegate) {
+  init(_ userID: String, _ delegate: ClaimsListDelegate, _ name: String) {
     super.init(nibName: nil, bundle: nil)
-    claimsViewModel = ClaimsListViewModel(userID: userID, callBack: handleCallback)
+    claimsViewModel = ClaimsListViewModel(userID: userID, callBack: { [weak self] state in
+      switch state {
+      case .fetchedClaims:
+        UI { self?.tableView.reloadData() }
+      case .fetchFailed(let error):
+        DLOG("Error \(error)")
+      case .deleteSuccess(let index):
+        let indexPath = IndexPath(row: index, section: 0)
+        UI { self?.tableView.deleteRows(at: [indexPath], with: .automatic) }
+      case .deleteFailed(_):
+        DLOG("Error Removing Claim")
+        self?.delegate?.errorRemovingClaim()
+      }
+    })
     self.delegate = delegate
+    self.title = "Claims"
+    self.navigationItem.prompt = name
   }
   
   required init?(coder: NSCoder) {
@@ -37,20 +54,17 @@ class ClaimsListController: UIViewController {
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
     self.tableView.backgroundColor = Colors.background
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: SearchIcon.imageOfSearch, style: .plain, target: self, action: #selector(pushToSearch))
+    self.navigationController?.navigationBar.barStyle = .black //Needed so Prompt is white
   }
-
-  func handleCallback(_ state: ClaimsListViewModel.State) {
-    switch state {
-    case .fetchedClaims:
-      UI { self.tableView.reloadData() }
-    case .fetchFailed(let error):
-      DLOG("Error \(error)")
-    case .deleteSuccess(let index):
-      let indexPath = IndexPath(row: index, section: 0)
-      UI { self.tableView.deleteRows(at: [indexPath], with: .automatic) }
-    case .deleteFailed(_):
-      DLOG("Error Removing Claim")
-    }
+  
+  @objc
+  func pushToSearch() {
+    delegate?.pushToSelect()
+  }
+  
+  deinit {
+    DLOG("Claims VC Deinit...")
   }
 }
 

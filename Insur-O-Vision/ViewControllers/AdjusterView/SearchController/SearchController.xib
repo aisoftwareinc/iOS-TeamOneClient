@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchController" customModule="Insur_O_Vision" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="I8g-fI-WOF" id="Vaf-HI-8OH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

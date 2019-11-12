@@ -13,6 +13,10 @@ class ModeSelectionController: UIViewController {
   
   weak var delegate: ModeSelectionDelegate?
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   init(_ delegate: ModeSelectionDelegate) {
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
@@ -30,7 +34,7 @@ class ModeSelectionController: UIViewController {
   private func setUpView() {
     self.navigationItem.hidesBackButton = true
     self.view.backgroundColor = Colors.background
-    self.title = "Team One"
+    self.title = "Dashboard"
   }
   @IBAction func adjusterTap(_ sender: PrimaryButton) {
     delegate?.didSelectAdjuster()

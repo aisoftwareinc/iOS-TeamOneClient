@@ -20,6 +20,7 @@ class ClaimsListViewModel {
   
   let userID: String
   var callBack: (State) -> ()?
+  
   init(userID: String, callBack: @escaping (State) -> ()) {
     self.userID = userID
     self.callBack = callBack
