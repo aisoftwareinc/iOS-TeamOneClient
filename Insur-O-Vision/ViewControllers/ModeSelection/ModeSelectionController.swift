@@ -35,6 +35,8 @@ class ModeSelectionController: UIViewController {
     self.navigationItem.hidesBackButton = true
     self.view.backgroundColor = Colors.background
     self.title = "Dashboard"
+    self.adjusterAction.tintColor = .white
+    self.insuredAction.tintColor = .white
   }
   @IBAction func adjusterTap(_ sender: PrimaryButton) {
     delegate?.didSelectAdjuster()

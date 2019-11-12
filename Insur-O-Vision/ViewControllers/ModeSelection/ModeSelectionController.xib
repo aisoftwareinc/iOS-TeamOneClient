@@ -20,22 +20,25 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-s6-KMq" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-s6-KMq" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
                     <rect key="frame" x="20" y="240" width="374" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="cng-yu-bmA"/>
                     </constraints>
-                    <state key="normal" title="Adjuster"/>
+                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                    <state key="normal" title="ADJUSTER" image="Clipboard"/>
                     <connections>
                         <action selector="adjusterTap:" destination="-1" eventType="touchUpInside" id="sA1-Vg-QeC"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-Yf-o6q" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-Yf-o6q" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
                     <rect key="frame" x="20" y="340" width="374" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="eQs-ph-jxA"/>
                     </constraints>
-                    <state key="normal" title="Insured"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="13" maxY="0.0"/>
+                    <state key="normal" title="INSURED" image="User"/>
                     <connections>
                         <action selector="insuredTap:" destination="-1" eventType="touchUpInside" id="Qs9-HK-HID"/>
                     </connections>
@@ -67,6 +70,8 @@
         </view>
     </objects>
     <resources>
+        <image name="Clipboard" width="19" height="24"/>
         <image name="Logo" width="500" height="104.5"/>
+        <image name="User" width="24" height="24"/>
     </resources>
 </document>

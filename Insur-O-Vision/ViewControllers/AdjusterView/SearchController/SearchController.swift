@@ -51,6 +51,8 @@ class SearchController: UIViewController {
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
     self.tableView.backgroundColor = Colors.background
+    self.tableView.rowHeight = UITableView.automaticDimension
+    self.tableView.estimatedRowHeight = 44.0
   }
   
   private func addSearchBar() {

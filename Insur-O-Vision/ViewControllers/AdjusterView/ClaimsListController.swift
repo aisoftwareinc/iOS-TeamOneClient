@@ -54,6 +54,8 @@ class ClaimsListController: UIViewController {
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
     self.tableView.backgroundColor = Colors.background
+    self.tableView.rowHeight = UITableView.automaticDimension
+    self.tableView.estimatedRowHeight = 44.0
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: SearchIcon.imageOfSearch, style: .plain, target: self, action: #selector(pushToSearch))
     self.navigationController?.navigationBar.barStyle = .black //Needed so Prompt is white
   }
