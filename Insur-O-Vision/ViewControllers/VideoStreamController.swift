@@ -37,21 +37,6 @@ class VideoStreamController: UIViewController {
   }
   
   override func viewDidLoad() {
-//    NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
-//                                           object: nil,
-//                                           queue: .main,
-//                                           using: { [unowned self] _ in
-//                                            switch UIDevice.current.orientation {
-//                                            case .landscapeLeft, .landscapeRight:
-//                                              self.captureButton.isEnabled = true
-//                                              self.captureButton.imageView?.tintColor = .white
-//                                            case .portrait, .portraitUpsideDown:
-//                                              self.captureButton.isEnabled = false
-//                                              self.captureButton.imageView?.tintColor = .red
-//                                            default:
-//                                              print("other")
-//                                            }
-//   })
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
     self.resolutionButton.tintColor = UIColor.white
@@ -172,6 +157,7 @@ extension VideoStreamController: RemoteCommandsDelegate {
       let level = viewModel.zoomLevel(0)
       toggleZoom(level)
     case .endVideo:
+      streamHandler.stopStream()
       viewModel.endStream()
     case .flashOn:
       viewModel.toggleFlash(true)
@@ -197,16 +183,6 @@ extension VideoStreamController: RemoteCommandsDelegate {
     print("Did Connect")
     UI { [weak self] in self?.socketConnectionImage.tintColor = UIColor.green }
   }
-}
-
-extension CharacterSet {
-  static let urlImageEncoded: CharacterSet = {
-    let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
-    let subDelimitersToEncode = "!$&'()*+,;="
-    var allowed = CharacterSet.urlQueryAllowed
-    allowed.remove(charactersIn: generalDelimitersToEncode + subDelimitersToEncode)
-    return allowed
-  }()
 }
 
 extension VideoStreamController: StreamVideoDelegate {
