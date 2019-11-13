@@ -25,6 +25,10 @@ class DashBoardController: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
   
+  deinit {
+    DLOG("Dashboard VC Deinit...")
+  }
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -44,6 +48,7 @@ class DashBoardController: UIViewController {
   private func setUpView() {
     self.title = "Team One"
     self.view.backgroundColor = Colors.background
+    claimNumberField.attributedPlaceholder = NSAttributedString(string: "Enter Claim ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
   }
   
   private func addKeyboardDismissTap() {

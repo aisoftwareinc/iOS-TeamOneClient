@@ -12,28 +12,52 @@ protocol ClaimsListDelegate: class {
   func didSelectClaim(_ streamID: String)
   func pushToSelect()
   func errorRemovingClaim()
+  func fetchError()
 }
 
 class ClaimsListController: UIViewController {
   
+  enum State {
+    case initial
+    case empty
+    case results
+    case error
+  }
+  
   @IBOutlet weak var tableView: UITableView!
   var claimsViewModel: ClaimsListViewModel!
-  weak var delegate: ClaimsListDelegate?
+  private weak var delegate: ClaimsListDelegate?
+  private var refreshControl: UIRefreshControl!
+  
+  var state: State = .initial
   
   init(_ userID: String, _ delegate: ClaimsListDelegate, _ name: String) {
     super.init(nibName: nil, bundle: nil)
     claimsViewModel = ClaimsListViewModel(userID: userID, callBack: { [weak self] state in
+      UI { self?.refreshControl.endRefreshing() }
       switch state {
       case .fetchedClaims:
-        UI { self?.tableView.reloadData() }
+        self?.state = .results
+        UI {
+          self?.tableView.reloadData()
+        }
+      case .empty:
+        self?.state = .empty
+        UI {
+          self?.tableView.reloadData()
+        }
       case .fetchFailed(let error):
-        DLOG("Error \(error)")
+        self?.state = .error
+        UI {
+          self?.tableView.reloadData()
+        }
+        DLOG("Error fetching claims: \(error)")
       case .deleteSuccess(let index):
         let indexPath = IndexPath(row: index, section: 0)
         UI { self?.tableView.deleteRows(at: [indexPath], with: .automatic) }
       case .deleteFailed(_):
         DLOG("Error Removing Claim")
-        self?.delegate?.errorRemovingClaim()
+        UI { self?.delegate?.errorRemovingClaim() }
       }
     })
     self.delegate = delegate
@@ -50,6 +74,7 @@ class ClaimsListController: UIViewController {
     claimsViewModel.fetchClaims()
     self.tableView.dataSource = self
     self.tableView.delegate = self
+    self.tableView.register(UINib(nibName: "GenericInfoCell", bundle: nil), forCellReuseIdentifier: "GenericInfoCell")
     self.tableView.register(UINib(nibName: "ClaimsCell", bundle: nil), forCellReuseIdentifier: "ClaimsCell")
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
@@ -57,7 +82,13 @@ class ClaimsListController: UIViewController {
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 44.0
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: SearchIcon.imageOfSearch, style: .plain, target: self, action: #selector(pushToSearch))
-    self.navigationController?.navigationBar.barStyle = .black //Needed so Prompt is white
+    self.navigationController?.navigationBar.barStyle = .black //Needed so Prompt is white text
+    
+    //Refresh Control settings
+    refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    refreshControl.tintColor = .white
+    tableView.refreshControl = refreshControl
   }
   
   @objc
@@ -68,18 +99,49 @@ class ClaimsListController: UIViewController {
   deinit {
     DLOG("Claims VC Deinit...")
   }
+  
+  @objc
+  func refresh() {
+    claimsViewModel.fetchClaims()
+  }
 }
 
 extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return claimsViewModel.claims.count
+    
+    switch state {
+    case .empty:
+      return 1
+    case .initial:
+      return 1
+    case .results:
+      return claimsViewModel.claims.count
+    case .error:
+      return 1
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let claim = claimsViewModel.claims[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimsCell", for: indexPath) as! ClaimsCell
-    cell.configure(claim)
-    return cell
+    
+    switch state {
+    case .initial:
+      let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
+      cell.configure("Fetching Claims...")
+      return cell
+    case .empty:
+      let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
+      cell.configure("No claims found for user...")
+      return cell
+    case .results:
+      let claim = claimsViewModel.claims[indexPath.row]
+      let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimsCell", for: indexPath) as! ClaimsCell
+      cell.configure(claim)
+      return cell
+    case .error:
+      let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
+      cell.configure("An error occured. Pull down to Try Again.")
+      return cell
+    }
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

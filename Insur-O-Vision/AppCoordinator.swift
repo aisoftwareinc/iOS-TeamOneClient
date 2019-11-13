@@ -16,7 +16,8 @@ class AppCoordinator {
     case genericError = "An error occured. Try Again."
     case serverError = "An error occured communicating with server."
     case emailValidationError = "Only valid email addresses can be used."
-    case errorRemovingClaim = "An error occured removing claim. Try again."
+    case errorFetchingLaims = "An error occurred fetching claims."
+    case errorRemovingClaim = "An error occurred removing claim. Try again."
     case emptyPassword = "Please enter valid password."
   }
 
@@ -56,7 +57,7 @@ class AppCoordinator {
   }
   
   private func searchController(_ userID: String) -> SearchController {
-    return SearchController(userID)
+    return SearchController(userID, self)
   }
 }
 
@@ -123,16 +124,18 @@ extension AppCoordinator: ModeSelectionDelegate {
 // MARK: LoginViewDelegate
 extension AppCoordinator: LoginViewDelegate {
   
-  func signin(user: String, password: String) {
+  func signin(user: String, password: String, rememberMe: Bool) {
     DLOG("Username: \(user), Password: \(password)")
     Networking.send(AuthenticateUser(username: user, password: password)) { (result: Result<AuthenticateResult, Error>) in
       switch result {
       case .success(let result):
-        DLOG(result.result.rawValue)
-        Defaults.save(result.userid, key: Defaults.UserID)
-        Defaults.save("\(result.firstname) \(result.lastname)", key: Defaults.UserName)
         switch result.result {
         case .success:
+          DLOG(result.result.rawValue)
+          if rememberMe {
+            Defaults.save(result.userid, key: Defaults.UserID)
+            Defaults.save("\(result.firstname) \(result.lastname)", key: Defaults.UserName)
+          }
           UI {
             self.baseController?.presentedViewController?.dismiss(animated: true, completion: {
               self.baseController.pushViewController(self.claimsController(result.userid, name: "\(result.firstname) \(result.lastname)"), animated: true)
@@ -161,6 +164,10 @@ extension AppCoordinator: LoginViewDelegate {
 
 // MARK: ClaimsListDelegate
 extension AppCoordinator: ClaimsListDelegate {
+  func fetchError() {
+    displayError(.errorFetchingLaims)
+  }
+  
   func pushToSelect() {
     if let userID = Defaults.value(for: Defaults.UserID) {
       self.baseController.pushViewController(searchController(userID), animated: true)
@@ -176,3 +183,5 @@ extension AppCoordinator: ClaimsListDelegate {
     self.displayError(.errorRemovingClaim)
   }
 }
+
+extension AppCoordinator: SearchControllerDelegate { }

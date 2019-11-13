@@ -9,17 +9,17 @@
 import UIKit
 
 protocol LoginViewDelegate: class {
-  func signin(user: String, password: String)
+  func signin(user: String, password: String, rememberMe: Bool)
   func emailValidationError()
   func passwordEmpty()
 }
 
 class LoginViewController: UIViewController {
   
-  @IBOutlet weak var signinLabel: UILabel!
   @IBOutlet weak var usernameField: PrimaryTextField!
   @IBOutlet weak var passworldField: PrimaryTextField!
   @IBOutlet weak var signinButton: PrimaryButton!
+  @IBOutlet weak var rememberMe: UISwitch!
   
   weak var delegate: LoginViewDelegate?
   
@@ -35,14 +35,37 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.modalPresentationStyle = .formSheet
-    self.signinLabel.textColor = Colors.white
     self.view.backgroundColor = Colors.background
     usernameField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     passworldField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+    
+    addEmailImage()
+    addPasswordImage()
+  }
+  
+  private func addEmailImage() {
+    let emailImage = #imageLiteral(resourceName: "Email")
+    let imageView = UIImageView(image: emailImage)
+    imageView.contentMode = .scaleAspectFit
+    imageView.frame = CGRect(x: 12.0, y: 5.0, width: 20.0, height: 20.0)
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+    view.addSubview(imageView)
+    usernameField.leftView = view
+    usernameField.leftViewMode = .always
+  }
+  
+  private func addPasswordImage() {
+    let passwordImage = #imageLiteral(resourceName: "Password")
+    let imageView = UIImageView(image: passwordImage)
+    imageView.contentMode = .scaleAspectFit
+    imageView.frame = CGRect(x: 12.0, y: 5.0, width: 20.0, height: 20.0)
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+    view.addSubview(imageView)
+    passworldField.leftView = view
+    passworldField.leftViewMode = .always
   }
   
   private func setUpView() {
-    self.signinLabel.textColor = Colors.white
     self.view.backgroundColor = Colors.background
   }
   
@@ -57,6 +80,6 @@ class LoginViewController: UIViewController {
       return
     }
     
-    self.delegate?.signin(user: user, password: password)
+    self.delegate?.signin(user: user, password: password, rememberMe: rememberMe.isOn)
   }
 }

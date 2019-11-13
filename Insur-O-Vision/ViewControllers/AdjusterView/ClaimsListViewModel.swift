@@ -13,6 +13,7 @@ class ClaimsListViewModel {
   enum State {
     typealias Index = Int
     case fetchedClaims
+    case empty
     case fetchFailed(Error)
     case deleteSuccess(Index)
     case deleteFailed(Error)
@@ -32,7 +33,7 @@ class ClaimsListViewModel {
       switch result {
       case .success(let claims):
         self.claims = claims.claims
-        self.callBack(.fetchedClaims)
+        self.claims.isEmpty ? self.callBack(.empty) : self.callBack(.fetchedClaims)
       case .failure(let error):
         self.callBack(.fetchFailed(error))
       }

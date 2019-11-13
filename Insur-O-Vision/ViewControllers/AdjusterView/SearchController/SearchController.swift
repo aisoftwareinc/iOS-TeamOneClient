@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchControllerDelegate: class {
+  func didSelectClaim(_ streamID: String)
+}
+
 class SearchController: UIViewController {
   
   enum State {
@@ -19,12 +23,14 @@ class SearchController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   var searchViewModel: SearchControllerViewModel!
+  private weak var delegate: SearchControllerDelegate?
   let searchController = UISearchController.init(searchResultsController: nil)
   var state: State = .initial
   
-  init(_ userID: String) {
+  init(_ userID: String, _ delegate: SearchControllerDelegate) {
     super.init(nibName: nil, bundle: nil)
     self.title = "Claims Search"
+    self.delegate = delegate
     self.searchViewModel = SearchControllerViewModel(userID) { [weak self] state in
       switch state {
       case .fetchedClaims:
@@ -38,6 +44,10 @@ class SearchController: UIViewController {
     }
   }
   
+  deinit {
+    DLOG("Search VC Deinit...")
+  }
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -46,6 +56,7 @@ class SearchController: UIViewController {
     super.viewDidLoad()
     addSearchBar()
     self.tableView.dataSource = self
+    self.tableView.delegate = self
     self.tableView.register(UINib(nibName: "ClaimsCell", bundle: nil), forCellReuseIdentifier: "ClaimsCell")
     self.tableView.register(UINib(nibName: "GenericInfoCell", bundle: nil), forCellReuseIdentifier: "GenericInfoCell")
     self.view.backgroundColor = Colors.background
@@ -53,6 +64,12 @@ class SearchController: UIViewController {
     self.tableView.backgroundColor = Colors.background
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 44.0
+  }
+  
+  //Required or UISearchController leaks.
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.searchController.isActive = false
   }
   
   private func addSearchBar() {
@@ -78,7 +95,7 @@ extension SearchController: UISearchResultsUpdating, UISearchControllerDelegate,
 }
 
 
-extension SearchController: UITableViewDataSource {
+extension SearchController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch state {
     case .initial:
@@ -112,5 +129,11 @@ extension SearchController: UITableViewDataSource {
       cell.configure(claim)
       return cell
     }
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    let claim = searchViewModel.results[indexPath.row]
+    delegate?.didSelectClaim(claim.streamid)
   }
 }

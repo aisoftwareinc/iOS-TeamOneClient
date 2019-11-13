@@ -39,7 +39,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F215A33E22E3737400704A47"
-            BuildableName = "Insur-O-Vision.app"
+            BuildableName = "HubOne.app"
             BlueprintName = "Insur-O-Vision"
             ReferencedContainer = "container:Insur-O-Vision.xcodeproj">
          </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F215A33E22E3737400704A47"
-            BuildableName = "Insur-O-Vision.app"
+            BuildableName = "HubOne.app"
             BlueprintName = "Insur-O-Vision"
             ReferencedContainer = "container:Insur-O-Vision.xcodeproj">
          </BuildableReference>
