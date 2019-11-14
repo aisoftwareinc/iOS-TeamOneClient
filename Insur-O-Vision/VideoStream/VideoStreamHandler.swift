@@ -42,10 +42,11 @@ class VideoStreamHandler {
   
   private func setUp() {
     rtmpStream.captureSettings = [
-      .sessionPreset: AVCaptureSession.Preset.hd1920x1080.rawValue,
-      .continuousAutofocus: true,
-      .continuousExposure: true,
-      .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.standard.rawValue
+        .fps: 30, // FPS
+        .sessionPreset: AVCaptureSession.Preset.hd1280x720, // input video width/height
+        .continuousAutofocus: false, // use camera autofocus mode
+        .continuousExposure: false, //  use camera exposure mode
+        // .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.auto
     ]
     rtmpStream.videoSettings = [
       .width: 1280,
@@ -53,8 +54,7 @@ class VideoStreamHandler {
       .bitrate: HighResolution().bitrate * 1024
     ]
     rtmpStream.audioSettings = [
-      .muted: false, // mute audio
-      .bitrate: 32 * 1024
+        .sampleRate: sampleRate
     ]
     rtmpConnection.addEventListener(Event.Name.rtmpStatus, selector: #selector(rtmpStatusEvent), observer: self)
   }
