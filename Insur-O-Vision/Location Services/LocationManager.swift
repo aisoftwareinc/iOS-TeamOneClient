@@ -46,16 +46,6 @@ class LocationManager: NSObject {
     Networking.send(locationRequest) { (result: Result<NoResponse, Error>) in
       
     }
-    //        let locationRequest = Requests.reportLocationPostRequest(String(currentLocation.coordinate.latitude), String(currentLocation.coordinate.longitude))
-    //        print("Sending location: \(String(currentLocation.coordinate.latitude), String(currentLocation.coordinate.longitude))")
-    //        Networking.send(locationRequest, completion: { (result: Result<Success>) in
-    //            switch result {
-    //            case .success(let response):
-    //                print(response)
-    //            case .failure:
-    //                print("Failure")
-    //            }
-    //        })
   }
   
   func stop() {

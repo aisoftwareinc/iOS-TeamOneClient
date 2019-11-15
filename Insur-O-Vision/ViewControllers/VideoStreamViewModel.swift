@@ -28,7 +28,6 @@ class ViewStreamViewModel {
       do {
         try currentDevice.lockForConfiguration()
         currentDevice.torchMode = torchOn ? .on : .off
-        //try currentDevice.setTorchModeOn(level: 1.0)//Or whatever you want
         currentDevice.unlockForConfiguration()
       } catch {
         print("error")
@@ -37,15 +36,11 @@ class ViewStreamViewModel {
   }
   
   func endStream() {
-    Networking.send(EndStreamRequest(streamID)) { (result: Result<NoResponse, Error>) in
-      
-    }
+    Networking.send(EndStreamRequest(streamID)) { (result: Result<NoResponse, Error>) in }
   }
   
   func postStreamID(antMediaID: String) {
-    Networking.send(PostStreamRequest(streamID, antMediaID)) { (result: Result<NoResponse, Error>) in
-      
-    }
+    Networking.send(PostStreamRequest(streamID, antMediaID)) { (result: Result<NoResponse, Error>) in }
   }
   
   func sendImage(_ data: Data) {

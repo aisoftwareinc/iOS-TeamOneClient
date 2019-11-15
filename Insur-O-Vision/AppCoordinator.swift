@@ -177,6 +177,7 @@ extension AppCoordinator: ClaimsListDelegate {
   func didSelectClaim(_ streamID: String) {
     DLOG("Received StreamID: \(streamID)")
     self.baseController.pushViewController(videoStreamController(streamID), animated: true)
+    locationManager.sendLocation(streamID)
   }
   
   func errorRemovingClaim() {

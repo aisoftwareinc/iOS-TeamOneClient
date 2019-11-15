@@ -35,7 +35,7 @@
                         <constraint firstAttribute="height" constant="44" id="hWG-oE-bLj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Submit"/>
+                    <state key="normal" title="Start Camera"/>
                     <connections>
                         <action selector="submitClaim:" destination="-1" eventType="touchUpInside" id="FGN-L1-2qW"/>
                     </connections>
