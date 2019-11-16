@@ -26,11 +26,11 @@ struct Networking {
         return
       }
       
-      DLOG("Network Response: Request - \(T.self) - Response \((response as? HTTPURLResponse)?.statusCode ?? -1)")
+      DLOG("Network Response: Request - \(T.self) - Response \((response as? HTTPURLResponse)?.statusCode ?? -1) - URL \(request.url)")
       
       if let data = data {
         do {
-          DLOG("JSON Response: Request - \(T.self) - \(String(data: data, encoding: .utf8) ?? "Unable to build String from Data result.")")
+          DLOG("JSON Response: \(T.self) - URL: \(request.url)\n\(data.prettyJSON() ?? "Unable to build String from Data result.")")
           let result = try JSONDecoder().decode(ResultType.self, from: data)
           completion(.success(result))
         } catch {
@@ -45,4 +45,22 @@ struct Networking {
 enum SuccessResult: String, Decodable {
   case success = "Success"
   case failure = "Failure"
+}
+
+public extension Data {
+  
+  /// Convert self to JSON String.
+  /// - Returns: Returns the JSON as String or empty string if error while parsing.
+  func prettyJSON() -> String? {
+    do {
+      let jsonObject = try JSONSerialization.jsonObject(with: self, options: [])
+      let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
+      guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
+        return "Error converting string to pretty JSON"
+      }
+      return jsonString
+    } catch let parseError {
+      return "JSON serialization error: \(parseError)"
+    }
+  }
 }

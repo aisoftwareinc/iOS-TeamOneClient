@@ -21,7 +21,6 @@ class VideoStreamController: UIViewController {
   @IBOutlet weak var cameraButton: UIButton!
   @IBOutlet weak var captureButton: PrimaryButton!
   @IBOutlet weak var socketConnectionImage: UIImageView!
-  @IBOutlet weak var resolutionButton: UIButton!
   
   init(_ streamHandler: VideoStreamHandler, _ streamID: String) {
     self.streamHandler = streamHandler
@@ -41,7 +40,6 @@ class VideoStreamController: UIViewController {
   override func viewDidLoad() {
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
-    self.resolutionButton.tintColor = UIColor.white
   }
   
   deinit {
@@ -137,19 +135,6 @@ class VideoStreamController: UIViewController {
     }
     let data = image.jpegData(compressionQuality: 0.25)!
     viewModel.sendImage(data)
-  }
-  
-  @IBAction func updateResolution(_ sender: Any) {
-    let alertController = UIAlertController(title: "Stream Quality", message: "Change Resolution", preferredStyle: .actionSheet)
-    let highBitrate = UIAlertAction(title: "High", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(HighResolution()) })
-    let defaultBitrate = UIAlertAction(title: "Medium", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(DefaultResolution()) })
-    let lowBitrate = UIAlertAction(title: "Low", style: .default, handler: { [unowned self] _ in self.streamHandler.updateResolution(LowResolution()) })
-    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    alertController.addAction(highBitrate)
-    alertController.addAction(defaultBitrate)
-    alertController.addAction(lowBitrate)
-    alertController.addAction(cancel)
-    present(alertController, animated: true, completion: nil)
   }
 }
 

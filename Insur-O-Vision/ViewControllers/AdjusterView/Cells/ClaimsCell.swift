@@ -19,12 +19,12 @@ class ClaimsCell: UITableViewCell {
     self.backgroundColor = Colors.background
     self.insuredName.textColor = Colors.white
     self.address.textColor = Colors.white
-    self.claimReferenceNumbers.textColor = Colors.white
+    self.claimReferenceNumbers.textColor = Colors.primary
   }
   
   func configure(_ claim: Claim) {
     self.insuredName.text = claim.insuredname
     self.address.text = "\(claim.lossaddress) \(claim.losscity) \(claim.lossstate) \(claim.losszip)"
-    self.claimReferenceNumbers.text = "Claim: \(claim.claimnumber) - TeamOne: \(claim.teamonenumber)"
+    self.claimReferenceNumbers.text = "Claim #: \(claim.claimnumber) - TeamOne #: \(claim.teamonenumber)"
   }
 }
