@@ -17,6 +17,7 @@ struct Claim: Decodable {
   let streamid: String
   let claimnumber: String
   let insuredname: String
+  let teamonenumber: String
   let lossaddress: String
   let losscity: String
   let lossstate: String

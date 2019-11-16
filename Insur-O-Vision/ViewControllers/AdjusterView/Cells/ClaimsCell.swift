@@ -12,23 +12,19 @@ class ClaimsCell: UITableViewCell {
   
   @IBOutlet weak var insuredName: UILabel!
   @IBOutlet weak var address: UILabel!
+  @IBOutlet weak var claimReferenceNumbers: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
     self.backgroundColor = Colors.background
     self.insuredName.textColor = Colors.white
     self.address.textColor = Colors.white
-    // Initialization code
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-    
-    // Configure the view for the selected state
+    self.claimReferenceNumbers.textColor = Colors.white
   }
   
   func configure(_ claim: Claim) {
     self.insuredName.text = claim.insuredname
     self.address.text = "\(claim.lossaddress) \(claim.losscity) \(claim.lossstate) \(claim.losszip)"
+    self.claimReferenceNumbers.text = "Claim: \(claim.claimnumber) - TeamOne: \(claim.teamonenumber)"
   }
 }

@@ -30,6 +30,8 @@ class VideoStreamController: UIViewController {
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
     self.streamHandler.delegate = self
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(killApp), name: UIApplication.willResignActiveNotification, object: nil)
   }
   
   override var shouldAutorotate: Bool {
@@ -43,7 +45,7 @@ class VideoStreamController: UIViewController {
   }
   
   deinit {
-//    NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    NotificationCenter.default.removeObserver(self)
     DLOG("Video Stream Controller Deinit")
   }
   
@@ -59,6 +61,11 @@ class VideoStreamController: UIViewController {
     streamHandler.disconnect()
     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
     viewModel.endStream()
+  }
+  
+  @objc
+  private func killApp() {
+    fatalError()
   }
   
   
@@ -196,11 +203,17 @@ extension VideoStreamController: StreamVideoDelegate {
   
   func streamStartedSuccessfully() {
     DLOG("Successfully connected to video streaming server")
-    UI { self.captureButton.setTitle("  Stop  ", for: .normal) }
+    UI {
+      self.captureButton.setTitle("Stop Camera", for: .normal)
+      self.captureButton.backgroundColor = .red
+    }
   }
   
   func streamEndedSuccessfully() {
-    UI { self.captureButton.setTitle("  Start  ", for: .normal) }
+    UI {
+      self.captureButton.setTitle("Start Camera", for: .normal)
+      self.captureButton.backgroundColor = Colors.primary
+    }
   }
   
   func connectionClosed() {
@@ -213,7 +226,5 @@ extension VideoStreamController: StreamVideoDelegate {
     alertController.addAction(closeAction)
     UI { self.present(alertController, animated: true, completion: nil) }
   }
-  
-
 }
 
