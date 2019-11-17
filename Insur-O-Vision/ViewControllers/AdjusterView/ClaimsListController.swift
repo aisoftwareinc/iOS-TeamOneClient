@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Asterism
 
 protocol ClaimsListDelegate: class {
   func didSelectClaim(_ streamID: String)

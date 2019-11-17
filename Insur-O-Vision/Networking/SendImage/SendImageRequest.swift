@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Asterism
 
 struct SendImageRequest: Request {
   private let streamID: String

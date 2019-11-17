@@ -8,9 +8,11 @@
 
 import Foundation
 import Starscream
+import Asterism
 
 protocol RemoteCommandsDelegate: class {
   func didRecieveCommand(_ command: Socket.Command)
+  func recivedNotice(_ notice: String)
   func didDisconnect()
   func didConnect()
 }
@@ -24,9 +26,6 @@ class Socket {
     case flashOn = "flashlighton"
     case flashOff = "flashlightoff"
     case screenShot = "photo"
-    case resolution480 = "resolution480"
-    case resolution720 = "resolution720"
-    case resolution1080 = "resolution1080"
   }
   
   weak var delegate: RemoteCommandsDelegate?
@@ -62,29 +61,26 @@ extension Socket: WebSocketDelegate {
   
   public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
     print("Received message: \(text)")
+    if text.prefix(5) == "note-" {
+      let notice = text.dropFirst(5)
+      DLOG(String(notice))
+      delegate?.recivedNotice(String(notice))
+    }
     if let command = Command(rawValue: text) {
-      
       delegate?.didRecieveCommand(command)
-
       switch command {
-        case .zoomIn:
+      case .zoomIn:
         DLOG("Toogle Zoom In")
-        case .zoomOut:
+      case .zoomOut:
         DLOG("Toggle Zoom out")
-        case .endVideo:
+      case .endVideo:
         DLOG("Toggle End Video")
-        case .flashOn:
+      case .flashOn:
         DLOG("Toggle Flash On")
-        case .flashOff:
+      case .flashOff:
         DLOG("Toggle Flash off")
-        case .screenShot:
+      case .screenShot:
         DLOG("Take Photo")
-        case .resolution480:
-        DLOG("resolution480")
-        case .resolution720:
-        DLOG("resolution720")
-        case .resolution1080:
-        DLOG("resolution1080")
       }
     }
   }

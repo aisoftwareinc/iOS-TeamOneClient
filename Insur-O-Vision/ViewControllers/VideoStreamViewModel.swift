@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import Asterism
 
 class ViewStreamViewModel {
   let streamID: String

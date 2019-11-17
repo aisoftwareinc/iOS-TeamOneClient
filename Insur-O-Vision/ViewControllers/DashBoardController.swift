@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Asterism
 
 protocol DashboardDelegate: class {
   func didEnterClaimsNumber(_ string: String)

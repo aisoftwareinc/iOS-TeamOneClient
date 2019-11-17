@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Asterism
 
 struct EndStreamRequest: Request {
   let streamID: String

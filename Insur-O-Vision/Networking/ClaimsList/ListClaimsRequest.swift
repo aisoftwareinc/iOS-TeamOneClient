@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Asterism
 
 struct ListClaimsRequest: Request {
   

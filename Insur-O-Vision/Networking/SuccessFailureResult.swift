@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import Asterism
+
+enum SuccessResult: String, Decodable {
+  case success = "Success"
+  case failure = "Failure"
+}
 
 struct SuccessFailureResult: Decodable {
   let result: SuccessResult

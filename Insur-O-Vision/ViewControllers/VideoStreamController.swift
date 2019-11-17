@@ -12,6 +12,7 @@ import AVFoundation
 import Starscream
 import CoreImage
 import Anchorage
+import Asterism
 
 class VideoStreamController: UIViewController {
   let streamHandler: VideoStreamHandler
@@ -139,6 +140,10 @@ class VideoStreamController: UIViewController {
 }
 
 extension VideoStreamController: RemoteCommandsDelegate {
+  func recivedNotice(_ notice: String) {
+    DLOG("Notice \(notice)")
+  }
+  
   func didRecieveCommand(_ command: Socket.Command) {
     DLOG("Command Received from Video Stream Controller: \(command)")
     switch command {
@@ -157,12 +162,6 @@ extension VideoStreamController: RemoteCommandsDelegate {
       viewModel.toggleFlash(false)
     case .screenShot:
       captureScreen()
-    case .resolution480:
-      streamHandler.updateResolution(LowResolution())
-    case .resolution720:
-      streamHandler.updateResolution(DefaultResolution())
-    case .resolution1080:
-      streamHandler.updateResolution(HighResolution())
     }
   }
   

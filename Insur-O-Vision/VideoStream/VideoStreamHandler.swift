@@ -9,6 +9,7 @@
 import Foundation
 import HaishinKit
 import AVFoundation
+import Asterism
 
 protocol StreamVideoDelegate: class {
   func streamFailedToConnect()

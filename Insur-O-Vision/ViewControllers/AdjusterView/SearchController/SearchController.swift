@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Asterism
 
 protocol SearchControllerDelegate: class {
   func didSelectClaim(_ streamID: String)

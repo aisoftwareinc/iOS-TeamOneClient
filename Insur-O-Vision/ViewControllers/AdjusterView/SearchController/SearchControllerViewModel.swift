@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Asterism
 
 class SearchControllerViewModel {
   let userID: String

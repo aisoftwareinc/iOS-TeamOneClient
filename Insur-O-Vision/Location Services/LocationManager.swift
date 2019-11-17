@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import UIKit
+import Asterism
 
 class LocationManager: NSObject {
   
