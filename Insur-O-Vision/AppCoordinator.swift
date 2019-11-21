@@ -20,6 +20,7 @@ class AppCoordinator {
     case errorFetchingLaims = "An error occurred fetching claims."
     case errorRemovingClaim = "An error occurred removing claim. Try again."
     case emptyPassword = "Please enter valid password."
+    case failedToValidateStreamID = "Claim ID not valid."
   }
 
   private let locationManager = LocationManager()
@@ -41,8 +42,8 @@ class AppCoordinator {
     return EULAController(delegate: self)
   }
   
-  private func videoStreamController(_ streamID: String) -> VideoStreamController {
-    return VideoStreamController(VideoStreamHandler(Configuration.streamURL, id: streamID), streamID)
+  private func videoStreamController(_ streamID: String, streamURL: String) -> VideoStreamController {
+    return VideoStreamController(VideoStreamHandler(streamURL, id: streamID), streamID)
   }
   
   private func appModeSelectionController() -> ModeSelectionController {
@@ -94,8 +95,23 @@ extension AppCoordinator: DashboardDelegate {
   }
   
   func didEnterClaimsNumber(_ string: String) {
-    self.baseController.pushViewController(videoStreamController(string), animated: true)
-    locationManager.sendLocation(string)
+    
+    Networking.send(ValidateStreamRequest(latitude: String(locationManager.currentLocation!.coordinate.latitude), longitude: String(locationManager.currentLocation!.coordinate.longitude), streamID: string)) { (result: Result<ValidateStreamResponse, Error>) in
+      switch result {
+      case .success(let response):
+        switch response.result {
+        case .success:
+          UI {
+            self.baseController.pushViewController(self.videoStreamController(string, streamURL: Configuration.streamURL), animated: true)
+            self.locationManager.sendLocation(string)
+          }
+        case .failure:
+          self.displayError(.failedToValidateStreamID)
+        }
+      case .failure:
+        self.displayError(.genericError)
+      }
+    }
   }
   
   func noClaimNumberEntered() {
@@ -177,7 +193,7 @@ extension AppCoordinator: ClaimsListDelegate {
   
   func didSelectClaim(_ streamID: String) {
     DLOG("Received StreamID: \(streamID)")
-    self.baseController.pushViewController(videoStreamController(streamID), animated: true)
+    self.baseController.pushViewController(videoStreamController(streamID, streamURL: Configuration.streamURL), animated: true)
     locationManager.sendLocation(streamID)
   }
   

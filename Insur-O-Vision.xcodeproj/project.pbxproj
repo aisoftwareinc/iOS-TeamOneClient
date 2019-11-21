@@ -18,6 +18,8 @@
 		F2032DD1237612320089097E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DD0237612320089097E /* Defaults.swift */; };
 		F2032DDB23766A5C0089097E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032DD923766A5C0089097E /* SearchController.swift */; };
 		F2032DDC23766A5C0089097E /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2032DDA23766A5C0089097E /* SearchController.xib */; };
+		F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196823838D4600DD3346 /* ValidateStreamRequest.swift */; };
+		F205196B238392EE00DD3346 /* ValidateStreamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */; };
 		F208B5222380EFD4006B6B8F /* Asterism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; };
 		F208B5232380EFD4006B6B8F /* Asterism.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
@@ -199,6 +201,8 @@
 		F2032DD0237612320089097E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F2032DD923766A5C0089097E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		F2032DDA23766A5C0089097E /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
+		F205196823838D4600DD3346 /* ValidateStreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamRequest.swift; sourceTree = "<group>"; };
+		F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamResponse.swift; sourceTree = "<group>"; };
 		F208B51C2380EFC9006B6B8F /* Asterism.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Asterism.xcodeproj; path = Asterism/Asterism.xcodeproj; sourceTree = "<group>"; };
 		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -325,6 +329,15 @@
 			path = SearchController;
 			sourceTree = "<group>";
 		};
+		F205195E23838D2F00DD3346 /* ValidateStream */ = {
+			isa = PBXGroup;
+			children = (
+				F205196823838D4600DD3346 /* ValidateStreamRequest.swift */,
+				F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */,
+			);
+			path = ValidateStream;
+			sourceTree = "<group>";
+		};
 		F208B51D2380EFC9006B6B8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +375,7 @@
 		F214758523108434007E7D2F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F205195E23838D2F00DD3346 /* ValidateStream */,
 				F290D87A2379FD3E001AC5F1 /* Search */,
 				F249A04423774921006C5BC8 /* RemoveClaim */,
 				F2032DC82373C6010089097E /* ClaimsList */,
@@ -795,6 +809,7 @@
 				F2032DC3237381A00089097E /* AuthenticateUser.swift in Sources */,
 				F2351D1623791A790085765F /* SearchIcon.swift in Sources */,
 				F2032DCA2373C61C0089097E /* ListClaimsRequest.swift in Sources */,
+				F205196B238392EE00DD3346 /* ValidateStreamResponse.swift in Sources */,
 				F2032DCE2373C90A0089097E /* ClaimsListViewModel.swift in Sources */,
 				F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */,
 				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
@@ -808,6 +823,7 @@
 				F2032DD1237612320089097E /* Defaults.swift in Sources */,
 				F2032DDB23766A5C0089097E /* SearchController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
+				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
