@@ -10,7 +10,7 @@ import UIKit
 import Asterism
 
 protocol DashboardDelegate: class {
-  func didEnterClaimsNumber(_ string: String)
+  func didEnterClaimsNumber(_ string: String, _ dashboardController: DashBoardController)
   func noClaimNumberEntered()
   func onlyNumbers()
 }
@@ -18,6 +18,12 @@ protocol DashboardDelegate: class {
 class DashBoardController: UIViewController {
   
   @IBOutlet weak var claimNumberField: PrimaryTextField!
+  @IBOutlet weak var submitButton: PrimaryButton!
+  
+  enum ButtonState {
+    case verifying
+    case initial
+  }
   
   weak var delegate: DashboardDelegate?
   
@@ -69,7 +75,20 @@ class DashBoardController: UIViewController {
       delegate?.onlyNumbers()
       return
     }
-    delegate?.didEnterClaimsNumber(claimID)
+    delegate?.didEnterClaimsNumber(claimID, self)
     self.claimNumberField.resignFirstResponder()
+  }
+}
+
+extension DashBoardController {
+  func updateButton(_ state: ButtonState) {
+    switch state {
+    case .verifying:
+      self.submitButton.setTitle("Verifying Claim ID...", for: .normal)
+      self.submitButton.isEnabled = false
+    case .initial:
+      self.submitButton.setTitle("Start Camera", for: .normal)
+      self.submitButton.isEnabled = true
+    }
   }
 }

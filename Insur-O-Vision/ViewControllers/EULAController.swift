@@ -32,7 +32,16 @@ class EULAController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = "Terms and Conditions"
+    self.view.backgroundColor = Colors.background
+    loadWebView()
   }
+  
+  private func loadWebView() {
+    let filePath = Bundle.main.url(forResource: "Terms", withExtension: "html")
+    let data = try! Data(contentsOf: filePath!)
+    webView.load(data, mimeType: "html", characterEncodingName: "utf_8", baseURL: URL(string: "http://teamonecms.com")!)
+  }
+  
   @IBAction func cancel(_ sender: PrimaryButton) {
     delegate?.didCancel()
   }

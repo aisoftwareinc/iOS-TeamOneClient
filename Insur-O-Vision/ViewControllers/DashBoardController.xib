@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashBoardController" customModule="HubOne" customModuleProvider="target">
             <connections>
                 <outlet property="claimNumberField" destination="To1-AT-OVL" id="fhX-sv-vvy"/>
+                <outlet property="submitButton" destination="ADz-JC-9HC" id="skb-sJ-cV6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

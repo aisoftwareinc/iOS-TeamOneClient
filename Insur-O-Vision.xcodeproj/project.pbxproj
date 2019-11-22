@@ -20,6 +20,7 @@
 		F2032DDC23766A5C0089097E /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2032DDA23766A5C0089097E /* SearchController.xib */; };
 		F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196823838D4600DD3346 /* ValidateStreamRequest.swift */; };
 		F205196B238392EE00DD3346 /* ValidateStreamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */; };
+		F20519702387884500DD3346 /* Terms.html in Resources */ = {isa = PBXBuildFile; fileRef = F205196F2387884500DD3346 /* Terms.html */; };
 		F208B5222380EFD4006B6B8F /* Asterism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; };
 		F208B5232380EFD4006B6B8F /* Asterism.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
@@ -203,6 +204,7 @@
 		F2032DDA23766A5C0089097E /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		F205196823838D4600DD3346 /* ValidateStreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamRequest.swift; sourceTree = "<group>"; };
 		F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamResponse.swift; sourceTree = "<group>"; };
+		F205196F2387884500DD3346 /* Terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Terms.html; sourceTree = "<group>"; };
 		F208B51C2380EFC9006B6B8F /* Asterism.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Asterism.xcodeproj; path = Asterism/Asterism.xcodeproj; sourceTree = "<group>"; };
 		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = ValidateStream;
 			sourceTree = "<group>";
 		};
+		F205196C238786E200DD3346 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F205196F2387884500DD3346 /* Terms.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F208B51D2380EFC9006B6B8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +461,7 @@
 		F215A34122E3737400704A47 /* Insur-O-Vision */ = {
 			isa = PBXGroup;
 			children = (
+				F205196C238786E200DD3346 /* Resources */,
 				F242785922FE783C00F30250 /* AppCoordinator.swift */,
 				F215A34222E3737400704A47 /* AppDelegate.swift */,
 				F21475A523108B99007E7D2F /* Global.swift */,
@@ -760,6 +771,7 @@
 				F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */,
 				F2FB1BE62303B20F00F3C03D /* TestImageViewController.xib in Resources */,
 				F2D3FF6D237272DF00FE1AC4 /* ClaimsListController.xib in Resources */,
+				F20519702387884500DD3346 /* Terms.html in Resources */,
 				F215A34D22E3737700704A47 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

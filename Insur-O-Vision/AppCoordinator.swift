@@ -94,21 +94,24 @@ extension AppCoordinator: DashboardDelegate {
     baseController.present(alertController, animated: true, completion: nil)
   }
   
-  func didEnterClaimsNumber(_ string: String) {
-    
+  func didEnterClaimsNumber(_ string: String, _ dashboardController: DashBoardController) {
+    UI { dashboardController.updateButton(.verifying) }
     Networking.send(ValidateStreamRequest(latitude: String(locationManager.currentLocation!.coordinate.latitude), longitude: String(locationManager.currentLocation!.coordinate.longitude), streamID: string)) { (result: Result<ValidateStreamResponse, Error>) in
       switch result {
       case .success(let response):
         switch response.result {
         case .success:
           UI {
+            dashboardController.updateButton(.initial)
             self.baseController.pushViewController(self.videoStreamController(string, streamURL: Configuration.streamURL), animated: true)
             self.locationManager.sendLocation(string)
           }
         case .failure:
+          UI { dashboardController.updateButton(.initial) }
           self.displayError(.failedToValidateStreamID)
         }
       case .failure:
+        UI { dashboardController.updateButton(.initial) }
         self.displayError(.genericError)
       }
     }

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EULAController" customModule="Insur_O_Vision" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EULAController" customModule="HubOne" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="Gpj-NI-511" id="4hr-yo-tOI"/>
@@ -22,29 +20,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gpj-NI-511">
-                    <rect key="frame" x="0.0" y="44" width="414" height="766"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="759"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                         <wkPreferences key="preferences"/>
                     </wkWebViewConfiguration>
                 </wkWebView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlP-Q5-zTc" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="53" y="818" width="75" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlP-Q5-zTc" customClass="PrimaryButton" customModule="HubOne" customModuleProvider="target">
+                    <rect key="frame" x="25" y="818" width="150" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="bxM-eU-dff"/>
-                        <constraint firstAttribute="width" constant="75" id="vPH-mA-6XD"/>
+                        <constraint firstAttribute="width" constant="150" id="vPH-mA-6XD"/>
                     </constraints>
                     <state key="normal" title="Decline"/>
                     <connections>
                         <action selector="cancel:" destination="-1" eventType="touchUpInside" id="fQY-ih-ejl"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-gF-hza" customClass="PrimaryButton" customModule="Insur_O_Vision" customModuleProvider="target">
-                    <rect key="frame" x="284" y="818" width="75" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-gF-hza" customClass="PrimaryButton" customModule="HubOne" customModuleProvider="target">
+                    <rect key="frame" x="239" y="818" width="150" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="aWt-Fa-LRP"/>
-                        <constraint firstAttribute="width" constant="75" id="abm-eb-W8m"/>
+                        <constraint firstAttribute="width" constant="150" id="abm-eb-W8m"/>
                     </constraints>
                     <state key="normal" title="Accept"/>
                     <connections>
@@ -54,11 +52,11 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="GlP-Q5-zTc" firstAttribute="top" secondItem="Gpj-NI-511" secondAttribute="bottom" constant="8" id="2ir-ik-N4J"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mc3-gF-hza" secondAttribute="trailing" constant="55" id="EXY-yM-bGL"/>
+                <constraint firstItem="GlP-Q5-zTc" firstAttribute="top" secondItem="Gpj-NI-511" secondAttribute="bottom" constant="15" id="2ir-ik-N4J"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mc3-gF-hza" secondAttribute="trailing" constant="25" id="EXY-yM-bGL"/>
                 <constraint firstItem="Gpj-NI-511" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WMH-fg-RCk"/>
                 <constraint firstItem="Gpj-NI-511" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YBE-Jt-fjr"/>
-                <constraint firstItem="GlP-Q5-zTc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="53" id="Zia-ue-dzd"/>
+                <constraint firstItem="GlP-Q5-zTc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="Zia-ue-dzd"/>
                 <constraint firstItem="GlP-Q5-zTc" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bzI-oS-JYR"/>
                 <constraint firstItem="mc3-gF-hza" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="lG4-p5-ngx"/>
                 <constraint firstItem="Gpj-NI-511" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nHH-2L-Fxp"/>
