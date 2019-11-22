@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var passworldField: PrimaryTextField!
   @IBOutlet weak var signinButton: PrimaryButton!
   @IBOutlet weak var rememberMe: UISwitch!
+  @IBOutlet weak var signInLabel: UILabel!
   
   weak var delegate: LoginViewDelegate?
   
@@ -38,7 +39,7 @@ class LoginViewController: UIViewController {
     self.view.backgroundColor = Colors.background
     usernameField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     passworldField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-    
+    self.signInLabel.textColor = Colors.white
     addEmailImage()
     addPasswordImage()
   }

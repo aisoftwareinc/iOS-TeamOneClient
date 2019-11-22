@@ -31,6 +31,13 @@ class ModeSelectionController: UIViewController {
     setUpView()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if Defaults.value(for: Defaults.UserID) != nil {
+      addLogOut()
+    }
+  }
+  
   private func setUpView() {
     self.navigationItem.hidesBackButton = true
     self.view.backgroundColor = Colors.background
@@ -38,6 +45,18 @@ class ModeSelectionController: UIViewController {
     self.adjusterAction.tintColor = .white
     self.insuredAction.tintColor = .white
   }
+  
+  private func addLogOut() {
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+  }
+  
+  @objc
+  private func logout() {
+    Defaults.remove(Defaults.UserID)
+    Defaults.remove(Defaults.UserName)
+     self.navigationItem.rightBarButtonItem = nil
+  }
+  
   @IBAction func adjusterTap(_ sender: PrimaryButton) {
     delegate?.didSelectAdjuster()
   }

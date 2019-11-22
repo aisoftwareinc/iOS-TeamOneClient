@@ -13,7 +13,7 @@ import Asterism
 class AppCoordinator {
   
   enum ErrorState: String {
-    case loginFail = "Login Error: Please try login and password again."
+    case loginFail = "Please try login and password again."
     case genericError = "An error occured. Try Again."
     case serverError = "An error occured communicating with server."
     case emailValidationError = "Only valid email addresses can be used."
@@ -22,7 +22,7 @@ class AppCoordinator {
     case emptyPassword = "Please enter valid password."
     case failedToValidateStreamID = "Claim ID not valid."
   }
-
+  
   private let locationManager = LocationManager()
   var baseController: UINavigationController!
   
