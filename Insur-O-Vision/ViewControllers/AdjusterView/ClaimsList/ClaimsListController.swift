@@ -62,7 +62,7 @@ class ClaimsListController: UIViewController {
       }
     })
     self.delegate = delegate
-    self.title = "Claims"
+    self.title = "Claims List"
     self.navigationItem.prompt = name
   }
   
@@ -77,11 +77,13 @@ class ClaimsListController: UIViewController {
     self.tableView.delegate = self
     self.tableView.register(UINib(nibName: "GenericInfoCell", bundle: nil), forCellReuseIdentifier: "GenericInfoCell")
     self.tableView.register(UINib(nibName: "ClaimsCell", bundle: nil), forCellReuseIdentifier: "ClaimsCell")
+    self.tableView.register(UINib(nibName: "GenericHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "GenericHeaderView")
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
     self.tableView.backgroundColor = Colors.background
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 44.0
+    self.tableView.separatorColor = Colors.white
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: SearchIcon.imageOfSearch, style: .plain, target: self, action: #selector(pushToSearch))
     self.navigationController?.navigationBar.barStyle = .black //Needed so Prompt is white text
     
@@ -160,5 +162,15 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
     }
     let config = UISwipeActionsConfiguration(actions: [action])
     return config
+  }
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 50
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "GenericHeaderView") as! GenericHeaderView
+    headerView.headerLabel.text = "Swipe left to remove claim from list"
+    return headerView
   }
 }

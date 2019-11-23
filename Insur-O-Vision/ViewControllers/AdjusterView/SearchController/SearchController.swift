@@ -60,11 +60,13 @@ class SearchController: UIViewController {
     self.tableView.delegate = self
     self.tableView.register(UINib(nibName: "ClaimsCell", bundle: nil), forCellReuseIdentifier: "ClaimsCell")
     self.tableView.register(UINib(nibName: "GenericInfoCell", bundle: nil), forCellReuseIdentifier: "GenericInfoCell")
+    self.tableView.register(UINib(nibName: "GenericHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "GenericHeaderView")
     self.view.backgroundColor = Colors.background
     self.tableView.tableFooterView = UIView()
     self.tableView.backgroundColor = Colors.background
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 44.0
+    self.tableView.separatorColor = Colors.white
   }
   
   //Required or UISearchController leaks.
@@ -114,7 +116,8 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
     switch state {
     case .initial:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
-      cell.configure("Enter a term to search claims.")
+      cell.configure("Enter a term")
+      cell.separatorInset = UIEdgeInsets(top: 0, left: -10000, bottom: 0, right: 0)
       return cell
     case .empty:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
@@ -136,5 +139,15 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
     let claim = searchViewModel.results[indexPath.row]
     delegate?.didSelectClaim(claim.streamid)
+  }
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 65
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "GenericHeaderView") as! GenericHeaderView
+    headerView.headerLabel.text = "Valid Search Fields: Zip Code, Claim ID,\nInsured name/address"
+    return headerView
   }
 }

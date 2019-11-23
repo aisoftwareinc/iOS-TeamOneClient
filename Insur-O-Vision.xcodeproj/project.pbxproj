@@ -21,6 +21,8 @@
 		F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196823838D4600DD3346 /* ValidateStreamRequest.swift */; };
 		F205196B238392EE00DD3346 /* ValidateStreamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */; };
 		F20519702387884500DD3346 /* Terms.html in Resources */ = {isa = PBXBuildFile; fileRef = F205196F2387884500DD3346 /* Terms.html */; };
+		F20519752388DD6E00DD3346 /* GenericHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20519742388DD6E00DD3346 /* GenericHeaderView.swift */; };
+		F20519792388DDF000DD3346 /* GenericHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20519782388DDF000DD3346 /* GenericHeaderView.xib */; };
 		F208B5222380EFD4006B6B8F /* Asterism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; };
 		F208B5232380EFD4006B6B8F /* Asterism.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F208B5212380EFC9006B6B8F /* Asterism.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F20FF45C2300D3640097350C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FF45B2300D3640097350C /* Colors.swift */; };
@@ -205,6 +207,8 @@
 		F205196823838D4600DD3346 /* ValidateStreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamRequest.swift; sourceTree = "<group>"; };
 		F205196A238392EE00DD3346 /* ValidateStreamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateStreamResponse.swift; sourceTree = "<group>"; };
 		F205196F2387884500DD3346 /* Terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Terms.html; sourceTree = "<group>"; };
+		F20519742388DD6E00DD3346 /* GenericHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericHeaderView.swift; sourceTree = "<group>"; };
+		F20519782388DDF000DD3346 /* GenericHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericHeaderView.xib; sourceTree = "<group>"; };
 		F208B51C2380EFC9006B6B8F /* Asterism.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Asterism.xcodeproj; path = Asterism/Asterism.xcodeproj; sourceTree = "<group>"; };
 		F20FF45B2300D3640097350C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F20FF4632300D68A0097350C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -346,6 +350,35 @@
 				F205196F2387884500DD3346 /* Terms.html */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F20519712388DD2100DD3346 /* ClaimsList */ = {
+			isa = PBXGroup;
+			children = (
+				F20519732388DD4C00DD3346 /* Cells */,
+				F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */,
+				F2D3FF6A237272DF00FE1AC4 /* ClaimsListController.swift */,
+				F2D3FF6B237272DF00FE1AC4 /* ClaimsListController.xib */,
+			);
+			path = ClaimsList;
+			sourceTree = "<group>";
+		};
+		F20519722388DD3C00DD3346 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F29B40FE23726AE200374839 /* LoginViewController.swift */,
+				F29B40FF23726AE200374839 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F20519732388DD4C00DD3346 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F20519742388DD6E00DD3346 /* GenericHeaderView.swift */,
+				F20519782388DDF000DD3346 /* GenericHeaderView.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F208B51D2380EFC9006B6B8F /* Products */ = {
@@ -503,6 +536,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F20519722388DD3C00DD3346 /* Login */,
 				F29B410A23726AE900374839 /* AdjusterView */,
 				F29B40EF23711B1900374839 /* ModeSelection */,
 				F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */,
@@ -546,13 +580,9 @@
 		F29B410A23726AE900374839 /* AdjusterView */ = {
 			isa = PBXGroup;
 			children = (
+				F20519712388DD2100DD3346 /* ClaimsList */,
 				F2032DD823766A3F0089097E /* SearchController */,
 				F2032DB423737F750089097E /* Cells */,
-				F29B40FE23726AE200374839 /* LoginViewController.swift */,
-				F29B40FF23726AE200374839 /* LoginViewController.xib */,
-				F2032DCD2373C90A0089097E /* ClaimsListViewModel.swift */,
-				F2D3FF6A237272DF00FE1AC4 /* ClaimsListController.swift */,
-				F2D3FF6B237272DF00FE1AC4 /* ClaimsListController.xib */,
 			);
 			path = AdjusterView;
 			sourceTree = "<group>";
@@ -596,10 +626,10 @@
 			buildConfigurationList = F215A35422E3737700704A47 /* Build configuration list for PBXNativeTarget "Insur-O-Vision" */;
 			buildPhases = (
 				F215A33B22E3737400704A47 /* Sources */,
-				F2A0244D22E37612001CACCF /* Carthage Copy */,
 				F215A33C22E3737400704A47 /* Frameworks */,
 				F215A33D22E3737400704A47 /* Resources */,
 				F2A0244622E375AC001CACCF /* Embed Frameworks */,
+				F2A0244D22E37612001CACCF /* Carthage Copy */,
 			);
 			buildRules = (
 			);
@@ -767,6 +797,7 @@
 				F2032DC023737F930089097E /* ClaimsCell.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
 				F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */,
+				F20519792388DDF000DD3346 /* GenericHeaderView.xib in Resources */,
 				F24278732300A49F00F30250 /* EULAController.xib in Resources */,
 				F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */,
 				F2FB1BE62303B20F00F3C03D /* TestImageViewController.xib in Resources */,
@@ -802,7 +833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nif [ ! -f \"${FRAMEWORK_EXECUTABLE_PATH}\" ]; then\ncontinue\nfi\n\nif xcrun lipo -info \"${FRAMEWORK_EXECUTABLE_PATH}\" | grep --silent \"Non-fat\"; then\necho \"Framework non-fat, skipping: $FRAMEWORK_EXECUTABLE_NAME\"\ncontinue\nfi\n\necho \"Thinning framework $FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nxcrun lipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nxcrun lipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#/usr/local/bin/carthage copy-frameworks\n\necho \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -838,6 +869,7 @@
 				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */,
+				F20519752388DD6E00DD3346 /* GenericHeaderView.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
 				F2032DC5237383B00089097E /* SuccessFailureResult.swift in Sources */,
 				F2032DC72373C3D30089097E /* AuthenticateResult.swift in Sources */,
@@ -1019,8 +1051,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3568HZCVV4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1032,11 +1065,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client.ios;
 				PRODUCT_NAME = HubOne;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1047,8 +1080,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3568HZCVV4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1060,11 +1094,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client.ios;
 				PRODUCT_NAME = HubOne;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
