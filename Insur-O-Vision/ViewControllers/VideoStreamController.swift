@@ -142,6 +142,8 @@ class VideoStreamController: UIViewController {
 extension VideoStreamController: RemoteCommandsDelegate {
   func recivedNotice(_ notice: String) {
     DLOG("Notice \(notice)")
+    let alert = viewModel.presentMessage(notice)
+    self.present(alert, animated: true, completion: nil)
   }
   
   func didRecieveCommand(_ command: Socket.Command) {

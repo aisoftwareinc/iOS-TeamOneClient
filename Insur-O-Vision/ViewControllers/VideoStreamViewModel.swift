@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import Asterism
+import UIKit
 
 class ViewStreamViewModel {
   let streamID: String
@@ -64,5 +65,12 @@ class ViewStreamViewModel {
       zoomLevel = 1.0
     }
     return zoomLevel
+  }
+  
+  func presentMessage(_ message: String) -> UIAlertController {
+    let alert = UIAlertController(title: "Notice", message: message, preferredStyle: .alert)
+    let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alert.addAction(dismiss)
+    return alert
   }
 }
