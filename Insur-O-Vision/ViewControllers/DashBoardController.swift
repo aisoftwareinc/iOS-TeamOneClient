@@ -55,7 +55,7 @@ class DashBoardController: UIViewController {
   private func setUpView() {
     self.title = "Team One"
     self.view.backgroundColor = Colors.background
-    claimNumberField.attributedPlaceholder = NSAttributedString(string: "Enter Claim ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+    claimNumberField.attributedPlaceholder = NSAttributedString(string: "Enter Stream ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
   }
   
   private func addKeyboardDismissTap() {

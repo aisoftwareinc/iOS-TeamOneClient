@@ -31,7 +31,7 @@ class VideoStreamController: UIViewController {
     self.socket.delegate = self
     self.streamHandler.delegate = self
     
-    NotificationCenter.default.addObserver(self, selector: #selector(killApp), name: UIApplication.willResignActiveNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(killApp), name: UIApplication.didEnterBackgroundNotification, object: nil)
   }
   
   override var shouldAutorotate: Bool {
