@@ -33,7 +33,6 @@
 		F214759A23108434007E7D2F /* RegisterPushResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214758C23108434007E7D2F /* RegisterPushResult.swift */; };
 		F214759E23108594007E7D2F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214759D23108594007E7D2F /* LocationManager.swift */; };
 		F21475A623108B99007E7D2F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475A523108B99007E7D2F /* Global.swift */; };
-		F21475A923108E09007E7D2F /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475A823108E09007E7D2F /* Resolution.swift */; };
 		F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475C3231736E2007E7D2F /* SendImageRequest.swift */; };
 		F21475CF231983DF007E7D2F /* VideoStreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */; };
 		F215A34322E3737400704A47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215A34222E3737400704A47 /* AppDelegate.swift */; };
@@ -60,6 +59,7 @@
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
 		F29B410023726AE200374839 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40FE23726AE200374839 /* LoginViewController.swift */; };
 		F29B410123726AE200374839 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40FF23726AE200374839 /* LoginViewController.xib */; };
+		F29C3E34238CCF69005B5855 /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29C3E33238CCF69005B5855 /* Resolution.swift */; };
 		F2A0245222E3BED0001CACCF /* VideoStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */; };
 		F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A0245322E3BF50001CACCF /* VideoStreamController.swift */; };
 		F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0245422E3BF50001CACCF /* VideoStreamController.xib */; };
@@ -218,7 +218,6 @@
 		F214758C23108434007E7D2F /* RegisterPushResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPushResult.swift; sourceTree = "<group>"; };
 		F214759D23108594007E7D2F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F21475A523108B99007E7D2F /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		F21475A823108E09007E7D2F /* Resolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		F21475C3231736E2007E7D2F /* SendImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageRequest.swift; sourceTree = "<group>"; };
 		F21475CE231983DF007E7D2F /* VideoStreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamViewModel.swift; sourceTree = "<group>"; };
 		F215A33F22E3737400704A47 /* HubOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +237,7 @@
 		F242786C2300A27D00F30250 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F24278702300A49F00F30250 /* EULAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAController.swift; sourceTree = "<group>"; };
 		F24278712300A49F00F30250 /* EULAController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAController.xib; sourceTree = "<group>"; };
+		F243F8A6238F1C0A009C99FC /* HubOne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HubOne.entitlements; sourceTree = "<group>"; };
 		F246FECF237A0FBD00D4294F /* GenericInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericInfoCell.swift; sourceTree = "<group>"; };
 		F246FED0237A0FBD00D4294F /* GenericInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericInfoCell.xib; sourceTree = "<group>"; };
 		F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveClaimRequest.swift; sourceTree = "<group>"; };
@@ -246,6 +246,7 @@
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
 		F29B40FE23726AE200374839 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F29B40FF23726AE200374839 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		F29C3E33238CCF69005B5855 /* Resolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamHandler.swift; sourceTree = "<group>"; };
 		F2A0245322E3BF50001CACCF /* VideoStreamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamController.swift; sourceTree = "<group>"; };
 		F2A0245422E3BF50001CACCF /* VideoStreamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoStreamController.xib; sourceTree = "<group>"; };
@@ -451,6 +452,7 @@
 		F21475A723108DF5007E7D2F /* VideoStream */ = {
 			isa = PBXGroup;
 			children = (
+				F29C3E33238CCF69005B5855 /* Resolution.swift */,
 				F2A0245122E3BED0001CACCF /* VideoStreamHandler.swift */,
 			);
 			path = VideoStream;
@@ -469,7 +471,6 @@
 		F215A33622E3737400704A47 = {
 			isa = PBXGroup;
 			children = (
-				F21475A823108E09007E7D2F /* Resolution.swift */,
 				F2FB1BDF2303816D00F3C03D /* HaishinKit.framework */,
 				F2FB1BD423026EF900F3C03D /* Logboard.framework */,
 				F2B5F867230F8ED600121F8C /* Anchorage.xcodeproj */,
@@ -494,6 +495,7 @@
 		F215A34122E3737400704A47 /* Insur-O-Vision */ = {
 			isa = PBXGroup;
 			children = (
+				F243F8A6238F1C0A009C99FC /* HubOne.entitlements */,
 				F205196C238786E200DD3346 /* Resources */,
 				F242785922FE783C00F30250 /* AppCoordinator.swift */,
 				F215A34222E3737400704A47 /* AppDelegate.swift */,
@@ -863,6 +865,7 @@
 				F2E6F97C23493656004B8A9E /* NoResponse.swift in Sources */,
 				F215A34B22E3737400704A47 /* Insur_O_Vision.xcdatamodeld in Sources */,
 				F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */,
+				F29C3E34238CCF69005B5855 /* Resolution.swift in Sources */,
 				F2032DD1237612320089097E /* Defaults.swift in Sources */,
 				F2032DDB23766A5C0089097E /* SearchController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
@@ -874,7 +877,6 @@
 				F2032DC5237383B00089097E /* SuccessFailureResult.swift in Sources */,
 				F2032DC72373C3D30089097E /* AuthenticateResult.swift in Sources */,
 				F214759E23108594007E7D2F /* LocationManager.swift in Sources */,
-				F21475A923108E09007E7D2F /* Resolution.swift in Sources */,
 				F2D3FF6C237272DF00FE1AC4 /* ClaimsListController.swift in Sources */,
 				F2351CFF237911280085765F /* SearchControllerViewModel.swift in Sources */,
 				F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */,
@@ -1049,10 +1051,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1065,7 +1068,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = www.teamonecms.hubone;
 				PRODUCT_NAME = HubOne;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1078,10 +1081,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 3568HZCVV4;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1094,7 +1098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamone.client.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = www.teamonecms.hubone;
 				PRODUCT_NAME = HubOne;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

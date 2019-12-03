@@ -130,10 +130,12 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
     case .initial:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("Fetching Claims...")
+      cell.isUserInteractionEnabled = false
       return cell
     case .empty:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("No claims found for user...")
+      cell.isUserInteractionEnabled = false
       return cell
     case .results:
       let claim = claimsViewModel.claims[indexPath.row]
@@ -143,6 +145,7 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
     case .error:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("An error occured. Pull down to Try Again.")
+      cell.isUserInteractionEnabled = false
       return cell
     }
   }

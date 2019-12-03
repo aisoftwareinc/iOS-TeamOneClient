@@ -118,14 +118,17 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("Enter a term")
       cell.separatorInset = UIEdgeInsets(top: 0, left: -10000, bottom: 0, right: 0)
+      cell.isUserInteractionEnabled = false
       return cell
     case .empty:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("No claims found for that term.")
+      cell.isUserInteractionEnabled = false
       return cell
     case .error:
       let cell = tableView.dequeueReusableCell(withIdentifier: "GenericInfoCell", for: indexPath) as! GenericInfoCell
       cell.configure("An error occurred searching for claims.")
+      cell.isUserInteractionEnabled = false
       return cell
     case .results:
       let claim = searchViewModel.results[indexPath.row]
