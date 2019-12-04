@@ -61,6 +61,10 @@ class AppCoordinator {
   private func searchController(_ userID: String) -> SearchController {
     return SearchController(userID, self)
   }
+  
+  private func cameraController() -> CameraViewController {
+    return CameraViewController()
+  }
 }
 
 extension AppCoordinator {
@@ -202,6 +206,10 @@ extension AppCoordinator: ClaimsListDelegate {
   
   func errorRemovingClaim() {
     self.displayError(.errorRemovingClaim)
+  }
+  
+  func pushToCamera() {
+    self.baseController.pushViewController(cameraController(), animated: true)
   }
 }
 

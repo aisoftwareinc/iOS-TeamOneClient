@@ -14,6 +14,8 @@ class ClaimsCell: UITableViewCell {
   @IBOutlet weak var address: UILabel!
   @IBOutlet weak var claimReferenceNumbers: UILabel!
   
+  var cameraAction: (() -> Void)?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     self.backgroundColor = Colors.background
@@ -26,5 +28,9 @@ class ClaimsCell: UITableViewCell {
     self.insuredName.text = claim.insuredname
     self.address.text = "\(claim.lossaddress) \(claim.losscity) \(claim.lossstate) \(claim.losszip)"
     self.claimReferenceNumbers.text = "Claim #: \(claim.claimnumber) - TeamOne #: \(claim.teamonenumber)"
+  }
+  
+  @IBAction func cameraAction(_ sender: UIButton) {
+    cameraAction?()
   }
 }

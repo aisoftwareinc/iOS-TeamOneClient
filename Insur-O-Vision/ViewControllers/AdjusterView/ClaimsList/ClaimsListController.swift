@@ -14,6 +14,7 @@ protocol ClaimsListDelegate: class {
   func pushToSelect()
   func errorRemovingClaim()
   func fetchError()
+  func pushToCamera()
 }
 
 class ClaimsListController: UIViewController {
@@ -140,6 +141,9 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
     case .results:
       let claim = claimsViewModel.claims[indexPath.row]
       let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimsCell", for: indexPath) as! ClaimsCell
+      cell.cameraAction = { [weak self] in
+        self?.delegate?.pushToCamera()
+      }
       cell.configure(claim)
       return cell
     case .error:

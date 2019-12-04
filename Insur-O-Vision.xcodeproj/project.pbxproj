@@ -54,6 +54,8 @@
 		F246FED1237A0FBD00D4294F /* GenericInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246FECF237A0FBD00D4294F /* GenericInfoCell.swift */; };
 		F246FED2237A0FBD00D4294F /* GenericInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F246FED0237A0FBD00D4294F /* GenericInfoCell.xib */; };
 		F249A04E2377498C006C5BC8 /* RemoveClaimRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */; };
+		F24A99C723960E5700A0F4F7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C523960E5700A0F4F7 /* CameraViewController.swift */; };
+		F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */; };
 		F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */; };
 		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
@@ -241,6 +243,8 @@
 		F246FECF237A0FBD00D4294F /* GenericInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericInfoCell.swift; sourceTree = "<group>"; };
 		F246FED0237A0FBD00D4294F /* GenericInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericInfoCell.xib; sourceTree = "<group>"; };
 		F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveClaimRequest.swift; sourceTree = "<group>"; };
+		F24A99C523960E5700A0F4F7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControllerViewModel.swift; sourceTree = "<group>"; };
 		F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClaimsRequest.swift; sourceTree = "<group>"; };
 		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
@@ -538,6 +542,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F24A99BB23960E3E00A0F4F7 /* Camera */,
 				F20519722388DD3C00DD3346 /* Login */,
 				F29B410A23726AE900374839 /* AdjusterView */,
 				F29B40EF23711B1900374839 /* ModeSelection */,
@@ -560,6 +565,15 @@
 				F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */,
 			);
 			path = RemoveClaim;
+			sourceTree = "<group>";
+		};
+		F24A99BB23960E3E00A0F4F7 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F24A99C523960E5700A0F4F7 /* CameraViewController.swift */,
+				F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		F290D87A2379FD3E001AC5F1 /* Search */ = {
@@ -871,12 +885,14 @@
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
+				F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */,
 				F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */,
 				F20519752388DD6E00DD3346 /* GenericHeaderView.swift in Sources */,
 				F215A34322E3737400704A47 /* AppDelegate.swift in Sources */,
 				F2032DC5237383B00089097E /* SuccessFailureResult.swift in Sources */,
 				F2032DC72373C3D30089097E /* AuthenticateResult.swift in Sources */,
 				F214759E23108594007E7D2F /* LocationManager.swift in Sources */,
+				F24A99C723960E5700A0F4F7 /* CameraViewController.swift in Sources */,
 				F2D3FF6C237272DF00FE1AC4 /* ClaimsListController.swift in Sources */,
 				F2351CFF237911280085765F /* SearchControllerViewModel.swift in Sources */,
 				F20FF4662300D9E20097350C /* PrimaryTextField.swift in Sources */,
