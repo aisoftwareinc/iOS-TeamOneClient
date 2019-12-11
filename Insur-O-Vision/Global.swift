@@ -11,3 +11,5 @@ import Foundation
 func UI(_ closure: @escaping () -> ()) {
   DispatchQueue.main.async { closure() }
 }
+
+typealias NotesCallback = (String) -> Void

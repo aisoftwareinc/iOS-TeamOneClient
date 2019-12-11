@@ -19,7 +19,7 @@ struct AuthenticateUser: Request {
   }
   
   var url: String {
-    return Configuration.apiEndpoint + "ws/media.asmx/AuthenticateUser"
+    return Configuration.apiEndpoint + "/AuthenticateUser"
   }
   
   var type: ContentType {
@@ -27,4 +27,6 @@ struct AuthenticateUser: Request {
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }
+  
+  var headers: [String : String]?
 }

@@ -17,6 +17,6 @@ struct Configuration {
   }
   
   static var apiEndpoint: String {
-    return "http://demo.teamonecms.com/"
+    return "http://demo.teamonecms.com/ws/media.asmx"
   }
 }

@@ -15,6 +15,8 @@ class ClaimsCell: UITableViewCell {
   @IBOutlet weak var claimReferenceNumbers: UILabel!
   
   var cameraAction: (() -> Void)?
+  var allImagesAction: (() -> Void)?
+  var videoAction: (() -> Void)?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -32,5 +34,13 @@ class ClaimsCell: UITableViewCell {
   
   @IBAction func cameraAction(_ sender: UIButton) {
     cameraAction?()
+  }
+  
+  @IBAction func allImagesAction(_ sender: UIButton) {
+    allImagesAction?()
+  }
+  
+  @IBAction func videoAction(_ sender: UIButton) {
+    videoAction?()
   }
 }

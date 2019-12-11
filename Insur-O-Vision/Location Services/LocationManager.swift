@@ -37,18 +37,6 @@ class LocationManager: NSObject {
     }
   }
   
-  func sendLocation(_ streamID: String) {
-    guard let currentLocation = self.currentLocation else {
-      return
-    }
-    
-    print("Sending Location: \(currentLocation)")
-    let locationRequest = PostUserInformation(currentLocation, streamID: streamID, modelName: UIDevice.current.model, iOSVersion: UIDevice.current.systemVersion)
-    Networking.send(locationRequest) { (result: Result<NoResponse, Error>) in
-      
-    }
-  }
-  
   func stop() {
     if self.isUpdating {
       self.locationManager.stopUpdatingLocation()

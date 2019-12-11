@@ -10,7 +10,7 @@ import UIKit
 import Asterism
 
 protocol DashboardDelegate: class {
-  func didEnterClaimsNumber(_ string: String, _ dashboardController: DashBoardController)
+  func didEnterClaimsNumber(_ streamID: String, _ dashboardController: DashBoardController)
   func noClaimNumberEntered()
   func onlyNumbers()
 }

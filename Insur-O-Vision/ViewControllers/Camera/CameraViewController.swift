@@ -3,9 +3,16 @@ import Asterism
 import AVFoundation
 import Anchorage
 
+protocol CameraViewControllerDelegate: class {
+  func didCapturePhoto(_ imageData: Data, claimID: String)
+}
+
+
 class CameraViewController: UIViewController {
   
   let captureButton: UIButton
+  weak var delegate: CameraViewControllerDelegate?
+  private let claimID: String
   
   private lazy var videoDataOutput: AVCaptureVideoDataOutput = {
     let output = AVCaptureVideoDataOutput()
@@ -33,9 +40,15 @@ class CameraViewController: UIViewController {
   
   private let output = AVCapturePhotoOutput()
   
-  init() {
+  init(delegate: CameraViewControllerDelegate, claimID: String) {
     self.captureButton = UIButton(frame: .zero)
+    self.delegate = delegate
+    self.claimID = claimID
     super.init(nibName: nil, bundle: nil)
+  }
+  
+  deinit {
+    DLOG("CameraViewController deinit")
   }
   
   override func viewDidLoad() {
@@ -99,5 +112,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
     DLOG("Photo Captured")
+    if let imageData = photo.fileDataRepresentation() {
+      self.delegate?.didCapturePhoto(imageData, claimID: claimID)
+    }
   }
 }

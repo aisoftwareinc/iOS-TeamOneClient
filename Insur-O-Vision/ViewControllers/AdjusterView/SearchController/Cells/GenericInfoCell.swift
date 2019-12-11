@@ -16,6 +16,7 @@ class GenericInfoCell: UITableViewCell {
     super.awakeFromNib()
     self.backgroundColor = Colors.background
     self.infoText.textColor = Colors.white
+    separatorInset = UIEdgeInsets(top: 0, left: -10000, bottom: 0, right: 0)
   }
   
   func configure(_ text: String) {

@@ -18,7 +18,7 @@ struct ListClaimsRequest: Request {
   }
   
   var url: String {
-    return Configuration.apiEndpoint + "ws/media.asmx/ListClaims"
+    return Configuration.apiEndpoint + "/ListClaims"
   }
   
   var type: ContentType {
@@ -26,4 +26,6 @@ struct ListClaimsRequest: Request {
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }
+  
+  var headers: [String : String]?
 }

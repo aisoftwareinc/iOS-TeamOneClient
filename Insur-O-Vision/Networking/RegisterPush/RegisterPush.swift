@@ -32,6 +32,6 @@ struct RegisterPush: Request {
     request.httpMethod = methodType.rawValue
     return request
   }
-  
+  var headers: [String : String]?
   
 }

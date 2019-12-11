@@ -8,6 +8,7 @@
 
 import Foundation
 import Asterism
+import UIKit
 
 class ClaimsListViewModel {
   
@@ -62,5 +63,15 @@ class ClaimsListViewModel {
         self.callBack(.deleteFailed(error))
       }
     }
+  }
+  
+  func swipeAction(_ claim: Claim) -> UISwipeActionsConfiguration {
+    let action = UIContextualAction(style: .destructive, title: "Mark as Complete") { (action, view, completion) in
+      DLOG("\(claim.insuredname)")
+      self.delete(claim.claimid)
+      completion(true)
+    }
+    let config = UISwipeActionsConfiguration(actions: [action])
+    return config
   }
 }

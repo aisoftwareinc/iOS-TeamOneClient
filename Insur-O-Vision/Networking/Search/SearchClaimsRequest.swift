@@ -10,6 +10,7 @@ import Foundation
 import Asterism
 
 struct SearchClaimsRequest: Request {
+
   let userID: String
   let searchTerm: String
   
@@ -18,7 +19,7 @@ struct SearchClaimsRequest: Request {
   }
   
   var url: String {
-    Configuration.apiEndpoint + "ws/media.asmx/SearchClaims"
+    Configuration.apiEndpoint + "/SearchClaims"
   }
   
   var type: ContentType {
@@ -26,4 +27,6 @@ struct SearchClaimsRequest: Request {
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }
+  
+  var headers: [String : String]?
 }

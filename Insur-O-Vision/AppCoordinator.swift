@@ -21,6 +21,7 @@ class AppCoordinator {
     case errorRemovingClaim = "An error occurred removing claim. Try again."
     case emptyPassword = "Please enter valid password."
     case failedToValidateStreamID = "Claim ID not valid."
+    case failedToUploadImage = "Failed to Upload Image."
   }
   
   private let locationManager = LocationManager()
@@ -42,8 +43,8 @@ class AppCoordinator {
     return EULAController(delegate: self)
   }
   
-  private func videoStreamController(_ streamID: String, streamURL: String) -> VideoStreamController {
-    return VideoStreamController(VideoStreamHandler(streamURL, id: streamID), streamID)
+  private func videoStreamController(_ claimID: String, _ streamID: String, streamURL: String) -> VideoStreamController {
+    return VideoStreamController(VideoStreamHandler(streamURL, id: streamID), claimID)
   }
   
   private func appModeSelectionController() -> ModeSelectionController {
@@ -62,8 +63,16 @@ class AppCoordinator {
     return SearchController(userID, self)
   }
   
-  private func cameraController() -> CameraViewController {
-    return CameraViewController()
+  private func cameraController(_ claimID: String) -> CameraViewController {
+    return CameraViewController(delegate: self, claimID: claimID)
+  }
+  
+  private func imagePreviewController(_ data: Data, title: String?, notes: String?, claimID: String) -> PreviewNotesViewController {
+    return PreviewNotesViewController(data, claimID, title: title, notes: notes, delegate: self)
+  }
+  
+  private func notesController(_ notes: String?, callback: @escaping NotesCallback) -> NotesController {
+    return NotesController(callback, notes)
   }
 }
 
@@ -98,17 +107,16 @@ extension AppCoordinator: DashboardDelegate {
     baseController.present(alertController, animated: true, completion: nil)
   }
   
-  func didEnterClaimsNumber(_ string: String, _ dashboardController: DashBoardController) {
+  func didEnterClaimsNumber(_ streamID: String, _ dashboardController: DashBoardController) {
     UI { dashboardController.updateButton(.verifying) }
-    Networking.send(ValidateStreamRequest(latitude: String(locationManager.currentLocation!.coordinate.latitude), longitude: String(locationManager.currentLocation!.coordinate.longitude), streamID: string)) { (result: Result<ValidateStreamResponse, Error>) in
+    Networking.send(ValidateStreamRequest(latitude: String(locationManager.currentLocation!.coordinate.latitude), longitude: String(locationManager.currentLocation!.coordinate.longitude), streamID: streamID, modelName: UIDevice.current.model, modelNumber: "", softwareVersion: UIDevice.current.systemVersion, carrier: "")) { (result: Result<ValidateStreamResponse, Error>) in
       switch result {
       case .success(let response):
         switch response.result {
         case .success:
           UI {
             dashboardController.updateButton(.initial)
-            self.baseController.pushViewController(self.videoStreamController(string, streamURL: Configuration.streamURL), animated: true)
-            self.locationManager.sendLocation(string)
+            self.baseController.pushViewController(self.videoStreamController(streamID, streamID, streamURL: Configuration.streamURL), animated: true)
           }
         case .failure:
           UI { dashboardController.updateButton(.initial) }
@@ -198,19 +206,52 @@ extension AppCoordinator: ClaimsListDelegate {
     }
   }
   
-  func didSelectClaim(_ streamID: String) {
-    DLOG("Received StreamID: \(streamID)")
-    self.baseController.pushViewController(videoStreamController(streamID, streamURL: Configuration.streamURL), animated: true)
-    locationManager.sendLocation(streamID)
+  func didSelectClaim(_ claimID: String) {
+    DLOG("Received StreamID: \(claimID)")
+    self.baseController.pushViewController(videoStreamController(claimID, claimID, streamURL: Configuration.streamURL), animated: true)
   }
   
   func errorRemovingClaim() {
     self.displayError(.errorRemovingClaim)
   }
   
-  func pushToCamera() {
-    self.baseController.pushViewController(cameraController(), animated: true)
+  func pushToCamera(_ claimID: String) {
+    self.baseController.pushViewController(cameraController(claimID), animated: true)
+  }
+  
+  func pushToImages(_ claimID: String) {
+    DLOG("ClaimID \(claimID)")
   }
 }
 
 extension AppCoordinator: SearchControllerDelegate { }
+
+extension AppCoordinator: CameraViewControllerDelegate {
+  func didCapturePhoto(_ imageData: Data, claimID: String) {
+    UI { self.baseController.pushViewController(self.imagePreviewController(imageData, title: nil, notes: nil, claimID: claimID), animated: true) }
+  }
+}
+
+extension AppCoordinator: PreviewNotesDelegate {
+  func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String) {
+    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "", title: title, caption: notes)) {
+      (result: Result<SuccessFailureResult, Error>) in
+      switch result {
+      case .success(let result):
+        switch result.result {
+        case .success:
+          DLOG("Success Uploading Image")
+          UI { self.baseController.popViewController(animated: true) }
+        case .failure:
+          self.displayError(.failedToUploadImage)
+        }
+      case .failure:
+        self.displayError(.failedToUploadImage)
+      }
+    }
+  }
+  
+  func addNotes(_ callback: @escaping NotesCallback, _ existingNotes: String?) {
+    self.baseController.pushViewController(self.notesController(nil, callback: callback), animated: true)
+  }
+}

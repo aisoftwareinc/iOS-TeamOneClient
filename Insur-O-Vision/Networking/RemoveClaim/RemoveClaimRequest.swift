@@ -11,7 +11,7 @@ struct RemoveClaimRequest: Request {
   }
   
   var url: String {
-    return Configuration.apiEndpoint + "ws/media.asmx/RemoveClaim"
+    return Configuration.apiEndpoint + "/RemoveClaim"
   }
   
   var type: ContentType {
@@ -19,4 +19,6 @@ struct RemoveClaimRequest: Request {
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }
+  
+  var headers: [String : String]?
 }

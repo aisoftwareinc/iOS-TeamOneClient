@@ -10,11 +10,12 @@ import UIKit
 import Asterism
 
 protocol ClaimsListDelegate: class {
-  func didSelectClaim(_ streamID: String)
+  func didSelectClaim(_ claimID: String)
   func pushToSelect()
+  func pushToImages(_ claimID: String)
   func errorRemovingClaim()
   func fetchError()
-  func pushToCamera()
+  func pushToCamera(_ claimID: String)
 }
 
 class ClaimsListController: UIViewController {
@@ -142,7 +143,11 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
       let claim = claimsViewModel.claims[indexPath.row]
       let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimsCell", for: indexPath) as! ClaimsCell
       cell.cameraAction = { [weak self] in
-        self?.delegate?.pushToCamera()
+        self?.delegate?.pushToCamera(claim.claimid)
+      }
+      
+      cell.allImagesAction = { [weak self] in
+        self?.delegate?.pushToImages(claim.claimid)
       }
       cell.configure(claim)
       return cell
@@ -155,20 +160,12 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
-    let claim = claimsViewModel.claims[indexPath.row]
-    delegate?.didSelectClaim(claim.streamid)
+    tableView.deselectRow(at: indexPath, animated: false)
   }
   
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let claim = claimsViewModel.claims[indexPath.row]
-    let action = UIContextualAction(style: .destructive, title: "Mark as Complete") { (action, view, completion) in
-      DLOG("\(claim.insuredname)")
-      self.claimsViewModel.delete(claim.claimid)
-      completion(true)
-    }
-    let config = UISwipeActionsConfiguration(actions: [action])
-    return config
+    return self.claimsViewModel.swipeAction(claim)
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

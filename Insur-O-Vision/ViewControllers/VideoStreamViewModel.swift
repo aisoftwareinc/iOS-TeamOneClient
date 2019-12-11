@@ -12,14 +12,14 @@ import Asterism
 import UIKit
 
 class ViewStreamViewModel {
-  let streamID: String
+  let claimID: String
   
   lazy var captureDevice: AVCaptureDevice? = {
     return AVCaptureDevice.default(for: AVMediaType.video)
   }()
   
-  init(_ streamID: String) {
-    self.streamID = streamID
+  init(_ claimID: String) {
+    self.claimID = claimID
   }
   
   func toggleFlash(_ torchOn: Bool) {
@@ -38,16 +38,16 @@ class ViewStreamViewModel {
   }
   
   func endStream() {
-    Networking.send(EndStreamRequest(streamID)) { (result: Result<NoResponse, Error>) in }
+    Networking.send(EndStreamRequest(claimID)) { (result: Result<NoResponse, Error>) in }
   }
   
   func postStreamID(antMediaID: String) {
-    Networking.send(PostStreamRequest(streamID, antMediaID)) { (result: Result<NoResponse, Error>) in }
+    Networking.send(PostStreamRequest(claimID, antMediaID)) { (result: Result<NoResponse, Error>) in }
   }
   
   func sendImage(_ data: Data) {
     let base64Image = data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlImageEncoded)!
-    Networking.send(SendImageRequest(streamID, base64Image: base64Image)) { (result: Result<NoResponse, Error>) in
+    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "", title: "", caption: "")) { (result: Result<NoResponse, Error>) in
       
     }
   }

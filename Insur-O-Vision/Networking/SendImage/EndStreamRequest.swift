@@ -29,17 +29,8 @@ struct EndStreamRequest: Request {
   var url: String {
     return "http://demo.teamonecms.com/ws/media.asmx/EndVideoSession"
   }
-  
-//  func build() -> URLRequest {
-//    var urlRequest = URLRequest(url: URL(string: url)!)
-//    let data = "StreamID=\(streamID)"
-//    let dataString = data.data(using: .utf8, allowLossyConversion: false)
-//    urlRequest.httpMethod = methodType.rawValue
-//    urlRequest.httpBody = dataString
-//    urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//    urlRequest.setValue("\(dataString!.count)", forHTTPHeaderField: "content-length")
-//    return urlRequest
-//  }
+
+  var headers: [String : String]?
 }
 
 
@@ -66,4 +57,6 @@ struct PostStreamRequest: Request {
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }
+  
+  var headers: [String : String]?
 }
