@@ -56,6 +56,9 @@
 		F24A99C723960E5700A0F4F7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C523960E5700A0F4F7 /* CameraViewController.swift */; };
 		F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */; };
 		F28943B323A09B0C00EDDF9A /* ImageListControllerVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943B223A09B0C00EDDF9A /* ImageListControllerVIewModel.swift */; };
+		F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943BF23A09F8200EDDF9A /* ImageCell.swift */; };
+		F28943C223A09F8200EDDF9A /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28943C023A09F8200EDDF9A /* ImageCell.xib */; };
+		F28943C423A0A10C00EDDF9A /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943C323A0A10C00EDDF9A /* ImageRequest.swift */; };
 		F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */; };
 		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
@@ -261,6 +264,9 @@
 		F24A99C523960E5700A0F4F7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControllerViewModel.swift; sourceTree = "<group>"; };
 		F28943B223A09B0C00EDDF9A /* ImageListControllerVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListControllerVIewModel.swift; sourceTree = "<group>"; };
+		F28943BF23A09F8200EDDF9A /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		F28943C023A09F8200EDDF9A /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		F28943C323A0A10C00EDDF9A /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClaimsRequest.swift; sourceTree = "<group>"; };
 		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
@@ -607,6 +613,8 @@
 		F28943BE23A09F0500EDDF9A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F28943BF23A09F8200EDDF9A /* ImageCell.swift */,
+				F28943C023A09F8200EDDF9A /* ImageCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -686,6 +694,7 @@
 			children = (
 				F2F1F96D23A071C00034E67A /* ListImagesRequest.swift */,
 				F2F1F96F23A071CE0034E67A /* ListImagesResponse.swift */,
+				F28943C323A0A10C00EDDF9A /* ImageRequest.swift */,
 			);
 			path = ListImages;
 			sourceTree = "<group>";
@@ -903,6 +912,7 @@
 				F2A0245622E3BF50001CACCF /* VideoStreamController.xib in Resources */,
 				F2FB1BE62303B20F00F3C03D /* TestImageViewController.xib in Resources */,
 				F2D3FF6D237272DF00FE1AC4 /* ClaimsListController.xib in Resources */,
+				F28943C223A09F8200EDDF9A /* ImageCell.xib in Resources */,
 				F20519702387884500DD3346 /* Terms.html in Resources */,
 				F215A34D22E3737700704A47 /* Assets.xcassets in Resources */,
 			);
@@ -949,6 +959,7 @@
 				F20FF45C2300D3640097350C /* Colors.swift in Sources */,
 				F20FF4642300D68A0097350C /* PrimaryButton.swift in Sources */,
 				F242785A22FE783C00F30250 /* AppCoordinator.swift in Sources */,
+				F28943C423A0A10C00EDDF9A /* ImageRequest.swift in Sources */,
 				F23E448E232602A5003DEAA9 /* EndStreamRequest.swift in Sources */,
 				F2032DC3237381A00089097E /* AuthenticateUser.swift in Sources */,
 				F2351D1623791A790085765F /* SearchIcon.swift in Sources */,
@@ -968,6 +979,7 @@
 				F2032DD1237612320089097E /* Defaults.swift in Sources */,
 				F2032DDB23766A5C0089097E /* SearchController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
+				F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */,
 				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */,

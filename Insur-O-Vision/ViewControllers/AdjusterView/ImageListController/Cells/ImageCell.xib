@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="gTV-IL-0wX" customClass="ImageCell" customModule="HubOne" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bRt-bw-65X">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                    </imageView>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6n-Z9-cGg">
+                        <rect key="frame" x="5" y="119" width="140" height="26"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JMV-cN-Zep">
+                            <rect key="frame" x="0.0" y="0.0" width="140" height="26"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOL-LB-Ssi">
+                                    <rect key="frame" x="5" y="6.5" width="132" height="13.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="FOL-LB-Ssi" firstAttribute="centerY" secondItem="JMV-cN-Zep" secondAttribute="centerY" id="FKH-JO-hWE"/>
+                                <constraint firstAttribute="trailing" secondItem="FOL-LB-Ssi" secondAttribute="trailing" constant="3" id="dCc-H1-mrt"/>
+                                <constraint firstItem="FOL-LB-Ssi" firstAttribute="leading" secondItem="JMV-cN-Zep" secondAttribute="leading" constant="5" id="eLZ-QZ-mq4"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="dark"/>
+                    </visualEffectView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="n6n-Z9-cGg" secondAttribute="trailing" constant="5" id="ALG-2C-4WV"/>
+                <constraint firstItem="bRt-bw-65X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HML-1o-nKw"/>
+                <constraint firstItem="n6n-Z9-cGg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="U2B-ec-s9X"/>
+                <constraint firstItem="bRt-bw-65X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aTm-HF-mgH"/>
+                <constraint firstAttribute="bottom" secondItem="bRt-bw-65X" secondAttribute="bottom" id="fQH-75-wGG"/>
+                <constraint firstAttribute="trailing" secondItem="bRt-bw-65X" secondAttribute="trailing" id="hye-IN-rcy"/>
+                <constraint firstAttribute="bottom" secondItem="n6n-Z9-cGg" secondAttribute="bottom" constant="5" id="sCf-Yo-gaG"/>
+                <constraint firstItem="n6n-Z9-cGg" firstAttribute="top" secondItem="bRt-bw-65X" secondAttribute="bottom" constant="-31" id="yj0-Jb-dM1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="130" height="130"/>
+            <connections>
+                <outlet property="blurView" destination="n6n-Z9-cGg" id="VmG-zV-rDz"/>
+                <outlet property="imageView" destination="bRt-bw-65X" id="JBs-HV-9oc"/>
+                <outlet property="title" destination="FOL-LB-Ssi" id="kZ1-ku-3jW"/>
+            </connections>
+            <point key="canvasLocation" x="195.6521739130435" y="119.19642857142857"/>
+        </collectionViewCell>
+    </objects>
+</document>

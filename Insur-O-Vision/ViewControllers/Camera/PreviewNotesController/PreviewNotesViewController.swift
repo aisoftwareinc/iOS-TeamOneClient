@@ -44,6 +44,7 @@ class PreviewNotesViewController: UIViewController {
   private func prepView() {
     self.view.backgroundColor = Colors.background
     self.imageView.image = UIImage(data: imageData)
+    self.titleTextField.text = self.imageTitle
     self.roundedView.layer.cornerRadius = 4.0
     self.roundedView.layer.backgroundColor = Colors.secondaryBackground.cgColor
     self.notesLabel.textColor = Colors.white

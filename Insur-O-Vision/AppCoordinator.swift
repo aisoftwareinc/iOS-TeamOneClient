@@ -22,6 +22,7 @@ class AppCoordinator {
     case emptyPassword = "Please enter valid password."
     case failedToValidateStreamID = "Claim ID not valid."
     case failedToUploadImage = "Failed to Upload Image."
+    case failedToFetchImage = "Failed to Fetch Image."
   }
   
   private let locationManager = LocationManager()
@@ -73,6 +74,10 @@ class AppCoordinator {
   
   private func notesController(_ notes: String?, callback: @escaping NotesCallback) -> NotesController {
     return NotesController(callback, notes)
+  }
+  
+  private func imageListController(_ claimID: String) -> ImageListController {
+    return ImageListController(claimID, self)
   }
 }
 
@@ -191,7 +196,6 @@ extension AppCoordinator: LoginViewDelegate {
   func passwordEmpty() {
     displayError(.emptyPassword)
   }
-  
 }
 
 // MARK: ClaimsListDelegate
@@ -220,18 +224,22 @@ extension AppCoordinator: ClaimsListDelegate {
   }
   
   func pushToImages(_ claimID: String) {
-    DLOG("ClaimID \(claimID)")
+    self.baseController.pushViewController(imageListController(claimID), animated: true)
   }
 }
 
 extension AppCoordinator: SearchControllerDelegate { }
 
+// MARK: CameraDelegate
 extension AppCoordinator: CameraViewControllerDelegate {
   func didCapturePhoto(_ imageData: Data, claimID: String) {
-    UI { self.baseController.pushViewController(self.imagePreviewController(imageData, title: nil, notes: nil, claimID: claimID), animated: true) }
+    UI {
+      self.baseController.pushViewController(self.imagePreviewController(imageData, title: nil, notes: nil, claimID: claimID), animated: true)
+    }
   }
 }
 
+// MARK: PreviewNotesDelegate
 extension AppCoordinator: PreviewNotesDelegate {
   func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String) {
     Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "", title: title, caption: notes)) {
@@ -252,6 +260,28 @@ extension AppCoordinator: PreviewNotesDelegate {
   }
   
   func addNotes(_ callback: @escaping NotesCallback, _ existingNotes: String?) {
-    self.baseController.pushViewController(self.notesController(nil, callback: callback), animated: true)
+    self.baseController.pushViewController(self.notesController(existingNotes, callback: callback), animated: true)
+  }
+}
+
+// MARK: ImageListDelegate
+extension AppCoordinator: ImageListDelegate {
+  func didSelectImage(_ details: PhotoDetail, claimID: String) {
+    self.baseController.applyLoader()
+    Networking.send(ImageRequest(details.image)) { (result: Result<Data, Error>) in
+      switch result {
+      case .success(let data):
+        UI {
+          let previewController = self.imagePreviewController(data, title: details.title, notes: details.caption, claimID: claimID)
+          self.baseController.pushViewController(previewController, animated: true)
+          self.baseController.removeLoader()
+        }
+      case .failure:
+        UI {
+          self.baseController.removeLoader()
+          self.displayError(.failedToFetchImage)
+        }
+      }
+    }
   }
 }
