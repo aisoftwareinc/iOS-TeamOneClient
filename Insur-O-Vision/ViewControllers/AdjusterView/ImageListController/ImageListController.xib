@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageListController" customModule="HubOne" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="z30-oR-GAu" id="nob-Lv-S8A"/>
+                <outlet property="flowLayout" destination="vdM-1F-HsG" id="Nd3-JN-g7S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

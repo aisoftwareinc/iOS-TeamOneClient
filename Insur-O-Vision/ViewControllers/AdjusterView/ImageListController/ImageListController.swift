@@ -7,11 +7,19 @@ protocol ImageListDelegate: class {
 
 class ImageListController: UIViewController {
   
+  enum State {
+    case photos
+    case fetching
+    case noPhotos
+    case error
+  }
+  
+  @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
   @IBOutlet weak var collectionView: UICollectionView!
   private var viewModel: ImageListControlerViewModel!
   private let claimID: String
   private weak var delegate: ImageListDelegate?
-  
+  private var state: State = .fetching
   init(_ claimID: String, _ delegate: ImageListDelegate) {
     self.claimID = claimID
     self.delegate = delegate
@@ -20,12 +28,13 @@ class ImageListController: UIViewController {
     self.viewModel = ImageListControlerViewModel({ (state) in
       switch state {
       case .fetchedImage(_):
-        UI { self.collectionView.reloadData() }
+        self.state = .photos
       case .noPhotos:
-        break
+        self.state = .noPhotos
       case .errorFetching:
-        break
+        self.state = .error
       }
+      UI { self.collectionView.reloadData() }
     })
   }
   
@@ -43,6 +52,8 @@ class ImageListController: UIViewController {
     self.collectionView.dataSource = self
     self.collectionView.delegate = self
     self.collectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
+    self.collectionView.register(UINib(nibName: "GenericCollectionHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GenericCollectionHeader")
+    flowLayout.headerReferenceSize = CGSize(width: self.collectionView.frame.size.width, height: 44)
     self.collectionView.backgroundColor = Colors.background
   }
   
@@ -63,6 +74,27 @@ extension ImageListController: UICollectionViewDataSource, UICollectionViewDeleg
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let photo = viewModel.photos[indexPath.row]
     delegate?.didSelectImage(photo, claimID: claimID)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    switch state {
+    case .photos:
+      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GenericCollectionHeader", for: indexPath) as! GenericCollectionHeader
+      headerView.headerLabel.text = "Available Photos"
+      return headerView
+    case .fetching:
+      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GenericCollectionHeader", for: indexPath) as! GenericCollectionHeader
+      headerView.headerLabel.text = "Fetching Photos..."
+      return headerView
+    case .noPhotos:
+      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GenericCollectionHeader", for: indexPath) as! GenericCollectionHeader
+      headerView.headerLabel.text = "No Photos Available"
+      return headerView
+    case .error:
+      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GenericCollectionHeader", for: indexPath) as! GenericCollectionHeader
+      headerView.headerLabel.text = "Error Fetching Photos"
+      return headerView
+    }
   }
 }
 

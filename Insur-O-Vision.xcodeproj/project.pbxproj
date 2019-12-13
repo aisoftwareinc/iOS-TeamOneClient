@@ -59,6 +59,8 @@
 		F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943BF23A09F8200EDDF9A /* ImageCell.swift */; };
 		F28943C223A09F8200EDDF9A /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28943C023A09F8200EDDF9A /* ImageCell.xib */; };
 		F28943C423A0A10C00EDDF9A /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943C323A0A10C00EDDF9A /* ImageRequest.swift */; };
+		F28943C823A33B4F00EDDF9A /* GenericCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943C623A33B4F00EDDF9A /* GenericCollectionHeader.swift */; };
+		F28943C923A33B4F00EDDF9A /* GenericCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28943C723A33B4F00EDDF9A /* GenericCollectionHeader.xib */; };
 		F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */; };
 		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
@@ -267,6 +269,8 @@
 		F28943BF23A09F8200EDDF9A /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		F28943C023A09F8200EDDF9A /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		F28943C323A0A10C00EDDF9A /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		F28943C623A33B4F00EDDF9A /* GenericCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCollectionHeader.swift; sourceTree = "<group>"; };
+		F28943C723A33B4F00EDDF9A /* GenericCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCollectionHeader.xib; sourceTree = "<group>"; };
 		F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClaimsRequest.swift; sourceTree = "<group>"; };
 		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
@@ -615,6 +619,8 @@
 			children = (
 				F28943BF23A09F8200EDDF9A /* ImageCell.swift */,
 				F28943C023A09F8200EDDF9A /* ImageCell.xib */,
+				F28943C623A33B4F00EDDF9A /* GenericCollectionHeader.swift */,
+				F28943C723A33B4F00EDDF9A /* GenericCollectionHeader.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -903,6 +909,7 @@
 				F242786B2300A1DC00F30250 /* DashBoardController.xib in Resources */,
 				F2F1F964239DA5030034E67A /* PreviewNotesViewController.xib in Resources */,
 				F2032DDC23766A5C0089097E /* SearchController.xib in Resources */,
+				F28943C923A33B4F00EDDF9A /* GenericCollectionHeader.xib in Resources */,
 				F2032DC023737F930089097E /* ClaimsCell.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
 				F2F1F97623A076AB0034E67A /* ImageListController.xib in Resources */,
@@ -967,6 +974,7 @@
 				F205196B238392EE00DD3346 /* ValidateStreamResponse.swift in Sources */,
 				F2032DCE2373C90A0089097E /* ClaimsListViewModel.swift in Sources */,
 				F21475C4231736E2007E7D2F /* SendImageRequest.swift in Sources */,
+				F28943C823A33B4F00EDDF9A /* GenericCollectionHeader.swift in Sources */,
 				F24278722300A49F00F30250 /* EULAController.swift in Sources */,
 				F242786D2300A27D00F30250 /* Configuration.swift in Sources */,
 				F2A0245222E3BED0001CACCF /* VideoStreamHandler.swift in Sources */,
