@@ -13,6 +13,9 @@ class ClaimsCell: UITableViewCell {
   @IBOutlet weak var insuredName: UILabel!
   @IBOutlet weak var address: UILabel!
   @IBOutlet weak var claimReferenceNumbers: UILabel!
+  @IBOutlet weak var cameraButton: UIButton!
+  @IBOutlet weak var allImageButton: UIButton!
+  @IBOutlet weak var videoButton: UIButton!
   
   var cameraAction: (() -> Void)?
   var allImagesAction: (() -> Void)?
@@ -20,10 +23,14 @@ class ClaimsCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    self.selectionStyle = .none
     self.backgroundColor = Colors.background
     self.insuredName.textColor = Colors.white
     self.address.textColor = Colors.white
     self.claimReferenceNumbers.textColor = Colors.primary
+    self.cameraButton.tintColor = .white
+    self.allImageButton.tintColor = .white
+    self.videoButton.tintColor = .white
   }
   
   func configure(_ claim: Claim) {

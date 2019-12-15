@@ -25,7 +25,7 @@ struct SendImageRequest: Request {
   }
   
   var type: ContentType {
-    let data = "Photo=\(base64Image)&PhotoID=1&Title=\(title)&Caption=\(caption)&ClaimID=\(claimID)"
+    let data = "Photo=\(base64Image)&PhotoID=\(photoID)&Title=\(title)&Caption=\(caption)&ClaimID=\(claimID)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }

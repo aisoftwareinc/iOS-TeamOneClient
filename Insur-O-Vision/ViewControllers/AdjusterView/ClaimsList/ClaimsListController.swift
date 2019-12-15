@@ -149,6 +149,10 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
       cell.allImagesAction = { [weak self] in
         self?.delegate?.pushToImages(claim.claimid)
       }
+      
+      cell.videoAction = { [weak self] in
+        self?.delegate?.didSelectClaim(claim.claimid)
+      }
       cell.configure(claim)
       return cell
     case .error:

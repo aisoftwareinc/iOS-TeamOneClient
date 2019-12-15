@@ -68,8 +68,8 @@ class AppCoordinator {
     return CameraViewController(delegate: self, claimID: claimID)
   }
   
-  private func imagePreviewController(_ data: Data, title: String?, notes: String?, claimID: String) -> PreviewNotesViewController {
-    return PreviewNotesViewController(data, claimID, title: title, notes: notes, delegate: self)
+  private func imagePreviewController(_ data: Data, title: String?, notes: String?, claimID: String, photoID: String?) -> PreviewNotesViewController {
+    return PreviewNotesViewController(data, claimID, title: title, notes: notes, photoID: photoID, delegate: self)
   }
   
   private func notesController(_ notes: String?, callback: @escaping NotesCallback) -> NotesController {
@@ -234,15 +234,15 @@ extension AppCoordinator: SearchControllerDelegate { }
 extension AppCoordinator: CameraViewControllerDelegate {
   func didCapturePhoto(_ imageData: Data, claimID: String) {
     UI {
-      self.baseController.pushViewController(self.imagePreviewController(imageData, title: nil, notes: nil, claimID: claimID), animated: true)
+      self.baseController.pushViewController(self.imagePreviewController(imageData, title: nil, notes: nil, claimID: claimID, photoID: nil), animated: true)
     }
   }
 }
 
 // MARK: PreviewNotesDelegate
 extension AppCoordinator: PreviewNotesDelegate {
-  func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String) {
-    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "", title: title, caption: notes)) {
+  func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String, _ photoID: String?) {
+    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: photoID ?? "0", title: title, caption: notes)) {
       (result: Result<SuccessFailureResult, Error>) in
       switch result {
       case .success(let result):
@@ -272,7 +272,7 @@ extension AppCoordinator: ImageListDelegate {
       switch result {
       case .success(let data):
         UI {
-          let previewController = self.imagePreviewController(data, title: details.title, notes: details.caption, claimID: claimID)
+          let previewController = self.imagePreviewController(data, title: details.title, notes: details.caption, claimID: claimID, photoID: details.id)
           self.baseController.pushViewController(previewController, animated: true)
           self.baseController.removeLoader()
         }

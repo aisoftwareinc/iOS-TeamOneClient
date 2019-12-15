@@ -47,7 +47,7 @@ class ViewStreamViewModel {
   
   func sendImage(_ data: Data) {
     let base64Image = data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlImageEncoded)!
-    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "", title: "", caption: "")) { (result: Result<NoResponse, Error>) in
+    Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "0", title: "", caption: "")) { (result: Result<NoResponse, Error>) in
       
     }
   }

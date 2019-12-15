@@ -62,11 +62,14 @@ class CameraViewController: UIViewController {
   }
   
   private func addCaptureButton() {
-    captureButton.setTitle("Capture", for: .normal)
+    captureButton.setImage(UIImage(imageLiteralResourceName: "CaptureImage"), for: .normal)
     captureButton.addTarget(self, action: #selector(capture), for: .touchUpInside)
+    captureButton.tintColor = .white
     self.view.addSubview(captureButton)
     captureButton.bottomAnchor == self.view.bottomAnchor - 50
     captureButton.centerXAnchor == self.view.centerXAnchor
+    captureButton.widthAnchor == 75
+    captureButton.heightAnchor == 75
     captureButton.translatesAutoresizingMaskIntoConstraints = false
     captureButton.sizeToFit()
   }

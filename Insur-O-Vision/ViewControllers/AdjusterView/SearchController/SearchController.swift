@@ -10,7 +10,12 @@ import UIKit
 import Asterism
 
 protocol SearchControllerDelegate: class {
-  func didSelectClaim(_ streamID: String)
+  func didSelectClaim(_ claimID: String)
+  func pushToSelect()
+  func pushToImages(_ claimID: String)
+  func errorRemovingClaim()
+  func fetchError()
+  func pushToCamera(_ claimID: String)
 }
 
 class SearchController: UIViewController {
@@ -133,6 +138,17 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
     case .results:
       let claim = searchViewModel.results[indexPath.row]
       let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimsCell", for: indexPath) as! ClaimsCell
+      cell.cameraAction = { [weak self] in
+        self?.delegate?.pushToCamera(claim.claimid)
+      }
+      
+      cell.allImagesAction = { [weak self] in
+        self?.delegate?.pushToImages(claim.claimid)
+      }
+      
+      cell.videoAction = { [weak self] in
+        self?.delegate?.didSelectClaim(claim.streamid)
+      }
       cell.configure(claim)
       return cell
     }

@@ -4,7 +4,7 @@ import Asterism
 
 protocol PreviewNotesDelegate: class {
   func addNotes(_ callback: @escaping NotesCallback, _ existingNotes: String?)
-  func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String)
+  func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String, _ photoID: String?)
 }
 
 class PreviewNotesViewController: UIViewController {
@@ -21,14 +21,16 @@ class PreviewNotesViewController: UIViewController {
   private var notes: String?
   private var imageTitle: String?
   private var claimID: String
+  private var photoID: String?
   private weak var delegate: PreviewNotesDelegate?
   
-  init(_ image: Data, _ claimID: String, title: String?, notes: String?, delegate: PreviewNotesDelegate) {
+  init(_ image: Data, _ claimID: String, title: String?, notes: String?, photoID: String?, delegate: PreviewNotesDelegate) {
     self.imageData = image
     self.notes = notes
     self.delegate = delegate
     self.imageTitle = title
     self.claimID = claimID
+    self.photoID = photoID
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -81,6 +83,6 @@ class PreviewNotesViewController: UIViewController {
   
   @IBAction func submitAction(_ sender: PrimaryButton) {
     let base64Image = imageData.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlImageEncoded)!
-    delegate?.submit(base64Image, self.titleTextField.text ?? "HubOne Photo", self.notes ?? "", claimID)
+    delegate?.submit(base64Image, self.titleTextField.text ?? "HubOne Photo", self.notes ?? "", claimID, self.photoID)
   }
 }
