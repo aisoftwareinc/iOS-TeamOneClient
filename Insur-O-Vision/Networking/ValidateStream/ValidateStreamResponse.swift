@@ -12,4 +12,5 @@ struct ValidateStreamResponse: Decodable {
   let result: SuccessResult
   let streamtype: String
   let streamurl: String
+  let claimid: String
 }

@@ -25,7 +25,14 @@ class AppCoordinator {
     case failedToFetchImage = "Failed to Fetch Image."
   }
   
-  private let locationManager = LocationManager()
+  private lazy var locationManager: LocationManager = {
+    let locationManager = LocationManager()
+    locationManager.pushToSettings = { [weak self] in
+      self?.baseController.pushViewController((self?.pushToSettings())!, animated: true)
+    }
+    return locationManager
+  }()
+  
   var baseController: UINavigationController!
   
   func start() -> UIViewController {
@@ -45,7 +52,7 @@ class AppCoordinator {
   }
   
   private func videoStreamController(_ claimID: String, _ streamID: String, streamURL: String) -> VideoStreamController {
-    return VideoStreamController(VideoStreamHandler(streamURL, id: streamID), claimID)
+    return VideoStreamController(VideoStreamHandler(streamURL, id: streamID), claimID, streamID: streamID)
   }
   
   private func appModeSelectionController() -> ModeSelectionController {
@@ -78,6 +85,10 @@ class AppCoordinator {
   
   private func imageListController(_ claimID: String) -> ImageListController {
     return ImageListController(claimID, self)
+  }
+  
+  private func pushToSettings() -> JumpToSettingsController {
+    return JumpToSettingsController()
   }
 }
 
@@ -121,7 +132,7 @@ extension AppCoordinator: DashboardDelegate {
         case .success:
           UI {
             dashboardController.updateButton(.initial)
-            self.baseController.pushViewController(self.videoStreamController(streamID, streamID, streamURL: Configuration.streamURL), animated: true)
+            self.baseController.pushViewController(self.videoStreamController(response.claimid, streamID, streamURL: Configuration.streamURL), animated: true)
           }
         case .failure:
           UI { dashboardController.updateButton(.initial) }
@@ -163,7 +174,9 @@ extension AppCoordinator: LoginViewDelegate {
   
   func signin(user: String, password: String, rememberMe: Bool) {
     DLOG("Username: \(user), Password: \(password)")
+    self.baseController.applyLoader()
     Networking.send(AuthenticateUser(username: user, password: password)) { (result: Result<AuthenticateResult, Error>) in
+      UI { self.baseController.removeLoader() }
       switch result {
       case .success(let result):
         switch result.result {
@@ -242,8 +255,10 @@ extension AppCoordinator: CameraViewControllerDelegate {
 // MARK: PreviewNotesDelegate
 extension AppCoordinator: PreviewNotesDelegate {
   func submit(_ base64Image: String, _ title: String, _ notes: String, _ claimID: String, _ photoID: String?) {
+    self.baseController.applyLoader()
     Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: photoID ?? "0", title: title, caption: notes)) {
       (result: Result<SuccessFailureResult, Error>) in
+      UI { self.baseController.removeLoader() }
       switch result {
       case .success(let result):
         switch result.result {

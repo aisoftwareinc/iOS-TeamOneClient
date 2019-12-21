@@ -62,6 +62,8 @@
 		F28943C823A33B4F00EDDF9A /* GenericCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943C623A33B4F00EDDF9A /* GenericCollectionHeader.swift */; };
 		F28943C923A33B4F00EDDF9A /* GenericCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28943C723A33B4F00EDDF9A /* GenericCollectionHeader.xib */; };
 		F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */; };
+		F2960BC123AE8E9A0007BB69 /* JumpToSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2960BBF23AE8E9A0007BB69 /* JumpToSettingsController.swift */; };
+		F2960BC223AE8E9A0007BB69 /* JumpToSettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2960BC023AE8E9A0007BB69 /* JumpToSettingsController.xib */; };
 		F29B40FA23711B7E00374839 /* ModeSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40F823711B7E00374839 /* ModeSelectionController.swift */; };
 		F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29B40F923711B7E00374839 /* ModeSelectionController.xib */; };
 		F29B410023726AE200374839 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B40FE23726AE200374839 /* LoginViewController.swift */; };
@@ -272,6 +274,8 @@
 		F28943C623A33B4F00EDDF9A /* GenericCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCollectionHeader.swift; sourceTree = "<group>"; };
 		F28943C723A33B4F00EDDF9A /* GenericCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCollectionHeader.xib; sourceTree = "<group>"; };
 		F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClaimsRequest.swift; sourceTree = "<group>"; };
+		F2960BBF23AE8E9A0007BB69 /* JumpToSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpToSettingsController.swift; sourceTree = "<group>"; };
+		F2960BC023AE8E9A0007BB69 /* JumpToSettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JumpToSettingsController.xib; sourceTree = "<group>"; };
 		F29B40F823711B7E00374839 /* ModeSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionController.swift; sourceTree = "<group>"; };
 		F29B40F923711B7E00374839 /* ModeSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModeSelectionController.xib; sourceTree = "<group>"; };
 		F29B40FE23726AE200374839 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -579,6 +583,7 @@
 		F242786E2300A47700F30250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2960BB423AE8E630007BB69 /* JumpToSettings */,
 				F24A99BB23960E3E00A0F4F7 /* Camera */,
 				F20519722388DD3C00DD3346 /* Login */,
 				F29B410A23726AE900374839 /* AdjusterView */,
@@ -631,6 +636,15 @@
 				F290D8832379FD59001AC5F1 /* SearchClaimsRequest.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		F2960BB423AE8E630007BB69 /* JumpToSettings */ = {
+			isa = PBXGroup;
+			children = (
+				F2960BBF23AE8E9A0007BB69 /* JumpToSettingsController.swift */,
+				F2960BC023AE8E9A0007BB69 /* JumpToSettingsController.xib */,
+			);
+			path = JumpToSettings;
 			sourceTree = "<group>";
 		};
 		F29B40EF23711B1900374839 /* ModeSelection */ = {
@@ -912,6 +926,7 @@
 				F28943C923A33B4F00EDDF9A /* GenericCollectionHeader.xib in Resources */,
 				F2032DC023737F930089097E /* ClaimsCell.xib in Resources */,
 				F215A35022E3737700704A47 /* LaunchScreen.storyboard in Resources */,
+				F2960BC223AE8E9A0007BB69 /* JumpToSettingsController.xib in Resources */,
 				F2F1F97623A076AB0034E67A /* ImageListController.xib in Resources */,
 				F29B40FB23711B7E00374839 /* ModeSelectionController.xib in Resources */,
 				F20519792388DDF000DD3346 /* GenericHeaderView.xib in Resources */,
@@ -989,6 +1004,7 @@
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
 				F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */,
 				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
+				F2960BC123AE8E9A0007BB69 /* JumpToSettingsController.swift in Sources */,
 				F2032DBF23737F930089097E /* ClaimsCell.swift in Sources */,
 				F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */,
 				F290D8842379FD59001AC5F1 /* SearchClaimsRequest.swift in Sources */,
@@ -1181,7 +1197,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1211,7 +1227,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

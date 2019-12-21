@@ -83,6 +83,8 @@ class PreviewNotesViewController: UIViewController {
   
   @IBAction func submitAction(_ sender: PrimaryButton) {
     let base64Image = imageData.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlImageEncoded)!
-    delegate?.submit(base64Image, self.titleTextField.text ?? "HubOne Photo", self.notes ?? "", claimID, self.photoID)
+    let characterSet = CharacterSet.urlQueryAllowed.inverted
+    let filteredNotes = notes?.components(separatedBy: characterSet).joined() ?? ""
+    delegate?.submit(base64Image, self.titleTextField.text ?? "HubOne Photo", filteredNotes, claimID, self.photoID)
   }
 }

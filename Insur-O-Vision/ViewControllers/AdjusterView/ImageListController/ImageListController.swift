@@ -20,21 +20,24 @@ class ImageListController: UIViewController {
   private let claimID: String
   private weak var delegate: ImageListDelegate?
   private var state: State = .fetching
+  private var refreshControl: UIRefreshControl!
+  
   init(_ claimID: String, _ delegate: ImageListDelegate) {
     self.claimID = claimID
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
     self.title = "Image List"
-    self.viewModel = ImageListControlerViewModel({ (state) in
+    self.viewModel = ImageListControlerViewModel({ [weak self] (state) in
+      UI { self?.refreshControl.endRefreshing() }
       switch state {
       case .fetchedImage(_):
-        self.state = .photos
+        self?.state = .photos
       case .noPhotos:
-        self.state = .noPhotos
+        self?.state = .noPhotos
       case .errorFetching:
-        self.state = .error
+        self?.state = .error
       }
-      UI { self.collectionView.reloadData() }
+      UI { self?.collectionView.reloadData() }
     })
   }
   
@@ -45,6 +48,18 @@ class ImageListController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     prepCollectionView()
+    viewModel.fetchSavedPhotos(for: claimID)
+    
+    //Refresh Control settings
+    refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    refreshControl.tintColor = .white
+    collectionView.refreshControl = refreshControl
+    view.backgroundColor = Colors.background
+  }
+  
+    @objc
+  func refresh() {
     viewModel.fetchSavedPhotos(for: claimID)
   }
   

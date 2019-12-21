@@ -1,15 +1,8 @@
-//
-//  LocationManager.swift
-//  LocationTracker
-//
-//  Created by Peter Gosling on 7/26/17.
-//  Copyright © 2017 Peter Gosling. All rights reserved.
-//
-
 import Foundation
 import CoreLocation
 import UIKit
 import Asterism
+import UserNotifications
 
 class LocationManager: NSObject {
   
@@ -20,6 +13,7 @@ class LocationManager: NSObject {
   var didSendInitial: Bool = false
   
   private var timer : Timer!
+  var pushToSettings: (() -> Void)?
   
   override init() {
     super.init()
@@ -52,6 +46,23 @@ extension LocationManager: CLLocationManagerDelegate {
     print("Received new location \(locations[0].coordinate)")
     self.currentLocation = locations[0]
     self.stop()
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    switch status {
+    case .authorizedAlways:
+      DLOG("Accepted Location Services")
+    case .authorizedWhenInUse:
+      DLOG("Accepted Location Services")
+    case .notDetermined:
+      DLOG("Location Services not determined")
+    case .restricted:
+      DLOG("Restricted Location")
+    case .denied:
+      pushToSettings?()
+    @unknown default:
+      break
+    }
   }
 }
 

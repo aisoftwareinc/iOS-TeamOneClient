@@ -23,10 +23,10 @@ class VideoStreamController: UIViewController {
   @IBOutlet weak var captureButton: PrimaryButton!
   @IBOutlet weak var socketConnectionImage: UIImageView!
   
-  init(_ streamHandler: VideoStreamHandler, _ claimID: String) {
+  init(_ streamHandler: VideoStreamHandler, _ claimID: String, streamID: String) {
     self.streamHandler = streamHandler
     self.viewModel = ViewStreamViewModel(claimID)
-    self.socket = Socket(URL(string: "wss://demo.teamonecms.com/ws/media.ashx?streamID=\(claimID)")!)
+    self.socket = Socket(URL(string: "wss://demo.teamonecms.com/ws/media.ashx?streamID=\(streamID)")!)
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
     self.streamHandler.delegate = self
