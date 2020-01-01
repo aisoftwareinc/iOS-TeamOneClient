@@ -11,6 +11,7 @@ protocol CameraViewControllerDelegate: class {
 class CameraViewController: UIViewController {
   
   let captureButton: UIButton
+  let flashButton: UIButton
   weak var delegate: CameraViewControllerDelegate?
   private let claimID: String
   
@@ -42,6 +43,7 @@ class CameraViewController: UIViewController {
   
   init(delegate: CameraViewControllerDelegate, claimID: String) {
     self.captureButton = UIButton(frame: .zero)
+    self.flashButton = UIButton(frame: .zero)
     self.delegate = delegate
     self.claimID = claimID
     super.init(nibName: nil, bundle: nil)
@@ -54,6 +56,7 @@ class CameraViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     startCamera()
+    addFlashButton()
     addCaptureButton()
   }
   
@@ -72,6 +75,18 @@ class CameraViewController: UIViewController {
     captureButton.heightAnchor == 75
     captureButton.translatesAutoresizingMaskIntoConstraints = false
     captureButton.sizeToFit()
+  }
+  
+  private func addFlashButton() {
+    flashButton.setImage(#imageLiteral(resourceName: "Flash"), for: .normal)
+    flashButton.addTarget(self, action: #selector(toggleFlash), for: .touchUpInside)
+    flashButton.tintColor = .white
+    self.view.addSubview(flashButton)
+    flashButton.topAnchor == self.view.topAnchor + 100
+    flashButton.rightAnchor == self.view.rightAnchor - 20
+    flashButton.widthAnchor == 50
+    flashButton.heightAnchor == 50
+    flashButton.translatesAutoresizingMaskIntoConstraints = false
   }
   
   private func startCamera() {
@@ -104,6 +119,21 @@ class CameraViewController: UIViewController {
     }
   }
   
+  @objc
+  private func toggleFlash() {
+    guard let currentDevice = captureDevice else {
+      return
+    }
+    if currentDevice.hasTorch {
+      do {
+        try currentDevice.lockForConfiguration()
+        currentDevice.torchMode = currentDevice.isTorchActive ? .off : .on
+        currentDevice.unlockForConfiguration()
+      } catch {
+        print("error")
+      }
+    }
+  }
 }
 
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
