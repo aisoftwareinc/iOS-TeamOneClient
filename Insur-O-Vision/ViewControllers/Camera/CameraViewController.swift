@@ -36,10 +36,15 @@ class CameraViewController: UIViewController {
   private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
     let preview = AVCaptureVideoPreviewLayer(session: session)
     preview.videoGravity = .resizeAspectFill
+    preview.transform = CATransform3DMakeRotation(CGFloat(-Double.pi/2), 0, 0, 1)
     return preview
   }()
   
   private let output = AVCapturePhotoOutput()
+  
+  override var shouldAutorotate: Bool {
+    return true
+  }
   
   init(delegate: CameraViewControllerDelegate, claimID: String) {
     self.captureButton = UIButton(frame: .zero)
@@ -58,6 +63,22 @@ class CameraViewController: UIViewController {
     startCamera()
     addFlashButton()
     addCaptureButton()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+  }
+  
+  override func viewWillLayoutSubviews() {
+    self.previewLayer.frame = self.view.bounds
+    if let connection = previewLayer.connection {
+      connection.videoOrientation = .portrait
+    }
   }
   
   required init?(coder: NSCoder) {
@@ -84,8 +105,8 @@ class CameraViewController: UIViewController {
     self.view.addSubview(flashButton)
     flashButton.topAnchor == self.view.topAnchor + 100
     flashButton.rightAnchor == self.view.rightAnchor - 20
-    flashButton.widthAnchor == 50
-    flashButton.heightAnchor == 50
+    flashButton.widthAnchor == 40
+    flashButton.heightAnchor == 40
     flashButton.translatesAutoresizingMaskIntoConstraints = false
   }
   
@@ -115,6 +136,7 @@ class CameraViewController: UIViewController {
                            kCVPixelBufferWidthKey as String: 160,
                            kCVPixelBufferHeightKey as String: 160]
       settings.previewPhotoFormat = previewFormat
+      connection.videoOrientation = .portrait
       self.output.capturePhoto(with: settings, delegate: self)
     }
   }
