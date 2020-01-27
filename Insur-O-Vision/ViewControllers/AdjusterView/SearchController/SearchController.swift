@@ -10,7 +10,7 @@ import UIKit
 import Asterism
 
 protocol SearchControllerDelegate: class {
-  func didSelectClaim(_ claimID: String)
+  func didSelectClaim(_ claimID: String, _ streamID: String)
   func pushToSelect()
   func pushToImages(_ claimID: String)
   func errorRemovingClaim()
@@ -147,7 +147,7 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
       }
       
       cell.videoAction = { [weak self] in
-        self?.delegate?.didSelectClaim(claim.streamid)
+        self?.delegate?.didSelectClaim(claim.claimid, claim.streamid)
       }
       cell.configure(claim)
       return cell
@@ -157,7 +157,7 @@ extension SearchController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     let claim = searchViewModel.results[indexPath.row]
-    delegate?.didSelectClaim(claim.streamid)
+    delegate?.didSelectClaim(claim.claimid, claim.streamid)
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

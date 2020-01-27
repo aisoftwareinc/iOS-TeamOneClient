@@ -143,13 +143,11 @@ class VideoStreamHandler {
   func isStreaming() -> Bool {
     return isRunning
   }
-  
-  
 }
 
 extension VideoStreamHandler {
   func calculateAppendNumber() -> String {
-    let updatedID = baseNumber == 0 ? streamID : streamID + "-\(baseNumber)"
+    let updatedID = baseNumber == 0 ? streamID : streamID + "_\(baseNumber)"
     return updatedID
   }
 }

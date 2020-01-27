@@ -14,3 +14,8 @@ struct ValidateStreamResponse: Decodable {
   let streamurl: String
   let claimid: String
 }
+
+enum StreamType: String, Decodable {
+  case live = "Stream"
+  case record = "Stream-Record"
+}

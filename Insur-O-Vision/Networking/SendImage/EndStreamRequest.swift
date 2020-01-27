@@ -11,9 +11,10 @@ import Asterism
 
 struct EndStreamRequest: Request {
   let streamID: String
-  
-  init(_ streamID: String) {
+  let videoStreams: String
+  init(_ streamID: String, _ videoStreams: String) {
     self.streamID = streamID
+    self.videoStreams = videoStreams
   }
   
   var methodType: RequestType {
@@ -21,7 +22,7 @@ struct EndStreamRequest: Request {
   }
   
   var type: ContentType {
-    let data = "StreamID=\(streamID)"
+    let data = "StreamID=\(streamID)&VideoStreams=\(videoStreams)"
     let dataString = data.data(using: .utf8, allowLossyConversion: false)
     return .urlencoded(dataString!)
   }

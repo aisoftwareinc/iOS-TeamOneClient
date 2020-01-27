@@ -25,7 +25,7 @@ class VideoStreamController: UIViewController {
   
   init(_ streamHandler: VideoStreamHandler, _ claimID: String, streamID: String) {
     self.streamHandler = streamHandler
-    self.viewModel = ViewStreamViewModel(claimID)
+    self.viewModel = ViewStreamViewModel(claimID, streamID)
     self.socket = Socket(URL(string: "wss://demo.teamonecms.com/ws/media.ashx?streamID=\(streamID)")!)
     super.init(nibName: nil, bundle: nil)
     self.socket.delegate = self
@@ -41,6 +41,7 @@ class VideoStreamController: UIViewController {
   override func viewDidLoad() {
     self.socketConnectionImage.image = #imageLiteral(resourceName: "Socket")
     self.socketConnectionImage.tintColor = UIColor.red
+    UIApplication.shared.isIdleTimerDisabled = true
   }
   
   deinit {
@@ -60,6 +61,7 @@ class VideoStreamController: UIViewController {
     streamHandler.disconnect()
     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
     viewModel.endStream()
+    UIApplication.shared.isIdleTimerDisabled = false
   }
   
   @objc
@@ -98,7 +100,6 @@ class VideoStreamController: UIViewController {
   @IBAction func toggleStream(_ sender: UIButton) {
     switch streamHandler.isStreaming() {
     case true:
-      viewModel.postStreamID(antMediaID: streamHandler.calculateAppendNumber())
       stopStream()
     case false:
       startStream()
@@ -116,6 +117,7 @@ class VideoStreamController: UIViewController {
   }
   
   func startStream() {
+    viewModel.postStartStream()
     streamHandler.startStream()
   }
   

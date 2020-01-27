@@ -55,6 +55,7 @@
 		F249A04E2377498C006C5BC8 /* RemoveClaimRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */; };
 		F24A99C723960E5700A0F4F7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C523960E5700A0F4F7 /* CameraViewController.swift */; };
 		F24A99CA23960E6A00A0F4F7 /* CameraControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */; };
+		F27C696C23D8F37E00D750B5 /* StartVideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C696B23D8F37E00D750B5 /* StartVideoSession.swift */; };
 		F28943B323A09B0C00EDDF9A /* ImageListControllerVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943B223A09B0C00EDDF9A /* ImageListControllerVIewModel.swift */; };
 		F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28943BF23A09F8200EDDF9A /* ImageCell.swift */; };
 		F28943C223A09F8200EDDF9A /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28943C023A09F8200EDDF9A /* ImageCell.xib */; };
@@ -267,6 +268,7 @@
 		F249A04D2377498C006C5BC8 /* RemoveClaimRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveClaimRequest.swift; sourceTree = "<group>"; };
 		F24A99C523960E5700A0F4F7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControllerViewModel.swift; sourceTree = "<group>"; };
+		F27C696B23D8F37E00D750B5 /* StartVideoSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVideoSession.swift; sourceTree = "<group>"; };
 		F28943B223A09B0C00EDDF9A /* ImageListControllerVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListControllerVIewModel.swift; sourceTree = "<group>"; };
 		F28943BF23A09F8200EDDF9A /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		F28943C023A09F8200EDDF9A /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 		F214758523108434007E7D2F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F27C696023D8F33C00D750B5 /* StartVideoSession */,
 				F2F1F96C23A071A90034E67A /* ListImages */,
 				F205195E23838D2F00DD3346 /* ValidateStream */,
 				F290D87A2379FD3E001AC5F1 /* Search */,
@@ -617,6 +620,14 @@
 				F24A99C923960E6A00A0F4F7 /* CameraControllerViewModel.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		F27C696023D8F33C00D750B5 /* StartVideoSession */ = {
+			isa = PBXGroup;
+			children = (
+				F27C696B23D8F37E00D750B5 /* StartVideoSession.swift */,
+			);
+			path = StartVideoSession;
 			sourceTree = "<group>";
 		};
 		F28943BE23A09F0500EDDF9A /* Cells */ = {
@@ -1002,6 +1013,7 @@
 				F2032DD1237612320089097E /* Defaults.swift in Sources */,
 				F2032DDB23766A5C0089097E /* SearchController.swift in Sources */,
 				F2A0245522E3BF50001CACCF /* VideoStreamController.swift in Sources */,
+				F27C696C23D8F37E00D750B5 /* StartVideoSession.swift in Sources */,
 				F28943C123A09F8200EDDF9A /* ImageCell.swift in Sources */,
 				F205196923838D4600DD3346 /* ValidateStreamRequest.swift in Sources */,
 				F2960BC123AE8E9A0007BB69 /* JumpToSettingsController.swift in Sources */,
@@ -1197,7 +1209,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1227,7 +1239,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Insur-O-Vision/HubOne.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 39Q32VRRFY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

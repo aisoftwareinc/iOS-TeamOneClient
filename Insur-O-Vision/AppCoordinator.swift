@@ -20,7 +20,7 @@ class AppCoordinator {
     case errorFetchingLaims = "An error occurred fetching claims."
     case errorRemovingClaim = "An error occurred removing claim. Try again."
     case emptyPassword = "Please enter valid password."
-    case failedToValidateStreamID = "Claim ID not valid."
+    case failedToValidateStreamID = "Stream ID not valid."
     case failedToUploadImage = "Failed to Upload Image."
     case failedToFetchImage = "Failed to Fetch Image."
   }
@@ -223,9 +223,9 @@ extension AppCoordinator: ClaimsListDelegate {
     }
   }
   
-  func didSelectClaim(_ claimID: String) {
-    DLOG("Received StreamID: \(claimID)")
-    self.baseController.pushViewController(videoStreamController(claimID, claimID, streamURL: Configuration.streamURL), animated: true)
+  func didSelectClaim(_ claimID: String, _ streamID: String) {
+    DLOG("Claim ID \(claimID) StreamID: \(streamID)")
+    self.baseController.pushViewController(videoStreamController(claimID, streamID, streamURL: Configuration.streamURL), animated: true)
   }
   
   func errorRemovingClaim() {

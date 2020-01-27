@@ -10,7 +10,7 @@ import UIKit
 import Asterism
 
 protocol ClaimsListDelegate: class {
-  func didSelectClaim(_ claimID: String)
+  func didSelectClaim(_ claimID: String, _ streamID: String)
   func pushToSelect()
   func pushToImages(_ claimID: String)
   func errorRemovingClaim()
@@ -151,7 +151,7 @@ extension ClaimsListController: UITableViewDelegate, UITableViewDataSource {
       }
       
       cell.videoAction = { [weak self] in
-        self?.delegate?.didSelectClaim(claim.claimid)
+        self?.delegate?.didSelectClaim(claim.claimid, claim.streamid)
       }
       cell.configure(claim)
       return cell

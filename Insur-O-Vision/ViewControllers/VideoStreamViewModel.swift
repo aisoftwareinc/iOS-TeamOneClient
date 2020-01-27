@@ -13,13 +13,18 @@ import UIKit
 
 class ViewStreamViewModel {
   let claimID: String
+  let streamID: String
+  
+  private var streamTracker = 0
+  private var streamIDs = [String]()
   
   lazy var captureDevice: AVCaptureDevice? = {
     return AVCaptureDevice.default(for: AVMediaType.video)
   }()
   
-  init(_ claimID: String) {
+  init(_ claimID: String, _ streamID: String) {
     self.claimID = claimID
+    self.streamID = streamID
   }
   
   func toggleFlash(_ torchOn: Bool) {
@@ -38,11 +43,7 @@ class ViewStreamViewModel {
   }
   
   func endStream() {
-    Networking.send(EndStreamRequest(claimID)) { (result: Result<NoResponse, Error>) in }
-  }
-  
-  func postStreamID(antMediaID: String) {
-    Networking.send(PostStreamRequest(claimID, antMediaID)) { (result: Result<NoResponse, Error>) in }
+    Networking.send(EndStreamRequest(streamID, buildEndSessionStreams()))
   }
   
   func sendImage(_ data: Data) {
@@ -50,6 +51,12 @@ class ViewStreamViewModel {
     Networking.send(SendImageRequest(claimID: claimID, base64Image: base64Image, photoID: "0", title: "", caption: "")) { (result: Result<NoResponse, Error>) in
       
     }
+  }
+  
+  func postStartStream() {
+    streamIDs.append(addStreamID())
+    Networking.send(StartVideoSession(streamID: streamID))
+    streamTracker += 1
   }
   
   func zoomLevel(_ selectMode: Int) -> CGFloat {
@@ -72,5 +79,20 @@ class ViewStreamViewModel {
     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
     alert.addAction(dismiss)
     return alert
+  }
+  
+  private func addStreamID() -> String {
+    if streamTracker == 0 {
+      return streamID
+    }
+    return streamID + "_\(streamTracker)"
+  }
+  
+  private func buildEndSessionStreams() -> String {
+    var streams: String = ""
+    streamIDs.forEach {
+      streams += $0 + ","
+    }
+    return String(streams.dropLast(1))
   }
 }
