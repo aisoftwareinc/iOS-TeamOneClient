@@ -1,21 +1,24 @@
+#if os(iOS)
+
 import AVFoundation
 import GLKit
 
-open class GLHKView: GLKView {
+open class GLHKView: GLKView, NetStreamRenderer {
     static let defaultOptions: [CIContextOption: Any] = [
         .workingColorSpace: NSNull(),
         .useSoftwareRenderer: NSNumber(value: false)
     ]
     public static var defaultBackgroundColor: UIColor = .black
     open var videoGravity: AVLayerVideoGravity = .resizeAspect
-
+    public var videoFormatDescription: CMVideoFormatDescription? {
+        currentStream?.mixer.videoIO.formatDescription
+    }
     var position: AVCaptureDevice.Position = .back
     var orientation: AVCaptureVideoOrientation = .portrait
-
-    private var displayImage: CIImage?
+    var displayImage: CIImage?
     private weak var currentStream: NetStream? {
         didSet {
-            oldValue?.mixer.videoIO.drawable = nil
+            oldValue?.mixer.videoIO.renderer = nil
         }
     }
 
@@ -42,7 +45,7 @@ open class GLHKView: GLKView {
             stream.mixer.videoIO.context = CIContext(eaglContext: context, options: GLHKView.defaultOptions)
             stream.lockQueue.async {
                 self.position = stream.mixer.videoIO.position
-                stream.mixer.videoIO.drawable = self
+                stream.mixer.videoIO.renderer = self
                 stream.mixer.startRunning()
             }
         }
@@ -68,12 +71,4 @@ extension GLHKView: GLKViewDelegate {
     }
 }
 
-extension GLHKView: NetStreamDrawable {
-    // MARK: NetStreamDrawable
-    func draw(image: CIImage) {
-        DispatchQueue.main.async {
-            self.displayImage = image
-            self.setNeedsDisplay()
-        }
-    }
-}
+#endif

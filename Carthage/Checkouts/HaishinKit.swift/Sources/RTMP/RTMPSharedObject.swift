@@ -73,7 +73,7 @@ struct RTMPSharedObjectEvent {
 extension RTMPSharedObjectEvent: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     var debugDescription: String {
-        return Mirror(reflecting: self).debugDescription
+        Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -100,8 +100,8 @@ open class RTMPSharedObject: EventDispatcher {
     var persistence: Bool
     var currentVersion: UInt32 = 0
 
-    open private(set) var objectEncoding: UInt8 = RTMPConnection.defaultObjectEncoding
-    open private(set) var data: [String: Any?] = [: ]
+    open private(set) var objectEncoding: RTMPObjectEncoding = RTMPConnection.defaultObjectEncoding
+    open private(set) var data: [String: Any?] = [:]
 
     private var succeeded: Bool = false {
         didSet {
@@ -231,6 +231,6 @@ open class RTMPSharedObject: EventDispatcher {
 extension RTMPSharedObject: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     public var debugDescription: String {
-        return data.debugDescription
+        data.debugDescription
     }
 }

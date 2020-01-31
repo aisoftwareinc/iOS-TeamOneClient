@@ -25,7 +25,7 @@ public struct RTMPStreamInfo {
 extension RTMPStreamInfo: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     public var debugDescription: String {
-        return Mirror(reflecting: self).debugDescription
+        Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -162,7 +162,7 @@ open class RTMPStream: NetStream {
         }
 
         func data(_ description: String) -> ASObject {
-            return [
+            [
                 "code": rawValue,
                 "level": level,
                 "description": description
@@ -192,7 +192,7 @@ open class RTMPStream: NetStream {
         public var transition: PlayTransition = .switch
 
         public var debugDescription: String {
-            return Mirror(reflecting: self).debugDescription
+            Mirror(reflecting: self).debugDescription
         }
     }
 
@@ -220,11 +220,11 @@ open class RTMPStream: NetStream {
 
     open weak var delegate: RTMPStreamDelegate?
     open internal(set) var info = RTMPStreamInfo()
-    open private(set) var objectEncoding: UInt8 = RTMPConnection.defaultObjectEncoding
+    open private(set) var objectEncoding: RTMPObjectEncoding = RTMPConnection.defaultObjectEncoding
     /// The number of frames per second being displayed.
     @objc open private(set) dynamic var currentFPS: UInt16 = 0
     open var soundTransform: SoundTransform {
-        get { return mixer.audioIO.soundTransform }
+        get { mixer.audioIO.soundTransform }
         set { mixer.audioIO.soundTransform = newValue }
     }
     /// Incoming audio plays on the stream or not.
@@ -287,7 +287,7 @@ open class RTMPStream: NetStream {
 
             switch oldValue {
             case .playing:
-                mixer.stopPlaying()
+                mixer.stopDecoding()
             case .publishing:
                 #if os(iOS)
                     mixer.videoIO.screen?.stopRunning()
@@ -310,7 +310,7 @@ open class RTMPStream: NetStream {
                 delegate?.clear()
             case .playing:
                 mixer.delegate = self
-                mixer.startPlaying(rtmpConnection.audioEngine)
+                mixer.startDecoding(rtmpConnection.audioEngine)
             case .publish:
                 muxer.dispose()
                 muxer.delegate = self
@@ -341,8 +341,8 @@ open class RTMPStream: NetStream {
             }
         }
     }
-    var audioTimestamp: Double = 0
-    var videoTimestamp: Double = 0
+    var audioTimestamp: Double = 0.0
+    var videoTimestamp: Double = 0.0
     private(set) var muxer = RTMPMuxer()
     private var sampler: MP4Sampler?
     private var frameCount: UInt16 = 0
@@ -357,6 +357,7 @@ open class RTMPStream: NetStream {
         self.rtmpConnection = connection
         super.init()
         dispatcher = EventDispatcher(target: self)
+        addEventListener(.rtmpStatus, selector: #selector(on(status:)), observer: self)
         rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(on(status:)), observer: self)
         if rtmpConnection.connected {
             rtmpConnection.createStream(self)
@@ -365,6 +366,7 @@ open class RTMPStream: NetStream {
 
     deinit {
         mixer.stopRunning()
+        removeEventListener(.rtmpStatus, selector: #selector(on(status:)), observer: self)
         rtmpConnection.removeEventListener(.rtmpStatus, selector: #selector(on(status:)), observer: self)
     }
 
@@ -606,12 +608,15 @@ extension RTMPStream: IEventDispatcher {
     public func addEventListener(_ type: Event.Name, selector: Selector, observer: AnyObject? = nil, useCapture: Bool = false) {
         dispatcher.addEventListener(type, selector: selector, observer: observer, useCapture: useCapture)
     }
+
     public func removeEventListener(_ type: Event.Name, selector: Selector, observer: AnyObject? = nil, useCapture: Bool = false) {
         dispatcher.removeEventListener(type, selector: selector, observer: observer, useCapture: useCapture)
     }
+
     public func dispatch(event: Event) {
         dispatcher.dispatch(event: event)
     }
+
     public func dispatch(_ type: Event.Name, bubbles: Bool, data: Any?) {
         dispatcher.dispatch(type, bubbles: bubbles, data: data)
     }

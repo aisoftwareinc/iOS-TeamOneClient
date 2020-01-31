@@ -3,12 +3,20 @@ import CoreFoundation
 import CoreVideo
 import VideoToolbox
 
+#if os(iOS)
+import UIKit
+#endif
+
 protocol VideoDecoderDelegate: class {
     func sampleOutput(video sampleBuffer: CMSampleBuffer)
 }
 
 // MARK: -
 final class H264Decoder {
+    static let defaultDecodeFlags: VTDecodeFrameFlags = [
+        ._EnableAsynchronousDecompression,
+        ._EnableTemporalProcessing
+    ]
     static let defaultMinimumGroupOfPictures: Int = 12
 
     #if os(iOS)
@@ -39,10 +47,10 @@ final class H264Decoder {
     var lockQueue = DispatchQueue(label: "com.haishinkit.HaishinKit.H264Decoder.lock")
 
     var needsSync: Atomic<Bool> = .init(true)
-    private var isBaseline: Bool = true
+    var isBaseline = true
     private var buffers: [CMSampleBuffer] = []
     private var attributes: [NSString: AnyObject] {
-        return H264Decoder.defaultAttributes
+        H264Decoder.defaultAttributes
     }
     private var minimumGroupOfPictures: Int = H264Decoder.defaultMinimumGroupOfPictures
     private(set) var status: OSStatus = noErr {
@@ -109,8 +117,13 @@ final class H264Decoder {
             return kVTInvalidSessionErr
         }
         var flagsOut: VTDecodeInfoFlags = []
-        let decodeFlags: VTDecodeFrameFlags = [._EnableAsynchronousDecompression, ._EnableTemporalProcessing]
-        return VTDecompressionSessionDecodeFrame(session, sampleBuffer: sampleBuffer, flags: decodeFlags, frameRefcon: nil, infoFlagsOut: &flagsOut)
+        return VTDecompressionSessionDecodeFrame(
+            session,
+            sampleBuffer: sampleBuffer,
+            flags: H264Decoder.defaultDecodeFlags,
+            frameRefcon: nil,
+            infoFlagsOut: &flagsOut
+        )
     }
 
     func didOutputForSession(_ status: OSStatus, infoFlags: VTDecodeInfoFlags, imageBuffer: CVImageBuffer?, presentationTimeStamp: CMTime, duration: CMTime) {
@@ -172,7 +185,7 @@ final class H264Decoder {
             let userInfo: [AnyHashable: Any] = notification.userInfo,
             let value: NSNumber = userInfo[AVAudioSessionInterruptionTypeKey] as? NSNumber,
             let type: AVAudioSession.InterruptionType = AVAudioSession.InterruptionType(rawValue: value.uintValue) else {
-                return
+            return
         }
         switch type {
         case .ended:
@@ -209,6 +222,7 @@ extension H264Decoder: Running {
     func stopRunning() {
         lockQueue.async {
             self.session = nil
+            self.needsSync.mutate { $0 = true }
             self.invalidateSession = true
             self.buffers.removeAll()
             self.formatDescription = nil

@@ -2,6 +2,10 @@ import AVFoundation
 import CoreMedia
 import Foundation
 
+#if canImport(SwiftPMSupport)
+import SwiftPMSupport
+#endif
+
 /// MPEG-2 TS (Transport Stream) Writer delegate
 public protocol TSWriterDelegate: class {
     func didOutput(_ data: Data)
@@ -71,9 +75,7 @@ public class TSWriter: Running {
         guard isRunning.value else {
             return
         }
-        isRunning.mutate { value in
-            value = true
-        }
+        isRunning.mutate { $0 = true }
     }
 
     public func stopRunning() {
@@ -91,9 +93,7 @@ public class TSWriter: Running {
         videoTimestamp = .invalid
         audioTimestamp = .invalid
         PCRTimestamp = .invalid
-        isRunning.mutate { value in
-            value = false
-        }
+        isRunning.mutate { $0 = false }
     }
 
     // swiftlint:disable function_parameter_count
@@ -375,7 +375,7 @@ class TSFileWriter: TSWriter {
     }
 
     func getFilePath(_ fileName: String) -> String? {
-        return files.first { $0.url.absoluteString.contains(fileName) }?.url.path
+        files.first { $0.url.absoluteString.contains(fileName) }?.url.path
     }
 
     private func removeFiles() {

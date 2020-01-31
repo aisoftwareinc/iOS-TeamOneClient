@@ -4,7 +4,7 @@ import Foundation
 #endif
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
-class RTMPNWSocket: RTMPSocketCompatible {
+final class RTMPNWSocket: RTMPSocketCompatible {
     var timestamp: TimeInterval = 0.0
     var chunkSizeC: Int = RTMPChunk.defaultSize
     var chunkSizeS: Int = RTMPChunk.defaultSize
@@ -15,7 +15,11 @@ class RTMPNWSocket: RTMPSocketCompatible {
             delegate?.didSetReadyState(readyState)
         }
     }
+    var securityLevel: StreamSocketSecurityLevel = .none
+    var qualityOfService: DispatchQoS = .default
+    var inputBuffer = Data()
     weak var delegate: RTMPSocketDelegate?
+
     private(set) var queueBytesOut: Int64 = 0
     private(set) var totalBytesIn: Int64 = 0
     private(set) var totalBytesOut: Int64 = 0
@@ -34,46 +38,56 @@ class RTMPNWSocket: RTMPSocketCompatible {
         }
     }
     private var events: [Event] = []
-
-    var securityLevel: StreamSocketSecurityLevel = .none
-    var qualityOfService: DispatchQoS = .default
-    var inputBuffer = Data()
-
-    private var conn: NWConnection?
     private var handshake = RTMPHandshake()
+    private var connection: NWConnection? {
+        didSet {
+            oldValue?.stateUpdateHandler = nil
+            oldValue?.forceCancel()
+            if connection == nil {
+                connected = false
+            }
+        }
+    }
     private var parameters: NWParameters = .tcp
-    private lazy var queue = DispatchQueue(label: "com.haishinkit.HaishinKit.NWSocket.queue", qos: qualityOfService)
     private lazy var inputQueue = DispatchQueue(label: "com.haishinkit.HaishinKit.NWSocket.input", qos: qualityOfService)
     private lazy var outputQueue = DispatchQueue(label: "com.haishinkit.HaishinKit.NWSocket.output", qos: qualityOfService)
     private lazy var timeoutHandler = DispatchWorkItem { [weak self] in
         self?.didTimeout()
     }
 
-    deinit {
-        conn?.forceCancel()
-        conn = nil
-    }
-
     func connect(withName: String, port: Int) {
-        conn = NWConnection(to: NWEndpoint.hostPort(host: .init(withName), port: .init(integerLiteral: NWEndpoint.Port.IntegerLiteralType(port))), using: parameters)
-        conn?.stateUpdateHandler = self.stateDidChange(to:)
-        conn?.start(queue: queue)
-        receiveLoop(conn!)
+        handshake.clear()
+        readyState = .uninitialized
+        chunkSizeS = RTMPChunk.defaultSize
+        chunkSizeC = RTMPChunk.defaultSize
+        totalBytesIn = 0
+        totalBytesOut = 0
+        queueBytesOut = 0
+        inputBuffer.removeAll(keepingCapacity: false)
+        connection = NWConnection(to: NWEndpoint.hostPort(host: .init(withName), port: .init(integerLiteral: NWEndpoint.Port.IntegerLiteralType(port))), using: parameters)
+        connection?.stateUpdateHandler = stateDidChange(to:)
+        connection?.start(queue: inputQueue)
+        if let connection = connection {
+            receive(on: connection)
+        }
         if 0 < timeout {
             outputQueue.asyncAfter(deadline: .now() + .seconds(timeout), execute: timeoutHandler)
         }
     }
 
     func close(isDisconnected: Bool) {
+        guard connection != nil else {
+            return
+        }
+        if isDisconnected {
+            let data: ASObject = (readyState == .handshakeDone) ?
+                RTMPConnection.Code.connectClosed.data("") : RTMPConnection.Code.connectFailed.data("")
+            events.append(Event(type: .rtmpStatus, bubbles: false, data: data))
+        }
+        readyState = .closing
         timeoutHandler.cancel()
         outputQueue = .init(label: outputQueue.label, qos: qualityOfService)
-        inputBuffer.removeAll()
-        conn?.cancel()
-        conn = nil
-        connected = false
-    }
-
-    func deinitConnection(isDisconnected: Bool) {
+        connection = nil
     }
 
     @discardableResult
@@ -94,17 +108,20 @@ class RTMPNWSocket: RTMPSocketCompatible {
         OSAtomicAdd64(Int64(data.count), &queueBytesOut)
         outputQueue.async {
             let sendCompletion = NWConnection.SendCompletion.contentProcessed { error in
+                guard self.connected else {
+                    return
+                }
                 if error != nil {
                     self.close(isDisconnected: true)
                     return
                 }
                 self.totalBytesOut += Int64(data.count)
-                OSAtomicAdd64(Int64(data.count), &self.queueBytesOut)
+                OSAtomicAdd64(-Int64(data.count), &self.queueBytesOut)
                 if locked != nil {
                     OSAtomicAnd32Barrier(0, locked!)
                 }
             }
-            self.conn?.send(content: data, completion: sendCompletion)
+            self.connection?.send(content: data, completion: sendCompletion)
         }
         return data.count
     }
@@ -135,38 +152,16 @@ class RTMPNWSocket: RTMPSocketCompatible {
         }
     }
 
-    private func receiveLoop(_ conn: NWConnection) {
-        let receiveCompletion = { [weak self] (_ data: Data?, _ ctx: NWConnection.ContentContext?, _ isComplete: Bool, _ error: NWError?) -> Void in
-            guard let me = self else {
+    private func receive(on connection: NWConnection) {
+        connection.receive(minimumIncompleteLength: 0, maximumLength: windowSizeC) { [weak self] data, _, _, error in
+            guard let self = self, let data = data, self.connected else {
                 return
             }
-            me.receive(data, ctx, isComplete, error)
-            if me.connected {
-                me.inputQueue.async { [weak me] () -> Void in
-                    me?.receiveLoop(conn)
-                }
-            }
+            self.inputBuffer.append(data)
+            self.totalBytesIn += Int64(data.count)
+            self.listen()
+            self.receive(on: connection)
         }
-        inputQueue.async { [weak self] () -> Void in
-            guard let windowSizeC = self?.windowSizeC else {
-                return
-            }
-            conn.receive(minimumIncompleteLength: 0, maximumLength: windowSizeC, completion: receiveCompletion)
-        }
-    }
-
-    private func receive(_ data: Data?, _ ctx: NWConnection.ContentContext?, _ isComplete: Bool, _ error: NWError?) {
-        if error != nil {
-            close(isDisconnected: true)
-            return
-        }
-        guard let d = data else {
-            return
-        }
-        inputBuffer.append(d)
-        totalBytesIn += Int64(d.count)
-
-        listen()
     }
 
     private func listen() {

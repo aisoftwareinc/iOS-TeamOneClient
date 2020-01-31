@@ -1,3 +1,5 @@
+#if os(macOS)
+
 import AVFoundation
 
 open class HKView: NSView {
@@ -8,6 +10,9 @@ open class HKView: NSView {
             layer?.setValue(videoGravity.rawValue, forKey: "videoGravity")
         }
     }
+    public var videoFormatDescription: CMVideoFormatDescription? {
+        currentStream?.mixer.videoIO.formatDescription
+    }
 
     var position: AVCaptureDevice.Position = .front {
         didSet {
@@ -17,10 +22,11 @@ open class HKView: NSView {
         }
     }
     var orientation: AVCaptureVideoOrientation = .portrait
+    var displayImage: CIImage?
 
     private weak var currentStream: NetStream? {
         didSet {
-            oldValue?.mixer.videoIO.drawable = nil
+            oldValue?.mixer.videoIO.renderer = nil
         }
     }
 
@@ -49,14 +55,16 @@ open class HKView: NSView {
         }
         stream.lockQueue.async {
             self.layer?.setValue(stream.mixer.session, forKey: "session")
-            stream.mixer.videoIO.drawable = self
+            stream.mixer.videoIO.renderer = self
             stream.mixer.startRunning()
         }
     }
 }
 
-extension HKView: NetStreamDrawable {
-    // MARK: NetStreamDrawable
-    func draw(image: CIImage) {
+extension HKView: NetStreamRenderer {
+    // MARK: NetStreamRenderer
+    func draw(image: CIImage?) {
     }
 }
+
+#endif

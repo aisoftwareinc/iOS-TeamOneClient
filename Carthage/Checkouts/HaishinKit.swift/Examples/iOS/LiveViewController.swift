@@ -55,7 +55,7 @@ final class LiveViewController: UIViewController {
         rtmpStream.captureSettings = [
             .sessionPreset: AVCaptureSession.Preset.hd1280x720,
             .continuousAutofocus: true,
-            .continuousExposure: true,
+            .continuousExposure: true
             // .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.auto
         ]
         rtmpStream.videoSettings = [
@@ -152,6 +152,7 @@ final class LiveViewController: UIViewController {
         guard let data: ASObject = e.data as? ASObject, let code: String = data["code"] as? String else {
             return
         }
+        logger.info(code)
         switch code {
         case RTMPConnection.Code.connectSuccess.rawValue:
             retryCount = 0

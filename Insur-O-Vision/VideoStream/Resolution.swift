@@ -17,7 +17,7 @@ protocol Resolution {
 struct HighResolution: Resolution {
   var height: Int = 1080
   var width: Int = 1920
-  var bitrate: Int = 750
+  var bitrate: Int = 1500
 }
 
 struct DefaultResolution: Resolution {

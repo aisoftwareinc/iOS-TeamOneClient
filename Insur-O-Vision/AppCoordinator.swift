@@ -130,9 +130,10 @@ extension AppCoordinator: DashboardDelegate {
       case .success(let response):
         switch response.result {
         case .success:
+          let url = response.streamtype == .record ? Configuration.streamURL : Configuration.liveURL
           UI {
             dashboardController.updateButton(.initial)
-            self.baseController.pushViewController(self.videoStreamController(response.claimid, streamID, streamURL: Configuration.streamURL), animated: true)
+            self.baseController.pushViewController(self.videoStreamController(response.claimid, streamID, streamURL: url), animated: true)
           }
         case .failure:
           UI { dashboardController.updateButton(.initial) }

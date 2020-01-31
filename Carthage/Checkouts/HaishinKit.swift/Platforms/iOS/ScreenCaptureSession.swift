@@ -1,6 +1,11 @@
+#if os(iOS)
+
 import AVFoundation
 import CoreImage
+
+#if os(iOS)
 import UIKit
+#endif
 
 public protocol ScreenCaptureOutputPixelBufferDelegate: class {
     func didSet(size: CGSize)
@@ -54,7 +59,7 @@ open class ScreenCaptureSession: NSObject {
         }
     }
     private var scale: CGFloat {
-        return enabledScale ? UIScreen.main.scale : 1.0
+        enabledScale ? UIScreen.main.scale : 1.0
     }
 
     private var _pixelBufferPool: CVPixelBufferPool?
@@ -168,3 +173,5 @@ extension ScreenCaptureSession: Running {
         }
     }
 }
+
+#endif

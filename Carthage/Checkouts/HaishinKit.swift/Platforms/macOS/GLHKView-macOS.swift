@@ -1,8 +1,10 @@
+#if os(macOS)
+
 import AVFoundation
 import GLUT
 import OpenGL.GL3
 
-open class GLHKView: NSOpenGLView {
+open class GLHKView: NSOpenGLView, NetStreamRenderer {
     static let pixelFormatAttributes: [NSOpenGLPixelFormatAttribute] = [
         UInt32(NSOpenGLPFAAccelerated),
         UInt32(NSOpenGLPFANoRecovery),
@@ -20,9 +22,12 @@ open class GLHKView: NSOpenGLView {
     }
 
     public var videoGravity: AVLayerVideoGravity = .resizeAspect
-    var orientation: AVCaptureVideoOrientation = .portrait
+    public var videoFormatDescription: CMVideoFormatDescription? {
+        currentStream?.mixer.videoIO.formatDescription
+    }
     var position: AVCaptureDevice.Position = .front
-    private var displayImage: CIImage!
+    var orientation: AVCaptureVideoOrientation = .portrait
+    var displayImage: CIImage?
     private var originalFrame: CGRect = .zero
     private var scale: CGSize = .zero
     private weak var currentStream: NetStream?
@@ -81,7 +86,7 @@ open class GLHKView: NSOpenGLView {
 
     open func attachStream(_ stream: NetStream?) {
         if let currentStream: NetStream = currentStream {
-            currentStream.mixer.videoIO.drawable = nil
+            currentStream.mixer.videoIO.renderer = nil
         }
         if let stream: NetStream = stream {
             stream.lockQueue.async {
@@ -94,7 +99,7 @@ open class GLHKView: NSOpenGLView {
                     )
                     openGLContext.makeCurrentContext()
                 }
-                stream.mixer.videoIO.drawable = self
+                stream.mixer.videoIO.renderer = self
                 stream.mixer.startRunning()
             }
         }
@@ -102,12 +107,4 @@ open class GLHKView: NSOpenGLView {
     }
 }
 
-extension GLHKView: NetStreamDrawable {
-    // MARK: NetStreamDrawable
-    func draw(image: CIImage) {
-        DispatchQueue.main.async {
-            self.displayImage = image
-            self.needsDisplay = true
-        }
-    }
-}
+#endif

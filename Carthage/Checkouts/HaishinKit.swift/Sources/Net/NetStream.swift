@@ -1,14 +1,5 @@
 import AVFoundation
-
-protocol NetStreamDrawable: class {
-#if os(iOS) || os(macOS)
-    var orientation: AVCaptureVideoOrientation { get set }
-    var position: AVCaptureDevice.Position { get set }
-#endif
-
-    func draw(image: CIImage)
-    func attachStream(_ stream: NetStream?)
-}
+import CoreImage
 
 // MARK: -
 open class NetStream: NSObject {
@@ -29,7 +20,7 @@ open class NetStream: NSObject {
 
     open var context: CIContext? {
         get {
-            return mixer.videoIO.context
+            mixer.videoIO.context
         }
         set {
             mixer.videoIO.context = newValue
@@ -55,7 +46,7 @@ open class NetStream: NSObject {
 
     open var audioSettings: Setting<AudioConverter, AudioConverter.Option> {
         get {
-            return mixer.audioIO.encoder.settings
+            mixer.audioIO.encoder.settings
         }
         set {
             mixer.audioIO.encoder.settings = newValue
@@ -64,7 +55,7 @@ open class NetStream: NSObject {
 
     open var videoSettings: Setting<H264Encoder, H264Encoder.Option> {
         get {
-            return mixer.videoIO.encoder.settings
+            mixer.videoIO.encoder.settings
         }
         set {
             mixer.videoIO.encoder.settings = newValue
@@ -73,7 +64,7 @@ open class NetStream: NSObject {
 
     open var captureSettings: Setting<AVMixer, AVMixer.Option> {
         get {
-            return mixer.settings
+            mixer.settings
         }
         set {
             mixer.settings = newValue
@@ -130,7 +121,7 @@ open class NetStream: NSObject {
             }
         case .video:
             mixer.videoIO.lockQueue.async {
-                self.mixer.videoIO.appendSampleBuffer(sampleBuffer)
+                self.mixer.videoIO.encodeSampleBuffer(sampleBuffer)
             }
         default:
             break
@@ -138,25 +129,25 @@ open class NetStream: NSObject {
     }
 
     open func registerVideoEffect(_ effect: VideoEffect) -> Bool {
-        return mixer.videoIO.lockQueue.sync {
+        mixer.videoIO.lockQueue.sync {
             self.mixer.videoIO.registerEffect(effect)
         }
     }
 
     open func unregisterVideoEffect(_ effect: VideoEffect) -> Bool {
-        return mixer.videoIO.lockQueue.sync {
+        mixer.videoIO.lockQueue.sync {
             self.mixer.videoIO.unregisterEffect(effect)
         }
     }
 
     open func registerAudioEffect(_ effect: AudioEffect) -> Bool {
-        return mixer.audioIO.lockQueue.sync {
+        mixer.audioIO.lockQueue.sync {
             self.mixer.audioIO.registerEffect(effect)
         }
     }
 
     open func unregisterAudioEffect(_ effect: AudioEffect) -> Bool {
-        return mixer.audioIO.lockQueue.sync {
+        mixer.audioIO.lockQueue.sync {
             self.mixer.audioIO.unregisterEffect(effect)
         }
     }

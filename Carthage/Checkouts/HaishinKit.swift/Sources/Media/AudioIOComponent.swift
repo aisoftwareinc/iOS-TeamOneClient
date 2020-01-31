@@ -1,11 +1,20 @@
 import AVFoundation
 
-final class AudioIOComponent: IOComponent {
+#if canImport(SwiftPMSupport)
+import SwiftPMSupport
+#endif
+
+final class AudioIOComponent: IOComponent, DisplayLinkedQueueClockReference {
     lazy var encoder = AudioConverter()
     let lockQueue = DispatchQueue(label: "com.haishinkit.HaishinKit.AudioIOComponent.lock")
 
     var audioEngine: AVAudioEngine?
-    var currentPresentationTimeStamp: CMTime = .zero
+    var duration: TimeInterval {
+        guard let nodeTime = playerNode.lastRenderTime, let playerTime = playerNode.playerTime(forNodeTime: nodeTime) else {
+            return 0.0
+        }
+        return TimeInterval(playerTime.sampleTime) / playerTime.sampleRate
+    }
     var currentBuffers: Atomic<Int> = .init(0)
     var soundTransform: SoundTransform = .init() {
         didSet {
@@ -42,6 +51,9 @@ final class AudioIOComponent: IOComponent {
             })
             do {
                 try audioEngine.start()
+                if !playerNode.isPlaying {
+                    playerNode.play()
+                }
             } catch {
                 logger.warn(error)
             }
@@ -135,11 +147,25 @@ final class AudioIOComponent: IOComponent {
 #endif
 
     func registerEffect(_ effect: AudioEffect) -> Bool {
-        return encoder.effects.insert(effect).inserted
+        encoder.effects.insert(effect).inserted
     }
 
     func unregisterEffect(_ effect: AudioEffect) -> Bool {
-        return encoder.effects.remove(effect) != nil
+        encoder.effects.remove(effect) != nil
+    }
+
+    func startDecoding(_ audioEngine: AVAudioEngine?) {
+        self.audioEngine = audioEngine
+        encoder.delegate = self
+        encoder.startRunning()
+    }
+
+    func stopDecoding() {
+        playerNode.reset()
+        audioEngine = nil
+        encoder.delegate = nil
+        encoder.stopRunning()
+        currentBuffers.mutate { $0 = 0 }
     }
 }
 
@@ -153,7 +179,10 @@ extension AudioIOComponent: AVCaptureAudioDataOutputSampleBufferDelegate {
 extension AudioIOComponent: AudioConverterDelegate {
     // MARK: AudioConverterDelegate
     func didSetFormatDescription(audio formatDescription: CMFormatDescription?) {
-        guard let formatDescription = formatDescription else { return }
+        guard let formatDescription = formatDescription else {
+            mixer?.videoIO.queue.clockReference = nil
+            return
+        }
         #if os(iOS)
         if #available(iOS 9.0, *) {
             audioFormat = AVAudioFormat(cmAudioFormatDescription: formatDescription)
@@ -166,6 +195,7 @@ extension AudioIOComponent: AudioConverterDelegate {
         #else
             audioFormat = AVAudioFormat(cmAudioFormatDescription: formatDescription)
         #endif
+        mixer?.videoIO.queue.clockReference = self
     }
 
     func sampleOutput(audio data: UnsafeMutableAudioBufferListPointer, presentationTimeStamp: CMTime) {
@@ -175,6 +205,10 @@ extension AudioIOComponent: AudioConverterDelegate {
             let audioFormat = audioFormat,
             let buffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: data[0].mDataByteSize / 4) else {
             return
+        }
+
+        if let queue = mixer?.videoIO.queue, queue.isPaused {
+            queue.isPaused = false
         }
 
         buffer.frameLength = buffer.frameCapacity
@@ -187,27 +221,25 @@ extension AudioIOComponent: AudioConverterDelegate {
         }
 
         mixer?.delegate?.didOutputAudio(buffer, presentationTimeStamp: presentationTimeStamp)
-
-        currentBuffers.mutate { value in
-            value += 1
-        }
+        currentBuffers.mutate { $0 += 1 }
 
         nstry({
+            self.playerNode.scheduleBuffer(buffer, completionHandler: self.didAVAudioNodeCompletion)
             if !self.playerNode.isPlaying {
                 self.playerNode.play()
             }
-            self.playerNode.scheduleBuffer(buffer) { [weak self] in
-                guard let self = self else { return }
-                self.currentPresentationTimeStamp = presentationTimeStamp
-                self.currentBuffers.mutate { value in
-                    value -= 1
-                    if value == 0 {
-                        self.mixer?.didBufferEmpty(self)
-                    }
-                }
-            }
         }, { exeption in
-            logger.warn("\(exeption)")
+            logger.warn(exeption)
         })
+    }
+
+    private func didAVAudioNodeCompletion() {
+        currentBuffers.mutate { value in
+            value -= 1
+            if value == 0 {
+                self.playerNode.pause()
+                self.mixer?.didBufferEmpty(self)
+            }
+        }
     }
 }

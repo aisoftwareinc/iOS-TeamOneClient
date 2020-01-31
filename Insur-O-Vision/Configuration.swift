@@ -16,6 +16,10 @@ struct Configuration {
     return "rtmp://www.teamonemediaserver.com/LiveApp/"
   }
   
+  static var liveURL: String {
+    return "rtmp://www.teamonemediaserver.com/LiveStreamOnly/"
+  }
+  
   static var apiEndpoint: String {
     return "http://demo.teamonecms.com/ws/media.asmx"
   }

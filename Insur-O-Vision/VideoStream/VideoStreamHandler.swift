@@ -2,6 +2,7 @@ import Foundation
 import HaishinKit
 import AVFoundation
 import Asterism
+import VideoToolbox
 
 protocol StreamVideoDelegate: class {
   func streamFailedToConnect()
@@ -31,6 +32,7 @@ class VideoStreamHandler {
     streamURI = uri
     streamID = id
     setUp()
+    //rtmpConnection.chunkSize = 1000
   }
   
   private func setUp() {
@@ -44,11 +46,19 @@ class VideoStreamHandler {
     rtmpStream.videoSettings = [
       .width: 1280,
       .height: 720,
-      .bitrate: HighResolution().bitrate * 1024
+      .bitrate: HighResolution().bitrate * 1024,
+      .profileLevel: kVTProfileLevel_H264_Baseline_3_1, // H264 Profile require "import VideoToolbox"
+      .maxKeyFrameIntervalDuration: 0,
+
     ]
-    rtmpStream.audioSettings = [
-        .sampleRate: sampleRate
-    ]
+//    rtmpStream.audioSettings = [
+//        .muted: false, // mute audio
+//        .bitrate: 32 * 1000,
+//        .sampleRate: sampleRate,
+//    ]
+
+    // 2nd arguemnt set false
+    rtmpStream.attachAudio(AVCaptureDevice.default(for: AVMediaType.audio), automaticallyConfiguresApplicationAudioSession: false)
     rtmpConnection.addEventListener(Event.Name.rtmpStatus, selector: #selector(rtmpStatusEvent), observer: self)
   }
   

@@ -1,4 +1,5 @@
 import AVFoundation
+import CoreImage
 
 final class VideoIOComponent: IOComponent {
     #if os(macOS)
@@ -26,13 +27,13 @@ final class VideoIOComponent: IOComponent {
     }
 
     #if os(iOS) || os(macOS)
-    var drawable: NetStreamDrawable? = nil {
+    var renderer: NetStreamRenderer? = nil {
         didSet {
-            drawable?.orientation = orientation
+            renderer?.orientation = orientation
         }
     }
     #else
-    var drawable: NetStreamDrawable?
+    var renderer: NetStreamRenderer?
     #endif
 
     var formatDescription: CMVideoFormatDescription? {
@@ -115,7 +116,7 @@ final class VideoIOComponent: IOComponent {
 
     var orientation: AVCaptureVideoOrientation = .portrait {
         didSet {
-            drawable?.orientation = orientation
+            renderer?.orientation = orientation
             guard orientation != oldValue else {
                 return
             }
@@ -331,7 +332,7 @@ final class VideoIOComponent: IOComponent {
 
         fps *= 1
         position = camera.position
-        drawable?.position = camera.position
+        renderer?.position = camera.position
     }
 
     func setTorchMode(_ torchMode: AVCaptureDevice.TorchMode) {
@@ -350,10 +351,10 @@ final class VideoIOComponent: IOComponent {
 
     func dispose() {
         if Thread.isMainThread {
-            self.drawable?.attachStream(nil)
+            self.renderer?.attachStream(nil)
         } else {
             DispatchQueue.main.sync {
-                self.drawable?.attachStream(nil)
+                self.renderer?.attachStream(nil)
             }
         }
 
@@ -363,57 +364,14 @@ final class VideoIOComponent: IOComponent {
     #else
     func dispose() {
         if Thread.isMainThread {
-            self.drawable?.attachStream(nil)
+            self.renderer?.attachStream(nil)
         } else {
             DispatchQueue.main.sync {
-                self.drawable?.attachStream(nil)
+                self.renderer?.attachStream(nil)
             }
         }
     }
     #endif
-
-    func appendSampleBuffer(_ sampleBuffer: CMSampleBuffer) {
-        guard let buffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-
-        var imageBuffer: CVImageBuffer?
-
-        CVPixelBufferLockBaseAddress(buffer, [])
-        defer {
-            CVPixelBufferUnlockBaseAddress(buffer, [])
-            if let imageBuffer = imageBuffer {
-                CVPixelBufferUnlockBaseAddress(imageBuffer, [])
-            }
-        }
-
-        if drawable != nil || !effects.isEmpty {
-            let image: CIImage = effect(buffer, info: sampleBuffer)
-            extent = image.extent
-            if !effects.isEmpty {
-                #if os(macOS)
-                CVPixelBufferPoolCreatePixelBuffer(nil, pixelBufferPool, &imageBuffer)
-                #else
-                if buffer.width != Int(extent.width) || buffer.height != Int(extent.height) {
-                    CVPixelBufferPoolCreatePixelBuffer(nil, pixelBufferPool, &imageBuffer)
-                }
-                #endif
-                if let imageBuffer = imageBuffer {
-                    CVPixelBufferLockBaseAddress(imageBuffer, [])
-                }
-                context?.render(image, to: imageBuffer ?? buffer)
-            }
-            drawable?.draw(image: image)
-        }
-
-        encoder.encodeImageBuffer(
-            imageBuffer ?? buffer,
-            presentationTimeStamp: sampleBuffer.presentationTimeStamp,
-            duration: sampleBuffer.duration
-        )
-
-        mixer?.recorder.appendPixelBuffer(imageBuffer ?? buffer, withPresentationTime: sampleBuffer.presentationTimeStamp)
-    }
 
     @inline(__always)
     func effect(_ buffer: CVImageBuffer, info: CMSampleBuffer?) -> CIImage {
@@ -435,10 +393,72 @@ final class VideoIOComponent: IOComponent {
     }
 }
 
+extension VideoIOComponent {
+    func encodeSampleBuffer(_ sampleBuffer: CMSampleBuffer) {
+        guard let buffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+
+        var imageBuffer: CVImageBuffer?
+
+        CVPixelBufferLockBaseAddress(buffer, [])
+        defer {
+            CVPixelBufferUnlockBaseAddress(buffer, [])
+            if let imageBuffer = imageBuffer {
+                CVPixelBufferUnlockBaseAddress(imageBuffer, [])
+            }
+        }
+
+        if renderer != nil || !effects.isEmpty {
+            let image: CIImage = effect(buffer, info: sampleBuffer)
+            extent = image.extent
+            if !effects.isEmpty {
+                #if os(macOS)
+                CVPixelBufferPoolCreatePixelBuffer(nil, pixelBufferPool, &imageBuffer)
+                #else
+                if buffer.width != Int(extent.width) || buffer.height != Int(extent.height) {
+                    CVPixelBufferPoolCreatePixelBuffer(nil, pixelBufferPool, &imageBuffer)
+                }
+                #endif
+                if let imageBuffer = imageBuffer {
+                    CVPixelBufferLockBaseAddress(imageBuffer, [])
+                }
+                context?.render(image, to: imageBuffer ?? buffer)
+            }
+            renderer?.render(image: image)
+        }
+
+        encoder.encodeImageBuffer(
+            imageBuffer ?? buffer,
+            presentationTimeStamp: sampleBuffer.presentationTimeStamp,
+            duration: sampleBuffer.duration
+        )
+
+        mixer?.recorder.appendPixelBuffer(imageBuffer ?? buffer, withPresentationTime: sampleBuffer.presentationTimeStamp)
+    }
+}
+
+extension VideoIOComponent {
+    func startDecoding() {
+        queue.startRunning()
+        decoder.startRunning()
+    }
+
+    func stopDecoding() {
+        decoder.stopRunning()
+        queue.stopRunning()
+        renderer?.render(image: nil)
+    }
+
+    func decodeSampleBuffer(_ sampleBuffer: CMSampleBuffer) {
+        _ = decoder.decodeSampleBuffer(sampleBuffer)
+    }
+}
+
 extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        appendSampleBuffer(sampleBuffer)
+        encodeSampleBuffer(sampleBuffer)
     }
 }
 
@@ -452,7 +472,7 @@ extension VideoIOComponent: VideoDecoderDelegate {
 extension VideoIOComponent: DisplayLinkedQueueDelegate {
     // MARK: DisplayLinkedQueue
     func queue(_ buffer: CMSampleBuffer) {
-        drawable?.draw(image: CIImage(cvPixelBuffer: buffer.imageBuffer!))
+        renderer?.render(image: CIImage(cvPixelBuffer: buffer.imageBuffer!))
         mixer?.delegate?.didOutputVideo(buffer)
     }
 

@@ -10,7 +10,7 @@ import Foundation
 
 struct ValidateStreamResponse: Decodable {
   let result: SuccessResult
-  let streamtype: String
+  let streamtype: StreamType
   let streamurl: String
   let claimid: String
 }

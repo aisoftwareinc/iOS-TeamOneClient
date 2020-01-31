@@ -50,7 +50,7 @@ class ProgramSpecific: PSIPointer, PSITableHeader, PSITableSyntax {
     var lastSectionNumber: UInt8 = 0
     var tableData: Data {
         get {
-            return Data()
+            Data()
         }
         set {
         }
@@ -129,7 +129,7 @@ extension ProgramSpecific: DataConvertible {
 extension ProgramSpecific: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     var debugDescription: String {
-        return Mirror(reflecting: self).debugDescription
+        Mirror(reflecting: self).debugDescription
     }
 }
 
@@ -137,7 +137,7 @@ extension ProgramSpecific: CustomDebugStringConvertible {
 final class ProgramAssociationSpecific: ProgramSpecific {
     static let tableID: UInt8 = 0
 
-    var programs: [UInt16: UInt16] = [: ]
+    var programs: [UInt16: UInt16] = [:]
 
     override var tableData: Data {
         get {
@@ -253,7 +253,7 @@ extension ElementaryStreamSpecificData: DataConvertible {
     // MARK: BytesConvertible
     var data: Data {
         get {
-            return ByteArray()
+            ByteArray()
                 .writeUInt8(streamType)
                 .writeUInt16(elementaryPID | 0xe000)
                 .writeUInt16(ESInfoLength | 0xf000)
@@ -277,6 +277,6 @@ extension ElementaryStreamSpecificData: DataConvertible {
 extension ElementaryStreamSpecificData: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     var debugDescription: String {
-        return Mirror(reflecting: self).debugDescription
+        Mirror(reflecting: self).debugDescription
     }
 }
