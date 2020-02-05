@@ -54,8 +54,9 @@ class ViewStreamViewModel {
   }
   
   func postStartStream() {
-    streamIDs.append(addStreamID())
-    Networking.send(StartVideoSession(streamID: streamID))
+    let adjustedStreamID = addStreamID()
+    streamIDs.append(adjustedStreamID)
+    Networking.send(StartVideoSession(streamID: adjustedStreamID))
     streamTracker += 1
   }
   

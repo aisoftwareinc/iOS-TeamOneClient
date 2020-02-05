@@ -117,8 +117,8 @@ class VideoStreamController: UIViewController {
   }
   
   func startStream() {
-    viewModel.postStartStream()
     streamHandler.startStream()
+    viewModel.postStartStream()
   }
   
   func stopStream() {

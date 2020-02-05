@@ -32,7 +32,6 @@ class VideoStreamHandler {
     streamURI = uri
     streamID = id
     setUp()
-    //rtmpConnection.chunkSize = 1000
   }
   
   private func setUp() {
@@ -51,13 +50,6 @@ class VideoStreamHandler {
       .maxKeyFrameIntervalDuration: 0,
 
     ]
-//    rtmpStream.audioSettings = [
-//        .muted: false, // mute audio
-//        .bitrate: 32 * 1000,
-//        .sampleRate: sampleRate,
-//    ]
-
-    // 2nd arguemnt set false
     rtmpStream.attachAudio(AVCaptureDevice.default(for: AVMediaType.audio), automaticallyConfiguresApplicationAudioSession: false)
     rtmpConnection.addEventListener(Event.Name.rtmpStatus, selector: #selector(rtmpStatusEvent), observer: self)
   }
