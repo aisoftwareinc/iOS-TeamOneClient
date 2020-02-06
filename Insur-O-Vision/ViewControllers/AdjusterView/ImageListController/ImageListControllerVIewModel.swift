@@ -45,4 +45,8 @@ class ImageListControlerViewModel {
       completion(result)
     }
   }
+  
+  func buildPhotoBook(for claim: String) {
+    Networking.send(BuildPhotoBook(claimID: claim))
+  }
 }

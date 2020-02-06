@@ -226,7 +226,24 @@ extension AppCoordinator: ClaimsListDelegate {
   
   func didSelectClaim(_ claimID: String, _ streamID: String) {
     DLOG("Claim ID \(claimID) StreamID: \(streamID)")
-    self.baseController.pushViewController(videoStreamController(claimID, streamID, streamURL: Configuration.streamURL), animated: true)
+    self.baseController.applyLoader()
+    Networking.send(ValidateStreamRequest(latitude: String(locationManager.currentLocation!.coordinate.latitude), longitude: String(locationManager.currentLocation!.coordinate.longitude), streamID: streamID, modelName: UIDevice.current.model, modelNumber: "", softwareVersion: UIDevice.current.systemVersion, carrier: "")) { (result: Result<ValidateStreamResponse, Error>) in
+      UI { self.baseController.removeLoader() }
+      switch result {
+      case .success(let response):
+        switch response.result {
+        case .success:
+          let url = response.streamtype == .record ? Configuration.streamURL : Configuration.liveURL
+          UI {
+            self.baseController.pushViewController(self.videoStreamController(response.claimid, streamID, streamURL: url), animated: true)
+          }
+        case .failure:
+          self.displayError(.failedToValidateStreamID)
+        }
+      case .failure:
+        self.displayError(.genericError)
+      }
+    }
   }
   
   func errorRemovingClaim() {

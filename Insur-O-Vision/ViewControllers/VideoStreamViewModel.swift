@@ -54,10 +54,13 @@ class ViewStreamViewModel {
   }
   
   func postStartStream() {
-    let adjustedStreamID = addStreamID()
-    streamIDs.append(adjustedStreamID)
-    Networking.send(StartVideoSession(streamID: adjustedStreamID))
+    streamIDs.append(addStreamID())
+    Networking.send(StartVideoSession(streamID: streamID))
     streamTracker += 1
+  }
+  
+  func postStopStream() {
+    Networking.send(PostVideo(claimID: claimID, streamID: streamID))
   }
   
   func zoomLevel(_ selectMode: Int) -> CGFloat {

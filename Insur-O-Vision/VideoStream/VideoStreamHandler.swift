@@ -64,7 +64,8 @@ class VideoStreamHandler {
       }
       switch code {
       case RTMPConnection.Code.connectSuccess.rawValue:
-        rtmpStream.publish(calculateAppendNumber())
+        //rtmpStream.publish(calculateAppendNumber())
+        rtmpStream.publish(streamID)
         isRunning = true
         DLOG("Connection Success!")
       case RTMPConnection.Code.connectClosed.rawValue:

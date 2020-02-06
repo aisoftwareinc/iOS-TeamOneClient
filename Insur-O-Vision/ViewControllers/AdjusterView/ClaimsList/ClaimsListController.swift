@@ -74,7 +74,6 @@ class ClaimsListController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    claimsViewModel.fetchClaims()
     self.tableView.dataSource = self
     self.tableView.delegate = self
     self.tableView.register(UINib(nibName: "GenericInfoCell", bundle: nil), forCellReuseIdentifier: "GenericInfoCell")
@@ -95,6 +94,12 @@ class ClaimsListController: UIViewController {
     refreshControl.tintColor = .white
     tableView.refreshControl = refreshControl
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    claimsViewModel.fetchClaims()
+  }
+  
   
   @objc
   func pushToSearch() {

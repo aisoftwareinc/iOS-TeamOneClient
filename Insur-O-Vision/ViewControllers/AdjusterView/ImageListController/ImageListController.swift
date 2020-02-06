@@ -56,11 +56,27 @@ class ImageListController: UIViewController {
     refreshControl.tintColor = .white
     collectionView.refreshControl = refreshControl
     view.backgroundColor = Colors.background
+    let photoBookImage = UIImage(imageLiteralResourceName: "PhotoBook")
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: photoBookImage, style: .plain, target: self, action: #selector(createPhotoBook))
   }
   
-    @objc
+  @objc
   func refresh() {
     viewModel.fetchSavedPhotos(for: claimID)
+  }
+  
+  @objc
+  func createPhotoBook() {
+    let actionSheet = UIAlertController(title: "Create Photo Book?", message: nil, preferredStyle: .actionSheet)
+    let okAction = UIAlertAction(title: "Ok", style: .default, handler: { action in
+      Networking.send(BuildPhotoBook(claimID: self.claimID))
+    })
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    actionSheet.addAction(okAction)
+    actionSheet.addAction(cancelAction)
+    self.present(actionSheet, animated: true, completion: nil)
+    DLOG("Create Photo Book")
   }
   
   private func prepCollectionView() {
@@ -131,3 +147,5 @@ extension UIImageView {
     }
   }
 }
+
+

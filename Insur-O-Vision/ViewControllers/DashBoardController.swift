@@ -46,6 +46,11 @@ class DashBoardController: UIViewController {
     addKeyboardDismissTap()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    claimNumberField.text?.removeAll()
+  }
+  
   
   @objc
   func dismissKeyboard() {

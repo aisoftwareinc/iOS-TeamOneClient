@@ -123,6 +123,7 @@ class VideoStreamController: UIViewController {
   
   func stopStream() {
     streamHandler.stopStream()
+    viewModel.postStopStream()
   }
   
   func togglePause() {
@@ -158,8 +159,7 @@ extension VideoStreamController: RemoteCommandsDelegate {
       let level = viewModel.zoomLevel(0)
       toggleZoom(level)
     case .endVideo:
-      streamHandler.stopStream()
-      viewModel.endStream()
+      self.navigationController?.popViewController(animated: true)
     case .flashOn:
       viewModel.toggleFlash(true)
     case .flashOff:
